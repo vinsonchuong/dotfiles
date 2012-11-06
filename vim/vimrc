@@ -1,0 +1,177 @@
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
+runtime macros/matchit.vim
+Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'godlygeek/tabular'
+nmap <Leader>a :Tabularize 
+vmap <Leader>a :Tabularize 
+Bundle 'AndrewRadev/splitjoin.vim'
+nmap <Leader>j :SplitjoinJoin<CR>
+nmap <Leader>s :SplitjoinSplit<CR>
+
+Bundle 'kana/vim-textobj-user'
+Bundle 'kana/vim-textobj-entire'
+Bundle 'tpope/vim-surround'
+
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-endwise'
+" autocmd FileType ruby
+"   \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
+"   \ let b:endwise_words = 'module,class,def,if,unless,case,while,until,begin,do' |
+"   \ let b:endwise_pattern = '^\s*\zs\%(module\|class\|def\|if\|unless\|case\|while\|until\|for\|\|begin\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
+"   \ let b:endwise_syngroups = 'rubyModule,rubyClass,rubyDefine,rubyControl,rubyConditional,rubyRepeat'
+set showmatch
+
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+"Bundle 'honza/snipmate-snippets'
+let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_auto_completion_start_length=2
+let g:neocomplcache_manual_completion_start_length=2
+let g:neocomplcache_min_keyword_length=2
+let g:neocomplcache_min_syntax_length=2
+let g:neocomplcache_enable_camel_case_completion=1
+let g:neocomplcache_enable_underbar_completion=1
+let g:neocomplcache_omni_patterns = {
+  \ 'c' : '[^.[:digit:] *\t]\%(\.\|->\)',
+  \ 'cpp' : '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::',
+  \ 'php' : '[^. \t]->\h\w*|\h\w*::'
+\ }
+let g:neocomplcache_force_omni_patterns = {
+  \ 'ruby' : '[^. *\t]\.\w*\|\h\w*::'
+\ }
+set conceallevel=2
+set concealcursor=i
+imap <expr><C-l>
+  \ pumvisible() ? neocomplcache#complete_common_string() :
+  \ "\<C-l>"
+imap <expr><C-e>
+  \ pumvisible() ? neocomplcache#cancel_popup() :
+  \ "\<C-e>"
+imap <expr><C-y>
+  \ neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" :
+  \ pumvisible() ? neocomplcache#close_popup() :
+  \ "\<C-y>"
+imap <expr><C-j>
+  \ neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" :
+  \ "\<C-j>"
+smap <expr><C-j>
+  \ neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" :
+  \ "\<C-j>"
+
+Bundle 'kien/ctrlp.vim'
+set wildmenu
+set wildmode=longest:full
+set wildignore+=*/tmp/*,*/.git/*
+set wildignore+=*.so,*.swp,*.zip,*.tar.*
+
+Bundle 'mileszs/ack.vim'
+nnoremap <C-m> :LAck
+
+Bundle 'tpope/vim-fugitive'
+
+Bundle 'sjl/gundo.vim'
+set undofile
+set undodir=$HOME/.vimundo
+nnoremap <C-h> :GundoToggle<CR>
+
+Bundle 'DfrankUtil'
+Bundle 'vimprj'
+Bundle 'indexer.tar.gz'
+Bundle 'majutsushi/tagbar'
+"let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+let g:tagbar_type_coffee = {
+  \ 'ctagstype' : 'coffee',
+  \ 'kinds'     : [
+    \ 'c:classes',
+    \ 'm:methods',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'f:fields',
+  \ ]
+\ }
+let g:tagbar_type_markdown = {
+  \ 'ctagstype' : 'markdown',
+  \ 'kinds' : [
+    \ 'h:Heading_L1',
+    \ 'i:Heading_L2',
+    \ 'k:Heading_L3'
+  \ ]
+\ }
+let g:tagbar_type_scala = {
+  \ 'ctagstype' : 'scala',
+  \ 'kinds'     : [
+    \ 'p:packages:1',
+    \ 'V:values',
+    \ 'v:variables',
+    \ 'T:types',
+    \ 't:traits',
+    \ 'o:objects',
+    \ 'a:aclasses',
+    \ 'c:classes',
+    \ 'r:cclasses',
+    \ 'm:methods'
+  \ ]
+\ }
+nnoremap <silent> <C-n> :TagbarOpen 'fj'<CR>
+
+Bundle 'scrooloose/syntastic'
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 0
+let g:syntastic_enable_balloons = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_mode_map = {
+  \ 'mode': 'active',
+  \ 'passive_filetypes': []
+\}
+
+Bundle 'tpope/vim-bundler'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'chrisbra/color_highlight'
+let g:colorizer_auto_filetype = 'css,scss,sass,html,haml'
+Bundle 'tpope/vim-haml'
+Bundle 'vinsonchuong/vim-lua-ftplugin'
+let g:lua_complete_dynamic = 0
+let g:lua_check_syntax = 0
+let g:lua_check_globals = 0
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-rails'
+
+Bundle 'altercation/vim-colors-solarized'
+colorscheme solarized
+set background=light
+let g:solarized_termtrans=1
+
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+set foldmethod=syntax
+set autoindent
+set copyindent
+set expandtab
+set shiftwidth=2
+set shiftround
+set smarttab
+set softtabstop=2
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set nowrap
+set number
+set showcmd
+set nobackup
+set noswapfile
+set hidden
+
+Bundle 'Lokaltog/vim-powerline'
+set laststatus=2
+"let g:Powerline_symbols = 'fancy'
+"let g:Powerline_theme = 'solarized256'
+"let g:Powerline_colorscheme = 'solarized'
