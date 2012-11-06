@@ -1,0 +1,42 @@
+zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' condition 1
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list '+' '+m:{[:lower:]}={[:upper:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+r:|[._-]=** r:|=** l:|=*'
+zstyle ':completion:*' match-original both
+zstyle ':completion:*' max-errors 3
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' substitute 1
+zstyle :compinstall filename "$HOME/.zshrc"
+
+autoload -Uz compinit
+compinit
+
+bindkey -v
+setopt appendhistory extendedglob correctall
+
+EDITOR='vim'
+HISTFILE="$HOME/.histfile"
+HISTSIZE=5000
+LESS="-R"
+PATH="$HOME/.gem/ruby/1.9.1/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+SAVEHIST=10000
+
+alias chgrp='chgrp --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chown='chown --preserve-root'
+alias cp='cp -i'
+alias diff='colordiff -u'
+alias df='df -h'
+alias du='du -c -h'
+alias grep='grep --color=auto'
+alias ln='ln -i'
+alias ls='ls -hF --color=auto'
+alias mkdir='mkdir -p -v'
+alias mv='mv -i'
+alias nano='nano -w'
+alias ping='ping -c 5'
+alias rm='rm -i'
