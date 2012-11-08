@@ -16,6 +16,8 @@ nmap <Leader>s :SplitjoinSplit<CR>
 
 Bundle 'kana/vim-textobj-user'
 Bundle 'kana/vim-textobj-entire'
+Bundle 'kana/vim-textobj-lastpat'
+Bundle 'kana/vim-textobj-syntax'
 Bundle 'tpope/vim-surround'
 
 Bundle 'Raimondi/delimitMate'
@@ -166,6 +168,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set nowrap
 set number
 set showcmd
+set autoread
 set nobackup
 set noswapfile
 set hidden
