@@ -11,9 +11,18 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' substitute 1
 zstyle :compinstall filename "$HOME/.zshrc"
-
 autoload -Uz compinit
 compinit
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git hg svn
+zstyle ':vcs_info:git*' formats "%r:%b"
+setopt prompt_subst
+precmd() {
+  vcs_info
+}
+PROMPT='%n@%m %~ '
+RPROMPT='${vcs_info_msg_0_}'
 
 bindkey -v
 setopt appendhistory extendedglob correctall
@@ -21,7 +30,7 @@ setopt appendhistory extendedglob correctall
 EDITOR='vim'
 HISTFILE="$HOME/.histfile"
 HISTSIZE=5000
-LESS="-R"
+LESS='-R'
 PATH="$HOME/.gem/ruby/1.9.1/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
 SAVEHIST=10000
 
