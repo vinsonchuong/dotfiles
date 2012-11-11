@@ -1,3 +1,4 @@
+autoload -Uz compinit && compinit
 zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 1
 zstyle ':completion:*' condition 1
@@ -10,22 +11,28 @@ zstyle ':completion:*' max-errors 3
 zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' substitute 1
-zstyle :compinstall filename "$HOME/.zshrc"
-autoload -Uz compinit
-compinit
+zstyle ':compinstall' filename "$HOME/.zshrc"
+setopt appendhistory extendedglob correctall
 
-autoload -Uz vcs_info
+autoload -U colors && colors
+autoload -Uz vcs_info && precmd() { vcs_info }
 zstyle ':vcs_info:*' enable git hg svn
 zstyle ':vcs_info:git*' formats "%r:%b"
-setopt prompt_subst
-precmd() {
-  vcs_info
+status_line() {
+  local ssh=${(%):-%n@%m:%~}
+  local git=" $vcs_info_msg_0_"
+
+  local ssh_length=${#ssh}
+  local git_length=${#git}
+
+  echo "${(r.(($COLUMNS - $git_length)).)ssh}$git"
 }
-PROMPT='%n@%m %~ '
-RPROMPT='${vcs_info_msg_0_}'
+setopt prompt_subst
+PROMPT='<< %?
+%{$bg[white]%}$(status_line)%{$reset_color%}
+>> '
 
 bindkey -v
-setopt appendhistory extendedglob correctall
 
 EDITOR='vim'
 HISTFILE="$HOME/.histfile"
