@@ -13,6 +13,7 @@ vmap <Leader>a :Tabularize
 Bundle 'AndrewRadev/splitjoin.vim'
 nmap <Leader>j :SplitjoinJoin<CR>
 nmap <Leader>s :SplitjoinSplit<CR>
+Bundle 'bronson/vim-visual-star-search'
 
 Bundle 'kana/vim-textobj-user'
 Bundle 'kana/vim-textobj-entire'
