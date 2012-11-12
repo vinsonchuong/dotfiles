@@ -41,6 +41,12 @@ LESS='-R'
 PATH="$HOME/.gem/ruby/1.9.1/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
 SAVEHIST=10000
 
+alias pacup='yaourt -Syua'
+alias pacin='yaourt -Sy'
+alias pacun='yaourt -Rcns'
+alias pacls='yaourt -Q'
+alias pacse='yaourt -Ss'
+
 alias chgrp='chgrp --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
