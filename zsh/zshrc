@@ -58,7 +58,20 @@ alias gitap='git add --patch'
 alias gitrs='git reset'
 alias gitbr='git branch'
 alias gitco='git checkout'
-alias gitcl='git clone --recursive'
+gitcl() {
+  git clone --recursive $@ || exit
+  if [[ ${*[-1]##*.} -eq git ]]
+  then
+    pushd ${${*[-1]##*/}%*.git} 1>/dev/null
+  else
+    pushd $*[-1] 1>/dev/null
+  fi
+  for branch in $(git branch -r | grep -v HEAD)
+  do
+    git branch --track ${branch##*/} $branch 2>/dev/null
+  done
+  popd 1>/dev/null
+}
 
 alias chgrp='chgrp --preserve-root'
 alias chmod='chmod --preserve-root'
