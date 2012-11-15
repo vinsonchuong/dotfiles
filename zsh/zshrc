@@ -51,7 +51,7 @@ current_branch() { echo ${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/} }
 alias gitst='git status -sb'
 alias gitlg='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 alias gitdf='git diff --color=always'
-alias gitpp='git pull --rebase && git push'
+alias gitpp='git up && git push'
 alias gitmf='git merge --ff-only'
 alias gitcm='git commit'
 alias gitap='git add --patch'
