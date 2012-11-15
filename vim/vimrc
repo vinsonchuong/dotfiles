@@ -77,6 +77,7 @@ Bundle 'mileszs/ack.vim'
 nnoremap <C-m> :LAck
 
 Bundle 'tpope/vim-fugitive'
+nnoremap <C-k> :Gstatus<CR>
 
 Bundle 'sjl/gundo.vim'
 set undofile
