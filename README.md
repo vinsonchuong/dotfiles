@@ -3,7 +3,9 @@
 ## Dependencies
 ### Linux Packages
 * ack - Used by ack.vim
+* cabal-install
 * ctags - Used by neocomplcache
+* ghc
 * git - Used by vim-fugitive
 * gvim - Required for its Python and Ruby support
 * nodejs
@@ -12,6 +14,9 @@
 * rxvt-unicode
 * yaourt - Used by various zsh aliases
 * zsh
+
+### Haskell Packages
+* hdevtools - Used by Syntastic to validate Haskell files
 
 ### Node Packages
 * coffee-script - Used by Syntastic to validate CoffeeScript files
