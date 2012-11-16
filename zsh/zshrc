@@ -32,14 +32,41 @@ PROMPT='<< %?
 %{$bg[white]%}$(status_line)%{$reset_color%}
 >> '
 
+HISTFILE="$HOME/.histfile"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_expire_dups_first hist_ignore_dups share_history
+
 bindkey -v
 
 EDITOR='vim'
-HISTFILE="$HOME/.histfile"
-HISTSIZE=5000
-LESS='-R'
+PAGER='less -R'
 PATH="$HOME/.gem/ruby/1.9.1/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
-SAVEHIST=10000
+
+setopt long_list_jobs
+
+alias chgrp='chgrp --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chown='chown --preserve-root'
+alias cp='cp -i'
+alias diff='colordiff -u'
+alias df='df -h'
+alias du='du -c -h'
+alias grep='grep --color=auto'
+alias ln='ln -i'
+alias mkdir='mkdir -p -v'
+alias mv='mv -i'
+alias nano='nano -w'
+alias ping='ping -c 5'
+alias rm='rm -i'
+
+alias ls='ls -hF --color=auto'
+alias lsa='ls -a'
+alias lsl='ls -l'
+alias lsal='ls -al'
+alias lsla='ls -al'
+
+setopt auto_pushd pushd_ignore_dups
 
 alias pacup='yaourt -Syua'
 alias pacin='yaourt -Sy'
@@ -72,19 +99,3 @@ gitcl() {
   done
   popd 1>/dev/null
 }
-
-alias chgrp='chgrp --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chown='chown --preserve-root'
-alias cp='cp -i'
-alias diff='colordiff -u'
-alias df='df -h'
-alias du='du -c -h'
-alias grep='grep --color=auto'
-alias ln='ln -i'
-alias ls='ls -hF --color=auto'
-alias mkdir='mkdir -p -v'
-alias mv='mv -i'
-alias nano='nano -w'
-alias ping='ping -c 5'
-alias rm='rm -i'
