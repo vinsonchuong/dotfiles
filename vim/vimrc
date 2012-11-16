@@ -153,6 +153,10 @@ colorscheme solarized
 set background=light
 let g:solarized_termtrans=1
 
+Bundle 'Lokaltog/vim-powerline'
+set laststatus=2
+let g:Powerline_colorscheme = 'solarized'
+
 syntax on
 filetype on
 filetype plugin on
@@ -174,7 +178,3 @@ set autoread
 set nobackup
 set noswapfile
 set hidden
-
-Bundle 'Lokaltog/vim-powerline'
-set laststatus=2
-let g:Powerline_colorscheme = 'solarized'
