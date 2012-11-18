@@ -39,9 +39,9 @@ setopt hist_expire_dups_first hist_ignore_dups share_history
 
 bindkey -v
 
-EDITOR='vim'
-PAGER='less -R'
-PATH="$HOME/.gem/ruby/1.9.1/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+export EDITOR='vim'
+export PAGER='less -R'
+export PATH="$HOME/.gem/ruby/1.9.1/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
 
 setopt long_list_jobs
 
@@ -99,3 +99,15 @@ gitcl() {
   done
   popd 1>/dev/null
 }
+
+local gpg_env_file="$HOME/.gnupg/gpg-agent.env"
+if [[ ! -f $gpg_env_file ]]
+then
+  gpg-agent --daemon --enable-ssh-support --write-env-file $gpg_env_file > /dev/null
+  chmod 600 $gpg_env_file
+fi
+source $gpg_env_file
+export GPG_AGENT_INFO
+export SSH_AUTH_SOCK
+export SSH_AGENT_PID
+export GPG_TTY=$(tty)

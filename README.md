@@ -7,6 +7,7 @@
 * ctags - Used by neocomplcache
 * ghc
 * git - Used by vim-fugitive
+* gnupg
 * gvim - Required for its Python and Ruby support
 * nodejs
 * python
