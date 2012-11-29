@@ -3,16 +3,19 @@
 ## Dependencies
 ### Linux Packages
 * ack - Used by ack.vim
+* awesome
 * cabal-install
 * ctags - Used by neocomplcache
 * ghc
 * git - Used by vim-fugitive
 * gnupg
 * gvim - Required for its Python and Ruby support
+* lua
 * nodejs
 * python
 * ruby
 * rxvt-unicode
+* vicious - Used by Awesome WM configuration
 * yaourt - Used by various zsh aliases
 * zsh
 
