@@ -1,6 +1,9 @@
 # Dot Files
 
 ## Dependencies
+### Files
+* awesome/wallpaper.png
+
 ### Linux Packages
 * ack - Used by ack.vim
 * awesome
