@@ -18,6 +18,7 @@
 * python
 * ruby
 * rxvt-unicode
+* ttf-dejavu
 * vicious - Used by Awesome WM configuration
 * yaourt - Used by various zsh aliases
 * zsh
