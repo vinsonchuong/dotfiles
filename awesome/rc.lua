@@ -141,8 +141,8 @@ local layouts = {
 local menu = awful.menu({
   items = {
     {'Terminal', terminal()},
-    {'Editor', terminal({command = 'vim', scrollbars = true})},
-    {'File Manager', terminal('ranger ~')},
+    {'Editor', terminal({command = 'vim'})},
+    {'File Manager', terminal({command = 'ranger ~'})},
     {'―――――――', nil, nil},
     {'Lock', terminal({command = 'slimlock'})},
     {'Logout', awesome.quit},
@@ -165,11 +165,10 @@ local launcher = awful.widget.launcher({
   image = image(beautiful.icon_archlinux),
   menu = menu
 })
+awful.widget.layout.margins[launcher] = {right = 8}
 
 local prompt_box = map(screens, function(s)
-  local result =  awful.widget.prompt({prompt = '> '})
-  awful.widget.layout.margins[result] = {right = 8}
-  return result
+  return awful.widget.prompt({prompt = '> '})
 end)
 map_keys(keys, {
   {{'Mod4'}, 'r', function()
