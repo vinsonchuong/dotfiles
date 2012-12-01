@@ -16,8 +16,6 @@
 #define green #859900
 *background: base3
 *foreground: base00
-*fading: 40
-*fadeColor: base3
 *cursorColor: blue
 *color0: base02
 *color1: red
