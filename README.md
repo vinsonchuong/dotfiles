@@ -11,6 +11,7 @@
 * ctags - Used by neocomplcache
 * ghc
 * git - Used by vim-fugitive
+* gtk-engine-murrine
 * gnupg
 * gvim - Required for its Python and Ruby support
 * lua

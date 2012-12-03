@@ -1,0 +1,146 @@
+gtk-color-scheme = "base03: #002b36"
+gtk-color-scheme = "base02: #073642"
+gtk-color-scheme = "base01: #586e75"
+gtk-color-scheme = "base00: #657b83"
+gtk-color-scheme = "base0: #839496"
+gtk-color-scheme = "base1: #93a1a1"
+gtk-color-scheme = "base2: #eee8d5"
+gtk-color-scheme = "base3: #fdf6e3"
+gtk-color-scheme = "yellow: #b58900"
+gtk-color-scheme = "orange: #cb4b16"
+gtk-color-scheme = "red: #dc322f"
+gtk-color-scheme = "magenta: #d33682"
+gtk-color-scheme = "violet: #6c71c4"
+gtk-color-scheme = "blue: #268bd2"
+gtk-color-scheme = "cyan: #2aa198"
+gtk-color-scheme = "green: #859900"
+
+style "default" {
+  fg[NORMAL] = @base00
+  fg[PRELIGHT] = @base00
+  fg[SELECTED] = @base00
+  fg[INSENSITIVE] = @base1
+  fg[ACTIVE] = @base00
+
+  text[NORMAL] = @base00
+  text[PRELIGHT] = @base00
+  text[SELECTED] = @base00
+  text[INSENSITIVE] = @base1
+  text[ACTIVE] = @base00
+
+  bg[NORMAL] = @base3
+  bg[PRELIGHT] = @base3
+  bg[SELECTED] = @base2
+  bg[INSENSITIVE] = @base3
+  bg[ACTIVE] = @base2
+
+  base[NORMAL] = @base3
+  base[PRELIGHT] = @base2
+  base[SELECTED] = @base2
+  base[INSENSITIVE] = @base3
+  base[ACTIVE] = @base2
+
+  xthickness = 1
+  ythickness = 1
+
+  GtkWidget::link-color = @blue
+  GtkWidget::visited-link-color = @violet
+
+  GtkButton::child-displacement-x = 1
+  GtkButton::child-displacement-y = 1
+  GtkButton::default-border = { 0, 0, 0, 0 }
+  GtkButton::image-spacing = 4
+  GtkToolButton::icon-spacing = 4
+  GtkCheckButton::indicator-size = 14
+
+  GtkPaned::handle-size = 6
+
+  GtkRange::trough-border = 0
+  GtkRange::slider-width = 15
+  GtkRange::stepper-size = 15
+
+  GtkScale::slider-length = 23
+  GtkScale::trough-side-details = 1
+
+  GtkScrollbar::min-slider-length = 30
+  GtkMenuBar::internal-padding = 0
+  GtkMenuBar::shadow-type = GTK_SHADOW_NONE
+  GtkExpander::expander-size = 16
+  GtkToolbar::internal-padding = 1
+
+  GtkTreeView::expander-size = 14
+  GtkTreeView::vertical-separator = 0
+
+  GtkMenu::horizontal-padding = 0
+  GtkMenu::vertical-padding = 0
+  GtkSeparatorMenuItem::horizontal-padding = 25
+
+  WnckTasklist::fade-overlay-rect = 0
+
+  GtkEntry::honors-transparent-bg-hint = 1
+
+  GtkEntry::progress-border = { 2, 2, 2, 2 }
+
+  engine "murrine" {
+    animation = FALSE
+    border_colors = { @base1, @base1 }
+    focus_color = @blue
+    focusstyle = 3
+    gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
+    highlight_shade = 1.0
+    lightborder_shade = 1.0
+    menustyle = 0
+    progressbarstyle = 0
+    reliefstyle = 0
+    roundness = 0
+    shadow_shades = { 1.0, 1.0 }
+  }
+}
+
+style "secondary" {
+  bg[NORMAL] = @base2
+  bg[PRELIGHT] = @base2
+  bg[SELECTED] = @base2
+  bg[INSENSITIVE] = @base2
+  bg[ACTIVE] = @base2
+}
+
+style "narrow" {
+  xthickness = 0
+  ythickness = 0
+}
+style "wide" {
+  xthickness = 2
+  ythickness = 2
+}
+style "wider" {
+  xthickness = 3
+  ythickness = 3
+}
+style "widest" {
+  xthickness = 4
+  ythickness = 4
+}
+
+class "GtkWidget" style "default"
+class "GtkSeparator" style "wide"
+class "GtkFrame" style "wide"
+class "GtkCalendar" style "wide"
+class "GtkEntry" style "wider"
+class "GtkScale" style "wide"
+class "GtkScrollbar" style "wide"
+
+widget_class "*<GtkButton>" style "wider"
+widget_class "*<GtkNotebook>" style "wider"
+
+widget_class "*<GtkMenuBar>*" style "secondary"
+widget_class "*<GtkMenu>*" style "secondary"
+widget_class "*<GtkMenuItem>*" style "secondary"
+widget_class "*<GtkMenuItem>*" style "wider"
+
+widget_class "*.<GtkTreeView>.<GtkButton>" style "wide"
+widget_class "*.<GtkCTree>.<GtkButton>" style "wide"
+widget_class "*.<GtkList>.<GtkButton>" style "wide"
+widget_class "*.<GtkCList>.<GtkButton>" style "wide"
+
+widget "gtk-tooltip*" style "secondary"
