@@ -38,7 +38,7 @@ return {
   bg_urgent = base03,
   border_width = '3',
   border_normal = base1,
-  border_focus = base1,
+  border_focus = blue,
   border_marked = blue,
 
   menu_height = '8',

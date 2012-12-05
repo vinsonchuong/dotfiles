@@ -15,6 +15,8 @@ gtk-color-scheme = "blue: #268bd2"
 gtk-color-scheme = "cyan: #2aa198"
 gtk-color-scheme = "green: #859900"
 
+gtk-font-name = "DejaVu Sans 9"
+
 style "default" {
   fg[NORMAL] = @base00
   fg[PRELIGHT] = @base00
