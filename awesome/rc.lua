@@ -302,7 +302,14 @@ local upload_usage = usage_widget('net', 'arrow_up', '${eth0 up_mb}MB')
 local volume_icon = image_widget('speaker_max')
 local volume_control = widget({type = 'textbox'})
 volume_control.width = 31
-vicious.register(volume_control, vicious.widgets.volume, '$1%', 5, 'Master')
+vicious.register(volume_control, vicious.widgets.volume, function(widget, args)
+  if args[2] == "♫" then
+    volume_icon.image = image(beautiful['icon_speaker_max'])
+  else
+    volume_icon.image = image(beautiful['icon_speaker_mute'])
+  end
+  return args[1] ..'%'
+end, 5, 'Master')
 each({volume_icon, volume_control}, function(item)
   map_buttons(item, {
     {{}, 1, function()
