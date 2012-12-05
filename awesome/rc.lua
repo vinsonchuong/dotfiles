@@ -511,12 +511,6 @@ awful.rules.rules = {
 }
 
 client.add_signal('manage', function(c, startup)
-  c:add_signal('mouse::enter', function(c)
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier and awful.client.focus.filter(c) then
-      client.focus = c
-    end
-  end)
-
   if not startup then
     if not c.size_hints.user_position and not c.size_hints.program_position then
       awful.placement.no_overlap(c)
