@@ -145,6 +145,7 @@ local menu = awful.menu({
     {'File Manager', terminal({command = 'ranger ~'})},
     {'―――――――', nil, nil},
     {'Lock', terminal({command = 'slimlock'})},
+    {'Reload', awesome.restart},
     {'Logout', awesome.quit},
     {'Reboot', 'reboot'},
     {'Shutdown', 'shutdown'}
@@ -153,11 +154,6 @@ local menu = awful.menu({
 map_buttons(buttons, {
   {{}, 3, function()
     menu:toggle()
-  end}
-})
-map_keys(keys, {
-  {{'Mod4'}, 'w', function()
-    menu:show({keygrabber = true})
   end}
 })
 
@@ -171,22 +167,25 @@ local prompt_box = map(screens, function(s)
   return awful.widget.prompt({prompt = '> '})
 end)
 map_keys(keys, {
-  {{'Mod4'}, 'r', function()
+  {{'Mod4'}, 'space', function()
     prompt_box[mouse.screen]:run()
-  end},
-  {{'Mod4'}, 'x', function()
-    awful.prompt.run(
-      {prompt = '# '},
-      prompt_box[mouse.screen].widget,
-      awful.util.eval,
-      nil,
-      awful.util.getdir('cache') .. '/history_eval'
-    )
   end}
 })
 
 local tags = map(screens, function(s)
   return awful.tag({'Work', 'Planning', 'Media'}, s, layouts[1])
+end)
+local tag_list = map(screens, function(s)
+  return awful.widget.taglist(
+    s,
+    awful.widget.taglist.label.all,
+    map_buttons(nil, {
+      {{}, 1, awful.tag.viewonly},
+      {{}, 3, awful.tag.viewtoggle},
+      {{}, 4, awful.tag.viewnext},
+      {{}, 5, awful.tag.viewprev}
+    })
+  )
 end)
 for i = 1, 3 do
   local key = tostring(i)
@@ -197,38 +196,18 @@ for i = 1, 3 do
         awful.tag.viewonly(tags[screen][i])
       end
     end},
-    {{'Mod4', 'Control'}, key, function()
+    {{'Mod4', 'Shift'}, key, function()
     local screen = mouse.screen
       if tags[screen][i] then
         awful.tag.viewtoggle(tags[screen][i])
       end
-    end},
-    {{'Mod4', 'Shift'}, key, function()
-      if client.focus and tags[client.focus.screen][i] then
-        awful.client.movetotag(tags[client.focus.screen][i])
-      end
-    end},
-    {{'Mod4', 'Control', 'Shift'}, key, function()
-      if client.focus and tags[client.focus.screen][i] then
-        awful.client.toggletag(tags[client.focus.screen][i])
-      end
     end}
   })
 end
-local tag_list = map(screens, function(s)
-  return awful.widget.taglist(
-    s,
-    awful.widget.taglist.label.all,
-    map_buttons(nil, {
-      {{}, 1, awful.tag.viewonly},
-      {{'Mod4'}, 1, awful.client.movetotag},
-      {{}, 3, awful.tag.viewtoggle},
-      {{'Mod4'}, 3, awful.client.toggletag},
-      {{}, 4, awful.tag.viewnext},
-      {{}, 5, awful.tag.viewprev}
-    })
-  )
-end)
+map_keys(keys, {
+  {{'Mod4'}, 'h', awful.tag.viewprev},
+  {{'Mod4'}, 'l', awful.tag.viewnext},
+})
 
 local task_list = map(screens, function(s)
   local result = awful.widget.tasklist(
@@ -245,14 +224,6 @@ local task_list = map(screens, function(s)
           end
           client.focus = c
           c:raise()
-        end
-      end},
-      {{}, 3, function()
-        if instance then
-          instance:hide()
-          instance = nil
-        else
-          instance = awful.menu.clients({width = 250})
         end
       end},
       {{}, 4, function()
@@ -272,6 +243,20 @@ local task_list = map(screens, function(s)
   awful.widget.layout.margins[result] = {left = 13}
   return result
 end)
+map_keys(keys, {
+  {{'Mod4'}, 'j', function()
+    awful.client.focus.byidx(1)
+    if client.focus then
+      client.focus:raise()
+    end
+  end},
+  {{'Mod4'}, 'k', function()
+    awful.client.focus.byidx(-1)
+    if client.focus then
+      client.focus:raise()
+    end
+  end}
+})
 
 local system_tray = widget({type = 'systray'})
 
@@ -354,6 +339,28 @@ local layout_toggle = map(screens, function(s)
   })
   return result
 end)
+map_keys(keys, {
+  {{'Mod4'}, 'n', function()
+    awful.layout.inc(layouts,  1)
+  end},
+  {{'Mod4'}, 'p', function()
+    awful.layout.inc(layouts, -1)
+  end},
+
+  {{'Mod4'}, '+', function()
+    awful.tag.incmwfact(0.05)
+  end},
+  {{'Mod4'}, '-', function()
+    awful.tag.incmwfact(-0.05)
+  end},
+
+  {{'Mod4', 'Control'}, '+', function()
+    awful.tag.incnmaster(1)
+  end},
+  {{'Mod4', 'Control'}, '-', function()
+    awful.tag.incnmaster(-1)
+  end}
+})
 
 each(screens, function(s)
   local taskbar = awful.wibox({
@@ -385,81 +392,6 @@ each(screens, function(s)
   })
 end)
 
-map_keys(keys, {
-  {{'Mod4'}, 'Left', awful.tag.viewprev},
-  {{'Mod4'}, 'Right', awful.tag.viewnext},
-  {{'Mod4'}, 'Escape', awful.tag.history.restore},
-
-  {{'Mod4'}, 'j', function()
-    awful.client.focus.byidx(1)
-    if client.focus then
-      client.focus:raise()
-    end
-  end},
-  {{'Mod4'}, 'k', function()
-    awful.client.focus.byidx(-1)
-    if client.focus then
-      client.focus:raise()
-    end
-  end},
-
-  {{'Mod4', 'Shift'}, 'j', function()
-    awful.client.swap.byidx(1)
-  end},
-  {{'Mod4', 'Shift'}, 'k', function()
-    awful.client.swap.byidx(-1)
-  end},
-  {{'Mod4', 'Control'}, 'j', function()
-    awful.screen.focus_relative(1)
-  end},
-  {{'Mod4', 'Control'}, 'k', function()
-    awful.screen.focus_relative(-1)
-  end},
-  {{'Mod4'}, 'u', awful.client.urgent.jumpto},
-  {{'Mod4'}, 'Tab', function()
-    awful.client.focus.history.previous()
-    if client.focus then
-      client.focus:raise()
-    end
-  end},
-
-  {{'Mod4'}, 'Return', function()
-    awful.util.spawn(terminal())
-  end},
-  {{'Mod4', 'Control'}, 'r', awesome.restart},
-  {{'Mod4', 'Shift'}, 'q', awesome.quit},
-
-  {{'Mod4'}, 'l', function()
-    awful.tag.incmwfact(0.05)
-  end},
-  {{'Mod4'}, 'h', function()
-    awful.tag.incmwfact(-0.05)
-  end},
-  {{'Mod4', 'Shift'}, 'h', function()
-    awful.tag.incnmaster(1)
-  end},
-  {{'Mod4', 'Shift'}, 'l', function()
-    awful.tag.incnmaster(-1)
-  end},
-  {{'Mod4', 'Control'}, 'h', function()
-    awful.tag.incncol(1)
-  end},
-  {{'Mod4', 'Control'}, 'l', function()
-    awful.tag.incncol(-1)
-  end},
-  {{'Mod4'}, 'space', function()
-    awful.layout.inc(layouts,  1)
-  end},
-  {{'Mod4', 'Shift'}, 'space', function()
-    awful.layout.inc(layouts, -1)
-  end},
-
-  {{'Mod4', 'Control'}, 'n', awful.client.restore}
-})
-
-root.buttons(buttons)
-root.keys(keys)
-
 awful.rules.rules = {
   {
     rule = {},
@@ -467,45 +399,30 @@ awful.rules.rules = {
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
       focus = true,
-      keys = awful.util.table.join(
-        awful.key({'Mod4'}, 'f', function(c)
-          c.fullscreen = not c.fullscreen
-        end),
-        awful.key({'Mod4', 'Shift'}, 'c', function(c)
+      keys = map_keys(nil, {
+        {{'Mod4'}, 'c', function(c)
           c:kill()
-        end),
-        awful.key({'Mod4', 'Control'}, 'space', awful.client.floating.toggle),
-        awful.key({'Mod4', 'Control'}, 'Return', function(c)
-          c:swap(awful.client.getmaster())
-        end),
-        awful.key({'Mod4'}, 'o', awful.client.movetoscreen),
-        awful.key({'Mod4', 'Shift'}, 'r', function(c)
-          c:redraw()
-        end),
-        awful.key({'Mod4'}, 't', function(c)
-          c.ontop = not c.ontop
-        end),
-        awful.key({'Mod4'}, 'n', function(c)
+        end},
+        {{'Mod4'}, 'z', function(c)
           c.minimized = true
-        end),
-        awful.key({'Mod4'}, 'm', function(c)
-          c.maximized_horizontal = not c.maximized_horizontal
-          c.maximized_vertical = not c.maximized_vertical
-        end)
-      ),
-      buttons  = awful.util.table.join(
-        awful.button({}, 1, function(c)
+        end},
+        {{'Mod4'}, 'o', function(c)
+          c.fullscreen = not c.fullscreen
+        end}
+      }),
+      buttons = map_buttons(nil, {
+        {{}, 1, function(c)
           client.focus = c
           c:raise()
-        end),
-        awful.button({'Mod4'}, 1, awful.mouse.client.move),
-        awful.button({'Mod4'}, 3, awful.mouse.client.resize)
-      )
+        end},
+        {{'Mod4'}, 1, awful.mouse.client.move},
+        {{'Mod4'}, 3, awful.mouse.client.resize}
+      })
     }
   },
   {
     rule = {class = 'MPlayer'},
-    properties = {floating = true }
+    properties = {floating = true}
   },
   {
     rule = {class = 'pinentry'},
@@ -516,13 +433,10 @@ awful.rules.rules = {
     properties = {floating = true}
   },
 }
-
 client.add_signal('manage', function(c, startup)
-  if not startup then
-    if not c.size_hints.user_position and not c.size_hints.program_position then
-      awful.placement.no_overlap(c)
-      awful.placement.no_offscreen(c)
-    end
+  if not startup and not c.size_hints.user_position and not c.size_hints.program_position then
+    awful.placement.no_overlap(c)
+    awful.placement.no_offscreen(c)
   end
 end)
 client.add_signal('focus', function(c)
@@ -531,3 +445,6 @@ end)
 client.add_signal('unfocus', function(c)
   c.border_color = beautiful.border_normal
 end)
+
+root.buttons(buttons)
+root.keys(keys)
