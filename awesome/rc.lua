@@ -347,14 +347,14 @@ map_keys(keys, {
     awful.layout.inc(layouts, -1)
   end},
 
-  {{'Mod4'}, '+', function()
+  {{'Mod4'}, '=', function()
     awful.tag.incmwfact(0.05)
   end},
   {{'Mod4'}, '-', function()
     awful.tag.incmwfact(-0.05)
   end},
 
-  {{'Mod4', 'Control'}, '+', function()
+  {{'Mod4', 'Control'}, '=', function()
     awful.tag.incnmaster(1)
   end},
   {{'Mod4', 'Control'}, '-', function()
