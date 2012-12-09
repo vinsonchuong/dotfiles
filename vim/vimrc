@@ -157,6 +157,8 @@ Bundle 'Lokaltog/vim-powerline'
 set laststatus=2
 let g:Powerline_colorscheme = 'solarized'
 
+Bundle 'sudo.vim'
+
 syntax on
 filetype on
 filetype plugin on
