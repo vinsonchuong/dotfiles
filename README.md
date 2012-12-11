@@ -15,6 +15,7 @@
 * gnupg
 * gvim - Required for its Python and Ruby support
 * lua
+* ncmpcpp
 * nodejs
 * python
 * ruby

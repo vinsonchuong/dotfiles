@@ -17,7 +17,7 @@
 *background: base3
 *foreground: base00
 *cursorColor: blue
-*color0: base02
+*color0: base01
 *color1: red
 *color2: green
 *color3: yellow
@@ -25,7 +25,7 @@
 *color5: magenta
 *color6: cyan
 *color7: base2
-*color8: base03
+*color8: base00
 *color9: orange
 *color10: base01
 *color11: base00

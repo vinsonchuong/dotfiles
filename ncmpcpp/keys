@@ -1,0 +1,95 @@
+#key_help = '1' 265
+#key_playlist = '2' 266
+#key_browser = '3' 267
+#key_search_engine = '4' 268
+#key_media_library = '5' 269
+#key_playlist_editor = '6' 270
+#key_tag_editor = '7' 271
+#key_outputs = '8' 272
+#key_music_visualizer = '9' 273
+#key_clock = '0' 274
+
+#key_space = 32
+#key_enter = 10
+#key_delete = 330 'd'
+key_clear = 'D'
+#key_quit = 'q' 'Q'
+
+#key_up = 259 'k'
+#key_down = 258 'j'
+key_move_song_up = 'K'
+key_move_song_down = 'J'
+key_prev_column = 260 'h'
+key_next_column = 261 'l'
+#key_page_up = 339
+#key_page_down = 338
+#key_home = 262
+#key_end = 360
+#key_up_album = '['
+#key_down_album = ']'
+#key_up_artist = '{'
+#key_down_artist = '}'
+#key_go_to_now_playing = 'o'
+
+#key_replay = 263 127
+key_stop = 'S'
+key_pause = 's'
+#key_seek_forward = 'f'
+#key_seek_backward = 'b'
+key_next = 'F'
+key_prev = 'B'
+#key_volume_up = 261 '+'
+#key_volume_down = 260 '-'
+key_edit_tags = 't'
+
+#key_toggle_repeat = 'r'
+#key_toggle_consume = 'R'
+#key_toggle_single = 'y'
+key_toggle_replay_gain_mode = 'g'
+#key_toggle_random = 'z'
+#key_shuffle = 'Z'
+#key_toggle_crossfade = 'x'
+#key_set_crossfade = 'X'
+
+#key_song_info = 'i'
+key_server_info = 'I'
+#key_update_db = 'u'
+
+#key_add = 'a'
+key_switch_tag_type_list = 'c'
+key_save_playlist = 'w'
+
+#key_apply_filter = 6
+#key_find_forward = '/'
+#key_find_backward = '?'
+key_next_found_position = 'n'
+key_prev_found_position = 'N'
+
+#key_screen_switcher = 9
+#key_backward_screen_switcher = 353
+#key_go_to_parent_dir = 263 127
+
+key_sort_playlist = 0
+key_move_to = 0
+#key_move_before = 0
+#key_move_after = 0
+key_add_selected_items = 0
+key_crop = 0
+key_select_album = 0
+key_reverse_selection = 0
+key_deselect_all = 0
+key_go_to_position = 0
+key_go_to_containing_directory = 0
+key_go_to_media_library = 0
+key_artist_info = 0
+key_lyrics = 0
+key_toggle_bitrate_visibility = 0
+key_toggle_lyrics_db = 0
+key_toggle_fetching_lyrics_for_current_song_in_background = 0
+key_toggle_auto_center = 0
+key_toggle_display_mode = 0
+key_toggle_separators_in_playlist = 0
+key_toggle_space_mode = 0
+key_toggle_add_mode = 0
+key_toggle_mouse = 0
+key_toggle_find_mode = 0
