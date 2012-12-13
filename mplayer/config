@@ -1,0 +1,10 @@
+vo=vdpau,xv,
+
+ao=alsa
+alang = jp,jpn,en,eng
+
+slang = en,eng
+ass = yes
+embeddedfonts = yes
+fontconfig = yes
+spuaa = 4
