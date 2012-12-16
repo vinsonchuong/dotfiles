@@ -1,3 +1,5 @@
+use-filename-title = yes
+
 vo=vdpau,xv,
 
 ao=alsa
