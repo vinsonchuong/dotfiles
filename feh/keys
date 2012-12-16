@@ -1,0 +1,74 @@
+close x
+quit q Escape
+
+action_0 0 Return
+action_1 1
+action_2 2
+action_3 3
+action_4 4
+action_5 5
+action_6 6
+action_7 7
+action_8 8
+action_9 9
+
+next_img n
+prev_img p
+jump_fwd N
+jump_back P
+jump_first g
+jump_last G
+jump_random z
+
+scroll_right h
+scroll_left l
+scroll_up j
+scroll_down k
+
+zoom_in plus
+zoom_out minus
+zoom_default equal
+zoom_fit
+
+orient_3 bracketleft
+orient_1 bracketright
+flip underscore
+mirror bar
+
+toggle_pause s
+toggle_fullscreen o
+
+render r
+reload_image R
+
+remove d
+delete D
+
+
+scroll_left_page
+scroll_right_page
+scroll_up_page
+scroll_down_page
+
+toggle_actions
+toggle_aliasing
+toggle_caption
+toggle_exif
+toggle_filenames
+toggle_info
+toggle_pointer
+
+toggle_menu
+menu_close
+menu_up
+menu_down
+menu_parent
+menu_child
+menu_select
+
+save_filelist
+size_to_image
+save_image
+
+reload_plus
+reload_minus
