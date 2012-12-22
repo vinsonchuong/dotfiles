@@ -18,6 +18,7 @@
 * mplayer
 * ncmpcpp
 * nodejs
+* picard
 * python
 * ruby
 * rxvt-unicode
@@ -49,6 +50,9 @@
 
 ### Vim Scripts
 * Vundle - Manages the other Vim script dependencies
+
+### Picard Plugins
+* Cover Art Downloader
 
 ## License
 ```
