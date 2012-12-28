@@ -116,3 +116,6 @@ License version 2.
 
 ### Awesome Widget Icons
 These icons were downloaded from http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks. No license was included.
+
+### Adblock CSS
+The ad-hiding portions of my user stylesheets are derived from the "Fanboy Optimised Element Blocking" stylesheet, which is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.

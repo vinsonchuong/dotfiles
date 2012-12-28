@@ -1,0 +1,27 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#appmenu-toolbar-button .toolbarbutton-text,
+.tabbrowser-tabs .scrollbutton-up,
+.tabbrowser-tabs .scrollbutton-down,
+#addonbar-closebutton {
+  display: none !important;
+}
+
+.tabbrowser-tab {
+  background: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  border-left: 5px solid transparent !important;
+  border-right: 5px solid transparent !important;
+}
+.tabbrowser-tab[selected=true] {
+  background-color: #fdf6e3 !important;
+}
+
+#navigator-toolbox {
+  border: none !important;
+}
+
+.toolbar-primary {
+  box-shadow: none !important;
+}
