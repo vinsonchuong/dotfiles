@@ -1,3 +1,5 @@
+hi ContentSeparator display: none;
+
 hi Normal color: #657b83; background: #fdf6e3; font-size: 12px;
 hi CmdLine color: #657b83; background: #fdf6e3; font-size: 12px;
 hi StatusLine color: #657b83; background: #fdf6e3; font-weight: normal; font-size: 12px;
@@ -20,11 +22,13 @@ hi CompTitle>* color: #657b83; padding: 1px 0.5ex;
 hi CompItem[selected] color: #657b83; background: #eee8d5;
 hi CompDesc color: #657b83;
 
-hi InfoMsg color: #586e75; background: #fdf6e3; font-size: 12px;
-hi ModeMsg color: #586e75; background: #fdf6e3; font-size: 12px;
-hi MoreMsg color: #859900; background: #fdf6e3;
-hi WarningMsg color: #cb4b16; background: #fdf6e3; font-size: 12px;
-hi ErrorMsg color: #dc322f; background: #fdf6e3; font-size: 12px;
+hi -append CompMsg color: #fdf6e3; font-size: 12px;
+hi -append ErrorMsg color: #fdf6e3; font-size: 12px;
+hi -append InfoMsg color: #fdf6e3; font-size: 12px;
+hi -append ModeMsg color: #859900; background-color: #fdf6e3; font-size: 12px; font-weight: bold;
+hi -append MoreMsg color: #fdf6e3; font-size: 12px;
+hi -append PromptText color: #6c71c4; background-color: #fdf6e3; font-size: 12px; font-weight: bold; padding: 2px 5px 0;
+hi -append WarningMsg color: #fdf6e3; font-size: 12px;
 
 hi -append Hint color: #fdf6e3; background-color: #dc322f; opacity: 0.8; margin: -8px 0 0 -8px;
 hi HintElem outline: 2px dashed #b58900;
