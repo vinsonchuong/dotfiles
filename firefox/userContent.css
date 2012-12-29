@@ -8848,6 +8848,9 @@ div.lrec,
 .dirListSuperSpons,
 #mpu,
 #promo-power-centre,
-.ad {
+.ad.b160x600l,
+.ad.b160x600r,
+.ad.b300x250.r,
+iframe[src*='juicyads'] {
   display: none !important;
 }
