@@ -9,6 +9,7 @@
 * awesome
 * cabal-install
 * ctags - Used by neocomplcache
+* fbreader
 * ghc
 * git - Used by vim-fugitive
 * gtk-engine-murrine
