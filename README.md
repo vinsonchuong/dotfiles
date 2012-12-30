@@ -53,6 +53,7 @@
 
 ### Picard Plugins
 * Cover Art Downloader
+* Local Cover Art - http://forums.musicbrainz.org/viewtopic.php?pid=11724#p11724
 
 ## License
 ```
