@@ -23,7 +23,7 @@ hi CompItem[selected] color: #657b83; background: #eee8d5;
 hi CompDesc color: #657b83;
 
 hi -append CompMsg color: #fdf6e3; font-size: 12px;
-hi -append ErrorMsg color: #fdf6e3; font-size: 12px;
+hi -append ErrorMsg color: #dc322f; background-color: #fdf6e3; font-size: 12px; font-weight: bold;
 hi -append InfoMsg color: #fdf6e3; font-size: 12px;
 hi -append ModeMsg color: #859900; background-color: #fdf6e3; font-size: 12px; font-weight: bold;
 hi -append MoreMsg color: #fdf6e3; font-size: 12px;

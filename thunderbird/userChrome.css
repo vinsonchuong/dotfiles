@@ -1,0 +1,25 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#calendar-tab-button,
+#task-tab-button,
+#viewPickerLabel,
+#alltabs-button,
+#task-toolbox,
+.scrollbutton-down,
+.scrollbutton-up,
+.tab-background-start,
+.tab-background-end,
+.tab-close-button {
+  display: none !important;
+}
+
+.tabmail-arrowscrollbox > scrollbox {
+  padding: 0 !important;
+}
+
+.tab-background {
+  background: none !important;
+}
+.tabmail-tab[selected=true] {
+  background-color: #fdf6e3 !important;
+}

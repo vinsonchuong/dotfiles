@@ -8851,6 +8851,8 @@ div.lrec,
 .ad.b160x600l,
 .ad.b160x600r,
 .ad.b300x250.r,
-iframe[src*='juicyads'] {
+iframe[src*='juicyads'],
+.ad-block.external,
+#topads.ads.noprint {
   display: none !important;
 }
