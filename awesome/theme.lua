@@ -1,3 +1,5 @@
+local awful = require('awful')
+
 local function asset(path)
   return awful.util.getdir('config') .. '/' .. path
 end
@@ -26,7 +28,7 @@ local cyan = '#2aa198'
 local green = '#859900'
 
 return {
-  wallpaper_cmd = {'awsetbg ' .. asset('wallpaper.png')},
+  wallpaper = asset('wallpaper.png'),
 
   font = 'DejaVu Sans 8',
 
@@ -41,9 +43,9 @@ return {
   border_focus = blue,
   border_marked = blue,
 
-  menu_height = '8',
-  menu_width = '98',
-  menu_border_width = '0',
+  menu_height = 15,
+  menu_width = 93,
+  menu_border_width = 0,
 
   icon_archlinux = widget_asset('archlinux.png'),
   icon_arrow_down = widget_asset('arrow_down.png'),

@@ -1,9 +1,11 @@
-require('awful')
-require('awful.autofocus')
-require('awful.rules')
-require('beautiful')
-require('naughty')
-vicious = require('vicious')
+local gears = require('gears')
+local awful = require('awful')
+awful.autofocus = require('awful.autofocus')
+awful.rules = require('awful.rules')
+local beautiful = require('beautiful')
+local wibox = require('wibox')
+local vicious = require('vicious')
+local naughty = require('naughty')
 
 local function clone(table)
   local result = {}
@@ -138,14 +140,14 @@ local layouts = {
   -- awful.layout.suit.magnifier
 }
 
+each(screens, function(s)
+  gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+end)
+
 local menu = awful.menu({
   items = {
-    {'Terminal', terminal()},
-    {'Editor', terminal({command = 'vim'})},
-    {'File Manager', terminal({command = 'ranger ~'})},
-    {'―――――――', nil, nil},
-    {'Lock', terminal({command = 'slimlock'})},
     {'Reload', awesome.restart},
+    {'Lock', terminal({command = 'slimlock'})},
     {'Logout', awesome.quit},
     {'Reboot', 'reboot'},
     {'Shutdown', 'shutdown'}
@@ -158,10 +160,9 @@ map_buttons(buttons, {
 })
 
 local launcher = awful.widget.launcher({
-  image = image(beautiful.icon_archlinux),
+  image = beautiful.icon_archlinux,
   menu = menu
 })
-awful.widget.layout.margins[launcher] = {right = 8}
 
 local prompt_box = map(screens, function(s)
   return awful.widget.prompt({prompt = '> '})
@@ -176,16 +177,20 @@ local tags = map(screens, function(s)
   return awful.tag({'Work', 'Planning', 'Media'}, s, layouts[1])
 end)
 local tag_list = map(screens, function(s)
-  return awful.widget.taglist(
+  return wibox.layout.margin(awful.widget.taglist(
     s,
-    awful.widget.taglist.label.all,
+    awful.widget.taglist.filter.all,
     map_buttons(nil, {
       {{}, 1, awful.tag.viewonly},
       {{}, 3, awful.tag.viewtoggle},
-      {{}, 4, awful.tag.viewnext},
-      {{}, 5, awful.tag.viewprev}
+      {{}, 4, function(tag)
+        awful.tag.viewnext(awful.tag.getscreen(tag))
+      end},
+      {{}, 5, function(tag)
+        awful.tag.viewprev(awful.tag.getscreen(t))
+      end}
     })
-  )
+  ), 8, 8, 0, 0)
 end)
 for i = 1, 3 do
   local key = tostring(i)
@@ -211,14 +216,14 @@ map_keys(keys, {
 
 local task_list = map(screens, function(s)
   local result = awful.widget.tasklist(
-    function(c)
-      return awful.widget.tasklist.label.currenttags(c, s)
-    end,
+    s,
+    awful.widget.tasklist.filter.currenttags,
     map_buttons(nil, {
       {{}, 1, function(c)
         if c == client.focus then
           c.minimized = true
         else
+          c.minimized = false
           if not c:isvisible() then
             awful.tag.viewonly(c:tags()[1])
           end
@@ -240,8 +245,7 @@ local task_list = map(screens, function(s)
       end}
     })
   )
-  awful.widget.layout.margins[result] = {left = 13}
-  return result
+  return wibox.layout.margin(result, 0, 8, 0, 0)
 end)
 map_keys(keys, {
   {{'Mod4'}, 'j', function()
@@ -258,26 +262,25 @@ map_keys(keys, {
   end}
 })
 
-local system_tray = widget({type = 'systray'})
+local system_tray = wibox.widget.systray()
 
 function image_widget(icon_name)
-  local result = widget({type = 'imagebox'})
-  result.image = image(beautiful['icon_' .. icon_name])
-  awful.widget.layout.margins[result] = {left = 8}
+  local result = wibox.widget.imagebox()
+  result:set_image(beautiful['icon_' .. icon_name])
   return result
 end
 function usage_widget(type, icon_name, format, text_width)
   local icon = image_widget(icon_name)
-  local textbox = widget({type = 'textbox'})
+  local textbox = wibox.widget.textbox()
   if text_width then
     textbox.width = text_width
   end
   vicious.register(textbox, vicious.widgets[type], format, 1)
-  return reverse({
-    layout = awful.widget.layout.horizontal.rightleft,
-    icon,
-    textbox
-  })
+
+  local result = wibox.layout.fixed.horizontal()
+  result:add(icon)
+  result:add(textbox)
+  return wibox.layout.margin(result, 8, 0, 0, 0)
 end
 local cpu_usage = usage_widget('cpu', 'cpu', '$1%', 31)
 local memory_usage = usage_widget('mem', 'memory', '$1%', 31)
@@ -285,44 +288,48 @@ local download_usage = usage_widget('net', 'arrow_down', '${eth0 down_mb}MB')
 local upload_usage = usage_widget('net', 'arrow_up', '${eth0 up_mb}MB')
 
 local volume_icon = image_widget('speaker_max')
-local volume_control = widget({type = 'textbox'})
-volume_control.width = 31
-vicious.register(volume_control, vicious.widgets.volume, function(widget, args)
+local volume_text = wibox.widget.textbox()
+local volume_control = wibox.layout.fixed.horizontal()
+volume_control:add(volume_icon)
+volume_control:add(volume_text)
+vicious.register(volume_text, vicious.widgets.volume, function(widget, args)
   if args[2] == "♫" then
-    volume_icon.image = image(beautiful['icon_speaker_max'])
+    volume_icon:set_image(beautiful['icon_speaker_max'])
   else
-    volume_icon.image = image(beautiful['icon_speaker_mute'])
+    volume_icon:set_image(beautiful['icon_speaker_mute'])
   end
   return args[1] ..'%'
 end, 5, 'Master')
-each({volume_icon, volume_control}, function(item)
-  map_buttons(item, {
-    {{}, 1, function()
-      spawn('amixer -q sset Master toggle', function()
-        vicious.force({volume_control})
-      end)
-    end},
-    {{}, 3, function()
-      spawn(terminal({command = 'alsamixer'}), function()
-        vicious.force({volume_control})
-      end)
-    end},
-    {{}, 4, function()
-      spawn('amixer -q sset Master 1dB+', function()
-        vicious.force({volume_control})
-      end)
-    end},
-    {{}, 5, function()
-      spawn('amixer -q sset Master 1dB-', function()
-        vicious.force({volume_control})
-      end)
-    end}
-  })
-end)
+map_buttons(volume_control, {
+  {{}, 1, function()
+    spawn('amixer -q sset Master toggle', function()
+      vicious.force({volume_text})
+    end)
+  end},
+  {{}, 3, function()
+    spawn(terminal({command = 'alsamixer'}), function()
+      vicious.force({volume_text})
+    end)
+  end},
+  {{}, 4, function()
+    spawn('amixer -q sset Master 1dB+', function()
+      vicious.force({volume_text})
+    end)
+  end},
+  {{}, 5, function()
+    spawn('amixer -q sset Master 1dB-', function()
+      vicious.force({volume_text})
+    end)
+  end}
+})
+volume_control = wibox.layout.margin(volume_control, 8, 0, 0, 0)
 
 local clock_icon = image_widget('clock')
-local clock = awful.widget.textclock({align = 'right'}, '%a %I:%M %p', 1)
-awful.widget.layout.margins[clock] = {right = 8}
+local clock_text = awful.widget.textclock('%a %I:%M %p', 1)
+local clock = wibox.layout.fixed.horizontal()
+clock:add(clock_icon)
+clock:add(clock_text)
+clock = wibox.layout.margin(clock, 8, 0, 0, 0)
 
 local function change_layout_callback(offset)
   return function()
@@ -337,7 +344,7 @@ local layout_toggle = map(screens, function(s)
     {{}, 4, change_layout_callback(1)},
     {{}, 5, change_layout_callback(-1)}
   })
-  return result
+  return wibox.layout.margin(result, 8, 0, 0, 0)
 end)
 map_keys(keys, {
   {{'Mod4'}, 'n', function()
@@ -363,33 +370,30 @@ map_keys(keys, {
 })
 
 each(screens, function(s)
-  local taskbar = awful.wibox({
-    position = 'top',
-    screen = s,
-    widgets = {
-      layout = awful.widget.layout.horizontal.leftright,
-      {
-        layout = awful.widget.layout.horizontal.leftright,
-        launcher,
-        prompt_box[s],
-        tag_list[s]
-      },
-      reverse({
-        layout = awful.widget.layout.horizontal.rightleft,
-        task_list[s],
-        system_tray,
-        cpu_usage,
-        memory_usage,
-        download_usage,
-        upload_usage,
-        volume_icon,
-        volume_control,
-        clock_icon,
-        clock,
-        layout_toggle[s]
-      })
-    }
-  })
+  local taskbar = awful.wibox({position = 'top', screen = s})
+
+  local layout = wibox.layout.align.horizontal()
+
+  local left = wibox.layout.fixed.horizontal()
+  left:add(launcher)
+  left:add(prompt_box[s])
+  left:add(tag_list[s])
+  layout:set_left(left)
+
+  layout:set_middle(task_list[s])
+
+  local right = wibox.layout.fixed.horizontal()
+  right:add(system_tray)
+  right:add(cpu_usage)
+  right:add(memory_usage)
+  right:add(download_usage)
+  right:add(upload_usage)
+  right:add(volume_control)
+  right:add(clock)
+  right:add(layout_toggle[s])
+  layout:set_right(right)
+
+  taskbar:set_widget(layout)
 end)
 
 awful.rules.rules = {
@@ -433,16 +437,16 @@ awful.rules.rules = {
     properties = {floating = true}
   },
 }
-client.add_signal('manage', function(c, startup)
+client.connect_signal('manage', function(c, startup)
   if not startup and not c.size_hints.user_position and not c.size_hints.program_position then
     awful.placement.no_overlap(c)
     awful.placement.no_offscreen(c)
   end
 end)
-client.add_signal('focus', function(c)
+client.connect_signal('focus', function(c)
   c.border_color = beautiful.border_focus
 end)
-client.add_signal('unfocus', function(c)
+client.connect_signal('unfocus', function(c)
   c.border_color = beautiful.border_normal
 end)
 
