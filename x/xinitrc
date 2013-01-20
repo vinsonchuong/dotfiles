@@ -12,4 +12,5 @@ fi
 xrdb -merge ~/.Xresources
 xmodmap ~/.Xmodmap
 
+dex -a -e Awesome
 exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr

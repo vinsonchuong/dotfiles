@@ -149,8 +149,8 @@ local menu = awful.menu({
     {'Reload', awesome.restart},
     {'Lock', terminal({command = 'slimlock'})},
     {'Logout', awesome.quit},
-    {'Reboot', 'reboot'},
-    {'Shutdown', 'shutdown'}
+    {'Reboot', 'systemctl reboot'},
+    {'Shutdown', 'systemctl poweroff'}
   }
 })
 map_buttons(buttons, {
