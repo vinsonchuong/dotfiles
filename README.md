@@ -8,6 +8,7 @@
 * ack - Used by ack.vim
 * awesome
 * cabal-install
+* caudec
 * ctags - Used by neocomplcache
 * fbreader
 * ghc

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+compression_FLAC=8
+
+bitrate_LAME=320
+LAME_MODE='CBR'
+
+bitrate_QAAC=420
+QAAC_MODE='CBR'
+
+compression_OggVorbis=10
