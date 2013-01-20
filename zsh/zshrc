@@ -73,6 +73,24 @@ alias pacin='yaourt -Sy'
 alias pacun='yaourt -Rcns'
 alias pacls='yaourt -Q'
 alias pacse='yaourt -Ss'
+pacds() {
+  tmp=${TMPDIR-/tmp}/pacman-disowned-$UID-$$
+  db=$tmp/db
+  fs=$tmp/fs
+
+  mkdir "$tmp"
+
+  pacman -Qlq | sort -u > "$db"
+
+  find /bin /etc /lib /sbin /usr \
+    ! -name lost+found \
+    \( -type d -printf '%p/\n' -o -print \) | sort > "$fs"
+
+  comm -23 "$fs" "$db"
+
+  rm -rf "$tmp"
+}
+alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//"'
 
 current_branch() { echo ${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/} }
 alias gitst='git status -sb'
