@@ -4,7 +4,7 @@
 ### Files
 * awesome/wallpaper.png
 
-### Linux Packages
+### ArchLinux Packages
 * ack - Used by ack.vim
 * awesome
 * cabal-install
@@ -16,6 +16,7 @@
 * gtk-engine-murrine
 * gnupg
 * gvim - Required for its Python and Ruby support
+* hub
 * lua
 * mplayer
 * ncmpcpp

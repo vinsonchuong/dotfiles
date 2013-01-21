@@ -90,19 +90,21 @@ pacds() {
 
   rm -rf "$tmp"
 }
-alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//"'
+alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//" | sort'
 
+eval "$(hub alias -s)"
 current_branch() { echo ${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/} }
-alias gitst='git status -sb'
-alias gitlg='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
-alias gitdf='git diff --color=always'
-alias gitpp='git up && git push'
-alias gitmf='git merge --ff-only'
-alias gitcm='git commit'
-alias gitap='git add --patch'
-alias gitrs='git reset'
-alias gitbr='git branch'
-alias gitco='git checkout'
+alias gitst='hub status -sb'
+alias gitlg='hub log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
+alias gitdf='hub diff --color=always'
+alias gitpp='hub up && git push'
+alias gitmf='hub merge --ff-only'
+alias gitcm='hub commit'
+alias gitap='hub add --patch'
+alias gitrs='hub reset'
+alias gitbr='hub branch'
+alias gitco='hub checkout'
+alias gitcr='hub create'
 gitcl() {
   git clone --recursive $@ || exit
   if [[ ${*[-1]##*.} -eq git ]]
