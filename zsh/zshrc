@@ -129,4 +129,6 @@ else
   eval $(gpg-agent --daemon --enable-ssh-support --write-env-file $gpg_env_file 2>/dev/null)
   chmod 600 $gpg_env_file
 fi
-export GPG_TTY=$(tty)
+export GPG_TTY="$(tty)"
+
+export GUARD_NOTIFY='false'
