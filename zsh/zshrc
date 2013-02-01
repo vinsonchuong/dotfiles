@@ -32,6 +32,34 @@ PROMPT='<< %?
 %{$bg[white]%}$(status_line)%{$reset_color%}
 >> '
 
+chpwd() {
+  local ruby_project_directory="$(find_ancestor_directory_containing Gemfile)"
+  if [ -n "$ruby_project_directory" ]
+  then
+    local ruby_engine=$(echo 'puts defined?(RUBY_ENGINE) ? RUBY_ENGINE : "ruby"' | ruby)
+    local ruby_version=$(echo 'puts RUBY_VERSION' | ruby)
+    local gem_path=$(echo 'puts Gem.path.join(":")' | ruby)
+    export GEM_HOME="$ruby_project_directory/.gem/$ruby_engine/$ruby_version"
+    export GEM_PATH="$GEM_HOME:$gem_path"
+  else
+    unset GEM_HOME
+    unset GEM_PATH
+  fi
+}
+find_ancestor_directory_containing() {
+  local slashes=${PWD//[^\/]/}
+  local directory="$PWD"
+  for (( n=${#slashes}; n>0; --n ))
+  do
+    if test -e "$directory/$1"
+    then
+      echo "$directory"
+      return
+    fi
+    directory="$directory/.."
+  done
+}
+
 HISTFILE="$HOME/.histfile"
 HISTSIZE=10000
 SAVEHIST=10000
