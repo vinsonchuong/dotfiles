@@ -71,7 +71,7 @@ Bundle 'kien/ctrlp.vim'
 let g:ctrlp_show_hidden=1
 set wildmenu
 set wildmode=longest:full
-set wildignore+=*/tmp/*,*/.git/*
+set wildignore+=*/tmp/*,*/.git/*,*/.gem/*
 set wildignore+=*.so,*.swp,*.zip,*.tar.*
 
 Bundle 'mileszs/ack.vim'
