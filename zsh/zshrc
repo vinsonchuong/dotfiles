@@ -59,6 +59,7 @@ find_ancestor_directory_containing() {
     directory="$directory/.."
   done
 }
+chpwd
 
 HISTFILE="$HOME/.histfile"
 HISTSIZE=10000
