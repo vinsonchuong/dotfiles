@@ -42,5 +42,6 @@
 
 URxvt.depth: 32
 URxvt.font: xft:DejaVu Sans Mono:pixelsize=12
+URxvt*loginShell: true
 
 xterm*faceName: DejaVu Sans Mono:pixelsize=12
