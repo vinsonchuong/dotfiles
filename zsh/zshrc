@@ -36,11 +36,8 @@ chpwd() {
   local ruby_project_directory="$(find_ancestor_directory_containing Gemfile)"
   if [ -n "$ruby_project_directory" ]
   then
-    local ruby_engine=$(echo 'puts defined?(RUBY_ENGINE) ? RUBY_ENGINE : "ruby"' | ruby)
-    local ruby_version=$(echo 'puts RUBY_VERSION' | ruby)
-    local gem_path=$(echo 'puts Gem.path.join(":")' | ruby)
-    export GEM_HOME="$ruby_project_directory/.gem/$ruby_engine/$ruby_version"
-    export GEM_PATH="$GEM_HOME:$gem_path"
+    export GEM_HOME="$ruby_project_directory/.gem"
+    export GEM_PATH="$GEM_HOME:$(echo 'puts Gem.path.join(":")' | ruby)"
   else
     unset GEM_HOME
     unset GEM_PATH
