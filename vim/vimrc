@@ -85,9 +85,6 @@ set undofile
 set undodir=$HOME/.vimundo
 nnoremap <C-h> :GundoToggle<CR>
 
-Bundle 'DfrankUtil'
-Bundle 'vimprj'
-Bundle 'indexer.tar.gz'
 Bundle 'majutsushi/tagbar'
 "let g:tagbar_sort = 0
 let g:tagbar_compact = 1
@@ -135,6 +132,7 @@ let g:syntastic_mode_map = {
   \ 'mode': 'active',
   \ 'passive_filetypes': []
 \}
+Bundle 'tpope/vim-dispatch'
 
 Bundle 'tpope/vim-bundler'
 Bundle 'kchmck/vim-coffee-script'
