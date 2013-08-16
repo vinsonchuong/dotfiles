@@ -3,3 +3,5 @@
 	name = Vinson Chuong
 [push]
 	default = simple
+[core]
+	excludesfile = /home/vinsonchuong/.gitignore
