@@ -1,5 +1,5 @@
 --extra=+fq
---fields=+iaS
+--fields=+ialS
 
 --langdef=coffee
 --langmap=coffee:.coffee
