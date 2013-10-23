@@ -2,7 +2,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-Bundle 'SudoEdit.vim'
+Bundle 'chrisbra/SudoEdit.vim'
 
 Bundle 'tpope/vim-dispatch'
 Bundle 'Shougo/vimproc.vim'
@@ -11,26 +11,9 @@ Bundle 'altercation/vim-colors-solarized'
 colorscheme solarized
 set background=light
 let g:solarized_termtrans=1
-let s:base03 = {'t': 8, 'g': '#002b36'}
-let s:base02 = {'t': 0, 'g': '#073642'}
-let s:base01 = {'t': 10, 'g': '#586e75'}
-let s:base00 = {'t': 11, 'g': '#657b83'}
-let s:base0 = {'t': 12, 'g': '#839496'}
-let s:base1 = {'t': 14, 'g': '#93a1a1'}
-let s:base2 = {'t': 7, 'g': '#eee8d5'}
-let s:base3 = {'t': 15, 'g': '#fdf6e3'}
-let s:yellow = {'t': 3, 'g': '#b58900'}
-let s:orange = {'t': 9, 'g': '#cb4b16'}
-let s:red = {'t': 1, 'g': '#dc322f'}
-let s:magenta = {'t': 5, 'g': '#d33682'}
-let s:violet = {'t': 13,  'g': '#6c71c4'}
-let s:blue = {'t': 4,  'g': '#268bd2'}
-let s:cyan = {'t': 6,  'g': '#2aa198'}
-let s:green = {'t': 2,  'g': '#859900'}
 
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
-runtime macros/matchit.vim
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'godlygeek/tabular'
@@ -49,12 +32,10 @@ Bundle 'kana/vim-textobj-syntax'
 Bundle 'tpope/vim-surround'
 let g:surround_no_insert_mappings=1
 Bundle 'jiangmiao/auto-pairs'
-let g:AutoPairsFlyMode=1
 Bundle 'tpope/vim-endwise'
-set showmatch
 
 Bundle 'Valloric/YouCompleteMe'
-let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_collect_identifiers_from_tags_files=0 " disabled for high ram usage
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_invoke_completion=''
 let g:ycm_key_detailed_diagnostics=''
@@ -67,9 +48,14 @@ let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
 Bundle 'Shougo/unite.vim'
 let g:unite_cursor_line_highlight='CursorLine'
 call unite#custom#source('file_rec/async', 'ignore_pattern', '/\.gem/\|/\.git/\|/tmp/')
-call unite#custom#source('file_rec/async', 'matchers', 'matcher_fuzzy')
-call unite#custom#source('file_rec/async', 'sorters', 'sorter_rank')
-nnoremap <C-p> :Unite -no-split -start-insert file_rec/async<CR>
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+function! s:unite_my_settings()
+  setlocal completeopt=
+  imap <buffer> <Tab> <C-x><C-f><C-x><C-y>
+endfunction
+autocmd FileType unite call s:unite_my_settings()
+nnoremap <C-p> :Unite -no-split -start-insert file_rec/async file/new<CR>
 
 Bundle 'mileszs/ack.vim'
 nnoremap <C-l> :Ack 
@@ -77,95 +63,21 @@ nnoremap <C-l> :Ack
 Bundle 'tpope/vim-fugitive'
 nnoremap <C-k> :Gstatus<CR>
 
-Bundle 'sjl/gundo.vim'
+Bundle 'mbbill/undotree'
 set undofile
 set undodir=$HOME/.vimundo
-nnoremap <C-h> :GundoToggle<CR>
+let g:undotree_SplitWidth=32
+nnoremap <C-h> :UndotreeToggle<CR>
 
 Bundle 'bling/vim-airline'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_detect_whitespace=0
-set laststatus=2
 set noshowmode
-set ttimeoutlen=50
-let g:airline#themes#solarized16#inactive = airline#themes#generate_color_map(
-\ [s:base1.g, s:base2.g, s:base1.t, s:base2.t, ''],
-\ [s:base1.g, s:base2.g, s:base1.t, s:base2.t, ''],
-\ [s:base1.g, s:base2.g, s:base1.t, s:base2.t, ''],
-\ [s:orange.g, s:base2.g, s:orange.t, s:base2.t, '']
-\)
-let g:airline#themes#solarized16#normal = airline#themes#generate_color_map(
-\ [s:base2.g, s:blue.g, s:base2.t, s:blue.t, 'bold'],
-\ [s:base2.g, s:base1.g, s:base2.t, s:base1.t, ''],
-\ [s:base00.g, s:base2.g, s:base00.t, s:base2.t, ''],
-\ [s:orange.g, s:base2.g, s:orange.t, s:base2.t, '']
-\)
-let g:airline#themes#solarized16#normal_modified = {
-\ 'info_separator': [s:base1.g, s:base2.g, s:base1.t, s:base2.t, ''],
-\ 'statusline': [s:magenta.g, s:base2.g, s:magenta.t, s:base2.t, '']
-\}
-let g:airline#themes#solarized16#insert = airline#themes#generate_color_map(
-\ [s:base2.g, s:green.g, s:base2.t, s:green.t, 'bold'],
-\ [s:base2.g, s:base1.g, s:base2.t, s:base1.t, ''],
-\ [s:base00.g, s:base2.g, s:base00.t, s:base2.t, ''],
-\ [s:orange.g, s:base2.g, s:orange.t, s:base2.t, '']
-\)
-let g:airline#themes#solarized16#insert_modified = {
-\ 'info_separator': [s:base1.g, s:base2.g, s:base1.t, s:base2.t, ''],
-\ 'statusline': [s:magenta.g, s:base2.g, s:magenta.t, s:base2.t, '']
-\}
-let g:airline#themes#solarized16#visual = airline#themes#generate_color_map(
-\ [s:base2.g, s:orange.g, s:base2.t, s:orange.t, 'bold'],
-\ [s:base2.g, s:base1.g, s:base2.t, s:base1.t, ''],
-\ [s:base00.g, s:base2.g, s:base00.t, s:base2.t, ''],
-\ [s:orange.g, s:base2.g, s:orange.t, s:base2.t, '']
-\)
-let g:airline#themes#solarized16#visual_modified = {
-\ 'info_separator': [s:base1.g, s:base2.g, s:base1.t, s:base2.t, ''],
-\ 'statusline': [s:magenta.g, s:base2.g, s:magenta.t, s:base2.t, '']
-\}
-let g:airline_theme='solarized16'
+let g:airline_theme='solarized'
 
 Bundle 'szw/vim-tags'
 let g:vim_tags_directories=[]
-Bundle 'majutsushi/tagbar'
-"let g:tagbar_sort = 0
-let g:tagbar_compact = 1
-let g:tagbar_type_coffee = {
-  \ 'ctagstype' : 'coffee',
-  \ 'kinds'     : [
-    \ 'c:classes',
-    \ 'm:methods',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'f:fields',
-  \ ]
-\ }
-let g:tagbar_type_markdown = {
-  \ 'ctagstype' : 'markdown',
-  \ 'kinds' : [
-    \ 'h:Heading_L1',
-    \ 'i:Heading_L2',
-    \ 'k:Heading_L3'
-  \ ]
-\ }
-let g:tagbar_type_scala = {
-  \ 'ctagstype' : 'scala',
-  \ 'kinds'     : [
-    \ 'p:packages:1',
-    \ 'V:values',
-    \ 'v:variables',
-    \ 'T:types',
-    \ 't:traits',
-    \ 'o:objects',
-    \ 'a:aclasses',
-    \ 'c:classes',
-    \ 'r:cclasses',
-    \ 'm:methods'
-  \ ]
-\ }
-nnoremap <silent> <C-n> :TagbarOpen 'fj'<CR>
 Bundle 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 0
@@ -177,11 +89,11 @@ let g:syntastic_mode_map = {
 \}
 
 Bundle 'tpope/vim-bundler'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'chrisbra/color_highlight'
 let g:colorizer_auto_filetype = 'css,scss,sass,html,haml'
 Bundle 'tpope/vim-haml'
-Bundle 'vinsonchuong/vim-lua-ftplugin'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-lua-ftplugin'
 let g:lua_complete_dynamic = 0
 let g:lua_check_syntax = 0
 let g:lua_check_globals = 0
@@ -190,24 +102,14 @@ Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
 Bundle 'marijnh/tern_for_vim'
 
-syntax on
-filetype on
-filetype plugin on
-filetype indent on
+Bundle 'tpope/vim-sensible'
+
 set foldmethod=syntax
-set autoindent
-set copyindent
-set expandtab
-set shiftwidth=2
-set shiftround
-set smarttab
-set softtabstop=2
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set nowrap
 set number
-set showcmd
-set autoread
 set nobackup
 set noswapfile
 set hidden
+
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType python setlocal et ts=4 sw=4 sts=4
