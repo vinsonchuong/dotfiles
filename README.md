@@ -49,7 +49,10 @@
 * git-up - Used by the `gitpp` alias to pull from all tracked branches
 * haml - Used by Syntastic to validate haml files
 * rails - Used by vim-rails
+* rubocop - Used by Syntastic
 * sass - Used by Syntastic to validate sass files
+* foreman - Used as the default way to start a Rails app
+* heroku - Used to deploy Rails apps
 
 ### Vim Scripts
 * Vundle - Manages the other Vim script dependencies

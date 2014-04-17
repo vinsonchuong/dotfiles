@@ -126,11 +126,11 @@ end
 beautiful.init('/home/vinsonchuong/.config/awesome/theme.lua')
 local screens = range(1, screen.count())
 local layouts = {
-  awful.layout.suit.floating,
-  awful.layout.suit.tile,
   awful.layout.suit.tile.left,
   awful.layout.suit.fair,
   awful.layout.suit.max,
+  awful.layout.suit.floating,
+  awful.layout.suit.tile,
   -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
   -- awful.layout.suit.fair.horizontal,
@@ -140,9 +140,7 @@ local layouts = {
   -- awful.layout.suit.magnifier
 }
 
-each(screens, function(s)
-  gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-end)
+gears.wallpaper.maximized(beautiful.wallpaper, nil, false, {x = 0, y = 0})
 
 local menu = awful.menu({
   items = {

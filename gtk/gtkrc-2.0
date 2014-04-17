@@ -1,3 +1,5 @@
+gtk-double-click-time = 500
+
 gtk-color-scheme = "base03: #002b36"
 gtk-color-scheme = "base02: #073642"
 gtk-color-scheme = "base01: #586e75"
