@@ -32,31 +32,29 @@ PROMPT='<< %?
 %{$bg[white]%}$(status_line)%{$reset_color%}
 >> '
 
+export PATH="$HOME/.gem/ruby/2.1.0/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+export BASE_PATH="$PATH"
+
 export BUNDLE_PATH='.gem'
+# export RUBYGEMS_GEMDEPS='-'
 chpwd() {
-  local ruby_project_directory="$(find_ancestor_directory_containing Gemfile)"
-  unset GEM_HOME
-  unset GEM_PATH
-  if [ -n "$ruby_project_directory" ]
+  export PATH="$BASE_PATH"
+  unset PROJECT_HOME GEM_HOME GEM_PATH
+
+  local project_dirs; project_dirs=((../)#(.git|Gemfile)(N:a:h))
+  if [ -n "$project_dirs[-1]" ]
   then
-    export GEM_HOME="$ruby_project_directory/.gem"
-    export GEM_PATH="$GEM_HOME:$(echo 'puts Gem.path.join(":")' | ruby)"
-  else
-    export GEM_HOME="$(echo 'puts Gem.path.first' | ruby)"
-  fi
-}
-find_ancestor_directory_containing() {
-  local slashes=${PWD//[^\/]/}
-  local directory="$PWD"
-  for (( n=${#slashes}; n>0; --n ))
-  do
-    if test -e "$directory/$1"
+    export PROJECT_HOME="$project_dirs[-1]"
+
+    if [ -f "$PROJECT_HOME/Gemfile" ]
     then
-      echo "$directory"
-      return
+      export GEM_HOME="$PROJECT_HOME/.gem"
+      export GEM_PATH="$GEM_HOME:$(echo 'puts Gem.path.join(":")' | ruby)"
+      export PATH="$GEM_HOME/bin:$BASE_PATH"
     fi
-    directory="$directory/.."
-  done
+
+    export PATH="$PROJECT_HOME/bin:$PATH"
+  fi
 }
 chpwd
 
@@ -69,7 +67,6 @@ bindkey -v
 
 export EDITOR='vim'
 export PAGER='less -R'
-export PATH="$HOME/.gem/ruby/2.1.0/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
 
 setopt long_list_jobs
 
