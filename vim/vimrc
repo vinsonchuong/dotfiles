@@ -27,6 +27,7 @@ Plugin 'AndrewRadev/splitjoin.vim'
 nmap <Leader>j :SplitjoinJoin<CR>
 nmap <Leader>s :SplitjoinSplit<CR>
 Plugin 'bronson/vim-visual-star-search'
+Plugin 'tpope/vim-characterize'
 
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-entire'
