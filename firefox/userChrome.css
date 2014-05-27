@@ -1,27 +1,65 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-#appmenu-toolbar-button .toolbarbutton-text,
-.tabbrowser-tabs .scrollbutton-up,
-.tabbrowser-tabs .scrollbutton-down,
-#addonbar-closebutton {
+#alltabs-button,
+#navigator-toolbox::after,
+.scrollbutton-up,
+.scrollbutton-down,
+.tabs-newtab-button,
+.closing-tabs-spacer {
   display: none !important;
 }
 
-.tabbrowser-tab {
-  background: none !important;
-  border-radius: 0 !important;
-  border: none !important;
-  border-left: 5px solid transparent !important;
-  border-right: 5px solid transparent !important;
-}
-.tabbrowser-tab[selected=true] {
-  background-color: #fdf6e3 !important;
+.arrowscrollbox-scrollbox {
+  padding: 0 !important;
 }
 
-#navigator-toolbox {
-  border: none !important;
+#nav-bar {
+  margin-top: 0 !important;
 }
 
-.toolbar-primary {
+.tabbrowser-tab:not([selected])  {
+  color: rgb(147, 161, 161) !important;
+}
+.tabbrowser-tab[selected] .tab-content {
+  background-image: linear-gradient(rgb(253, 246, 227), rgb(253, 246, 227)) !important;
+}
+.tabbrowser-tab .tab-content {
+  border-right: 1px solid rgb(147, 161, 161) !important;
+}
+
+#navigator-toolbox #nav-bar {
   box-shadow: none !important;
+}
+#tabbrowser-tabs {
+  min-height: 0px !important;
+}
+#TabsToolbar::after,
+#TabsToolbar::before {
+  box-shadow: none !important;
+  border-bottom: 0px solid transparent !important;
+}
+#TabsToolbar {
+  background-image: none !important;
+  background: none !important;
+  min-height: 0px !important;
+}
+.tab-background,
+.tab-background *,
+.tab-background *::before,
+.tab-background *::after {
+  background: unset !important;
+  background-position: unset !important;
+  background-repeat: unset !important;
+  background-size: unset !important;
+}
+#tabbrowser-tabs[movingtab] > .tabbrowser-tab[beforeselected]:not([last-visible-tab])::after,
+.tabbrowser-tab:not([selected]):not([afterselected-visible]):not([afterhovered]):not([first-visible-tab]):not(:hover)::before,
+#tabbrowser-tabs:not([overflow]) > .tabbrowser-tab[last-visible-tab]:not([selected]):not([beforehovered]):not(:hover)::after {
+  background-image: none !important;
+}
+
+#TabsToolbar .tabbrowser-tab:not([pinned]) .tab-throbber,
+#TabsToolbar .tabbrowser-tab:not([pinned]) .tab-icon-image {
+  margin-left:-5px !important;
+  margin-right: 3px !important;
 }
