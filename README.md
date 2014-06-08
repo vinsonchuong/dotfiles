@@ -11,6 +11,7 @@
 * caudec
 * ctags - Used by neocomplcache
 * fbreader
+* flake8 - Used by Syntastic to validate Python files
 * ghc
 * git - Used by vim-fugitive
 * gtk-engine-murrine
@@ -39,9 +40,6 @@
 * js-yaml - Used by Syntastic to validate YAML files
 * jshint - Used by Syntastic to validate JavaScript files
 * jsonlint - Used by Syntastic to validate JSON files
-
-### Python Packages
-* flake8 - Used by Syntastic to validate Python files
 
 ### Ruby Gems
 * bundler - Used by vim-bundler
