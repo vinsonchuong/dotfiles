@@ -1,0 +1,41 @@
+set defsearch=google
+set toolbars=nonavigation
+
+hi Bell border: none; background-color: #586e75;
+hi Boolean color: #dc322f;
+hi CmdLine background: #eee8d5; color: #586e75; transition: all 0.25s;
+hi CompDesc width: 500px; max-width: 500px; color: #859900; overflow: hidden;
+hi CompItem[selected] background: #eee8d5; box-shadow: 0px 0px 1px #b58900;
+hi CompTitle font-weight: bold; background-color: #eee8d5;
+hi CompTitle>* color: #657b83; border-top: 1px solid #657b83; border-bottom: 1px solid #657b83; padding: 1px 0.5ex; text-shadow: 1px 1px 0px #fdf6e3;
+hi ContentSeparator border-top: 1px dotted #93a1a1; display: -moz-box;
+hi Disabled color: #dc322f;
+hi Enabled color: #859900;
+hi ErrorMsg color: #fdf6e3; background: #dc322f; font-weight: bold;
+hi Filter color: #cb4b16; font-weight: bold;
+hi FrameIndicator background-color: #dc322f; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+hi Function color: 268bd2;
+hi Hint font-family: monospace; font-size: medium; font-weight: bold; text-transform: uppercase; color: #fdf6e3; background-color: #dc322f; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding: 1px; z-index: 9999;
+hi HintActive background-color: #859900; color: #002b36;
+hi HintElem background-color: #b58900; color: #002b36;
+hi Indicator color: #268bd2;
+hi InfoMsg color: #d33682; background: #fdf6e3;
+hi Keyword color: #dc322f;
+hi LineNr color: #cb4b16; background: #fdf6e3;
+hi Mapping color: #d33682;
+hi ModeMsg color: #fdf6e3; background: #859900; border-radius: 1px; padding: 0px 5px;
+hi MoreMsg color: #859900; background: #fdf6e3;
+hi NonText color: #268bd2; min-height: 16px; padding-left: 2px;
+hi Normal color: #586e75; background: #fdf6e3;
+hi Null color: #268bd2;
+hi Number color: #268bd2;
+hi Object color: #b58900;
+hi Preview color: #93a1a1;
+hi PromptText color: #fdf6e3; background: #6c71c4;
+hi Question color: #859900; background: #fdf6e3; font-weight: bold;
+hi StatusLine color: #657b83; background: transparent; font-weight: normal;
+hi String color: #859900;
+hi Tag color: #268bd2;
+hi Title color: #d33682; background: #fdf6e3; font-weight: bold; font-size: 120%;
+hi URL text-decoration: none; color: #268bd2;
+hi WarningMsg color: #dc322f; background: #fdf6e3;

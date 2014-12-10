@@ -1,0 +1,17 @@
+# ## To-Do
+# * Use `ihate` plugin to exclude instrumental tracks
+# * Fill-in missing tracks with `missing` plugin
+# * Translate missing artist names
+directory: ~/music
+plugins: scrub convert fetchart embedart lastgenre lyrics info mbsync
+per_disc_numbering: yes
+import:
+  move: yes
+  languages: en
+paths:
+  albumtype:soundtrack: Soundtrack/$album/$disc-$track $title
+  comp: Compilation/$album/$disc-$track $title
+  singleton: Singleton/$artist/$title
+  default: $albumartist/$album/$disc-$track $title
+convert:
+  auto: yes

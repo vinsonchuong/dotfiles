@@ -1,0 +1,41 @@
+general {
+	colors = true
+	color_good = '#839496'
+	color_degraded = '#b58900'
+	color_bad = '#dc322f'
+	color_separator = '#073642'
+	interval = 5
+}
+
+order += 'wireless wlp3s0'
+wireless wlp3s0 {
+	format_up = '%essid'
+	format_down = 'wlp3s0'
+}
+
+order += 'battery 0'
+battery 0 {
+	format = '%percentage'
+	integer_battery_capacity = true
+	low_threshold = 15
+	threshold_type = percentage
+}
+
+order += 'load'
+load {
+	format = '%1min'
+}
+
+order += 'volume master'
+volume master {
+	format = '%volume'
+	format_muted = '%volume'
+	device = 'default'
+	mixer = 'Master'
+	mixer_idx = 0
+}
+
+order += 'tztime local'
+tztime local {
+	format = '%A, %B %e, %I:%M %p '
+}

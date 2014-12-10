@@ -1,7 +1,0 @@
-[user]
-	email = Vinson.Chuong@gmail.com
-	name = Vinson Chuong
-[push]
-	default = simple
-[core]
-	excludesfile = /home/vinsonchuong/.gitignore

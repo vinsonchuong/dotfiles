@@ -1,63 +1,26 @@
 # Dot Files
 
 ## Dependencies
-### Files
-* awesome/wallpaper.png
-
 ### ArchLinux Packages
 * ack - Used by ack.vim
-* awesome
-* cabal-install
-* caudec
 * ctags - Used by neocomplcache
-* fbreader
-* flake8 - Used by Syntastic to validate Python files
-* ghc
 * git - Used by vim-fugitive
-* gtk-engine-murrine
-* gnupg
-* gvim - Required for its Python and Ruby support
+* vim
 * hub
-* lua
 * mplayer
 * ncmpcpp
 * nodejs
-* picard
 * python
 * ruby
 * rxvt-unicode
 * ttf-dejavu
-* vicious - Used by Awesome WM configuration
-* yaourt - Used by various zsh aliases
 * zsh
 
-### Haskell Packages
-* hdevtools - Used by Syntastic to validate Haskell files
-
 ### Node Packages
-* coffee-script - Used by Syntastic to validate CoffeeScript files
 * csslint - Used by Syntastic to validate CSS files
 * js-yaml - Used by Syntastic to validate YAML files
 * jshint - Used by Syntastic to validate JavaScript files
 * jsonlint - Used by Syntastic to validate JSON files
-
-### Ruby Gems
-* bundler - Used by vim-bundler
-* gem-ctags - Automatically generates ctags for installed gems
-* git-up - Used by the `gitpp` alias to pull from all tracked branches
-* haml - Used by Syntastic to validate haml files
-* rails - Used by vim-rails
-* rubocop - Used by Syntastic
-* sass - Used by Syntastic to validate sass files
-* foreman - Used as the default way to start a Rails app
-* heroku - Used to deploy Rails apps
-
-### Vim Scripts
-* Vundle - Manages the other Vim script dependencies
-
-### Picard Plugins
-* Cover Art Downloader
-* Local Cover Art - http://forums.musicbrainz.org/viewtopic.php?pid=11724#p11724
 
 ## License
 ```
@@ -104,23 +67,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
-
-### Awesome Layout Icons
-```
-All icons in this package were created by Adrian C. (anrxc).
-
-All icons except the 'huge' icon sets and 'small' titlebar icons are
-licensed under the Creative Commons Attribution-Share Alike
-License. To view a copy of this license, visit
-http://creativecommons.org/licenses/by-sa/3.0/
-
-The 'huge' icon sets and 'small' titlebar icons are licensed under the
-same terms as the awesome distribution it self - GNU General Public
-License version 2.
-```
-
-### Awesome Widget Icons
-These icons were downloaded from http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks. No license was included.
 
 ### Adblock CSS
 The ad-hiding portions of my user stylesheets are derived from the "Fanboy Optimised Element Blocking" stylesheet, which is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
