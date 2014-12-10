@@ -31,7 +31,6 @@ mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathu
 ln -sf "$PWD/.gitconfig" "$HOME"
 mkdir -p "$HOME/.config/git" && ln -sf "$PWD/gitignore" "$HOME/.config/git/ignore"
 
-
 rm -rf "$HOME/.gem"
 gem install gem-ctags
 gem update
