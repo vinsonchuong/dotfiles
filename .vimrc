@@ -149,4 +149,5 @@ let g:syntastic_auto_loc_list=1
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
 autocmd FileType sh setlocal noet
+autocmd FileType zsh setlocal noet
 autocmd FileType ruby nnoremap <buffer> <C-m> :Rrunner<CR>

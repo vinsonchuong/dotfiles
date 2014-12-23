@@ -50,26 +50,15 @@ aurup() {
 alias aurin='sudo aura -Aya'
 alias aurun='pacun'
 pacds() {
-  local tmp=${TMPDIR-/tmp}/pacman-disowned-$UID-$$
-  local db=$tmp/db
-  local fs=$tmp/fs
-
-  mkdir "$tmp"
-  pacman -Qlq | sort -u > "$db"
-  find /bin /etc /lib /sbin /usr \
-    ! -name lost+found \
-    \( -type d -printf '%p/\n' -o -print \) | sort > "$fs"
-  comm -23 "$fs" "$db"
-  rm -rf "$tmp"
+  local tmp=$(mktemp -d)
+	pacman -Qlq | sort -u > $tmp/db
+	find /bin /etc /lib /sbin /usr \
+    ! -name lost+found \( -type d -printf '%p/\n' -o -print \) \
+    | sort > $tmp/fs
+	comm -23 $tmp/fs $tmp/db
+	rm -rf $tmp
 }
 alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//" | sort'
-
-transmission-cli() {
-  CONF_DIR="$HOME/.config/transmission"
-  echo '{"idle-seeding-limit-enabled": true, "idle-seeding-limit": 0}' > "$CONF_DIR/settings.json"
-  /usr/bin/transmission-cli "$@"
-  rm -rf "$CONF_DIR/resume" "$CONF_DIR/torrents"
-}
 
 alias git='hub'
 alias gitst='git status -sb'
@@ -79,21 +68,27 @@ alias gitpp='git up && git push'
 alias gitmg='git merge --ff-only'
 alias gitco='git checkout'
 
+alias bootstrap='BUNDLE_PATH=.gem ~/projects/project_bootstrap/bootstrap'
 setopt extendedglob
 export BASE_PATH="$PATH"
 chpwd() {
-  export PATH="$BASE_PATH"
-  unset GEM_HOME
+	export PATH="$BASE_PATH"
+	unset GEM_HOME
 
-  local project_dirs; project_dirs=((../)#(.git|Gemfile)(N:a:h))
-  local project_home="$project_dirs[-1]"
-  if [ -n "$project_home" ]
-  then
-    if [ -f "$project_home/Gemfile" ]
-    then
-      export GEM_HOME="$project_home/.gem"
-      path=("$project_home/bin" "$GEM_HOME/bin" $path)
-    fi
-  fi
+	local project_home="$(git rev-parse --show-toplevel 2>/dev/null)"
+	[ -n "$project_home" ] || return
+
+	if [ -f "$project_home/Gemfile" ]
+	then
+		export GEM_HOME="$project_home/.gem"
+		path=("$GEM_HOME/bin" $path)
+	fi
+
+	if [ -f "$project_home/package.json" ]
+	then
+		path=("$project_home/node_modules/.bin" $path)
+	fi
+
+	path=("$project_home/bin" $path)
 }
 chpwd
