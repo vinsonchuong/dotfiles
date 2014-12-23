@@ -1,4 +1,3 @@
-set defsearch=google
 set toolbars=nonavigation
 
 hi Bell border: none; background-color: #586e75;
