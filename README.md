@@ -2,8 +2,8 @@
 
 ## Dependencies
 ### ArchLinux Packages
-* ack - Used by ack.vim
-* ctags - Used by neocomplcache
+* the_silver_searcher - Used by ag.vim
+* ctags - Used by vim
 * git - Used by vim-fugitive
 * vim
 * hub
