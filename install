@@ -5,6 +5,8 @@ ln -sf "$PWD/.xprofile" "$HOME"
 dmesg | grep -q 'X1 Carbon 2nd' && ln -sf "$PWD/.Xmodmap-X1C" "$HOME/.Xmodmap"
 lsusb | grep -q 'HHKB' && ln -sf "$PWD/.Xmodmap-HHKB" "$HOME/.Xmodmap"
 
+ln -sf "$PWD/.makepkg.conf" "$HOME"
+
 ln -sf "$PWD/.tmux.conf" "$HOME"
 ln -sf "$PWD/.zshrc" "$HOME"
 
@@ -35,5 +37,6 @@ rm -rf "$HOME/.gem"
 gem install gem-ctags
 gem update
 gem install bundler git-up ronn
+gem clean
 
 ln -sf "$PWD/.npmrc" "$HOME"
