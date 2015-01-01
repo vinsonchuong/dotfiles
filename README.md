@@ -1,10 +1,11 @@
 # Dot Files
 
 ## Dependencies
-### ArchLinux Packages
+### Arch Linux Packages
 * the_silver_searcher - Used by ag.vim
 * ctags - Used by vim
 * git - Used by vim-fugitive
+* gitaur
 * vim
 * hub
 * mplayer

@@ -68,6 +68,10 @@ alias gitpp='git up && git push'
 alias gitmg='git merge --ff-only'
 alias gitco='git checkout'
 
+gitaur-deploy() {
+	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
+}
+
 alias bootstrap='BUNDLE_PATH=.gem ~/projects/project_bootstrap/bootstrap'
 setopt extendedglob
 export BASE_PATH="$PATH"
