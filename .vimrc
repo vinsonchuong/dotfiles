@@ -15,11 +15,13 @@
 "     set secure
 "     set exrc
 "     ```
-" * Configure vim-dispatch to run Jasmine tests
-"   * https://github.com/tpope/vim-dispatch/issues/30
-" * Configure vim-dispatch to run RSpec tests
-"   * https://github.com/tpope/vim-dispatch/issues/30
-"   * thoughtbot/vim-rspec
+" * Running unit tests
+"   * See janko-m/vim-test for both Jasmine and RSpec
+"   * Configure vim-dispatch to run Jasmine tests
+"     * https://github.com/tpope/vim-dispatch/issues/30
+"   * Configure vim-dispatch to run RSpec tests
+"     * https://github.com/tpope/vim-dispatch/issues/30
+"     * thoughtbot/vim-rspec
 " * Investigate smartindent and cinwords
 " ## Plugins to Consider
 " ### For Git/GitHub
@@ -57,6 +59,8 @@
 " * majutsushi/tagbar
 " ### For specific languages
 " * tpope/vim-sleuth - automatically set indentation settings
+" ### For quickly inserting text
+" * Wolfy87/vim-expand
 
 call plug#begin()
 Plug 'junegunn/vim-plug', {'do': 'ln -sf $(realpath plug.vim) ~/.vim/autoload'}
@@ -119,6 +123,7 @@ set undodir=$HOME/.vim/undo
 
 let mapleader="\<Space>"
 nnoremap <Leader>f :Unite -no-split -hide-source-names -start-insert file_rec/async file/new<CR>
+nnoremap <Leader>l :Unite -no-split -hide-source-names -start-insert script:/bin/bash:/home/vinsonchuong/projects/unite-scripts/licenses<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :Gstatus<CR>
 nnoremap <Leader>m :Make<CR>
