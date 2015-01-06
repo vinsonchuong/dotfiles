@@ -72,9 +72,10 @@ gitaur-deploy() {
 	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
 }
 
-alias bootstrap='BUNDLE_PATH=.gem ~/projects/project_bootstrap/bootstrap'
+alias bootstrap='~/projects/project_bootstrap/bootstrap'
 setopt extendedglob
 export BASE_PATH="$PATH"
+export BUNDLE_PATH='.gem'
 chpwd() {
 	export PATH="$BASE_PATH"
 	unset GEM_HOME
