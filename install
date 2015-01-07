@@ -36,7 +36,6 @@ mkdir -p "$HOME/.config/git" && ln -sf "$PWD/gitignore" "$HOME/.config/git/ignor
 rm -rf "$HOME/.gem"
 gem install gem-ctags
 gem update
-gem install bundler git-up ronn
-gem clean
+gem install bundler git-up
 
 ln -sf "$PWD/.npmrc" "$HOME"
