@@ -130,7 +130,7 @@ nnoremap <Leader>m :Make<CR>
 
 let g:lightline = {'colorscheme': 'solarized_light'}
 
-let g:unite_source_rec_async_command='ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_rec_async_command='ag --follow --nocolor --nogroup --hidden -g "" --ignore .git'
 let g:unite_cursor_line_highlight='CursorLine'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_selecta'])

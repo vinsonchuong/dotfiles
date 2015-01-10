@@ -1,7 +1,7 @@
 # # To-Do
 # * Investigate RUBYGEMS_GEMDEPS='-' for replacing Bundler
 
-path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
+path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" "$HOME/bin" $path)
 HISTSIZE=1000
 export EDITOR='vim'
 export PAGER='less -R'
