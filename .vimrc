@@ -61,6 +61,8 @@
 " * tpope/vim-sleuth - automatically set indentation settings
 " ### For quickly inserting text
 " * Wolfy87/vim-expand
+" ### For Haskell
+" * begriffs/haskell-vim-now
 
 call plug#begin()
 Plug 'junegunn/vim-plug', {'do': 'ln -sf $(realpath plug.vim) ~/.vim/autoload'}
