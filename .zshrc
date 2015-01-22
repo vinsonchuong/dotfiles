@@ -72,6 +72,10 @@ gitaur-deploy() {
 	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
 }
 
+alias virsh='virsh -c qemu:///system'
+alias virt-install='virt-install --connect qemu:///system'
+alias virt-viewer='virt-viewer -c qemu:///system'
+
 alias bootstrap='~/projects/project_bootstrap/bootstrap'
 setopt extendedglob
 export BASE_PATH="$PATH"
