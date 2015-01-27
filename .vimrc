@@ -37,6 +37,8 @@
 " * marijnh/tern_for_vim - JavaScript
 " * Chiel92/vim-autoformat - use external programs, better than indent ftplugin?
 " * calebsmith/vim-lambdify - conceal function keyword
+" ### For Code Refactoring
+" * jbgutierrez/vim-partial - for extracting template partials
 " ### For Brackets and Delimited/Structured Text
 " * amirh/HTML-AutoCloseTag
 " * wellle/targets.vim - enhances ([' text objects and adds separator text objects
