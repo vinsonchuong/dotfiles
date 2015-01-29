@@ -72,6 +72,24 @@ gitaur-deploy() {
 	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
 }
 
+npm() {
+	if [ "$1" = 'login' ]
+	then
+		ELEVATE='yes'
+		shift
+	fi
+
+	[ "$ELEVATE" ] && cat <<-EOF | command npm login
+	vinsonchuong
+	$(pass npm | head -1)
+	vinsonchuong@gmail.com
+	EOF
+
+	command npm "$@"
+
+	[ "$ELEVATE" ] && sed -i '/registry\.npmjs\.org/d' "$HOME/.npmrc"
+}
+
 alias virsh='virsh -c qemu:///system'
 alias virt-install='virt-install --connect qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'
