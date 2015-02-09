@@ -39,12 +39,14 @@
 " * calebsmith/vim-lambdify - conceal function keyword
 " ### For Code Refactoring
 " * jbgutierrez/vim-partial - for extracting template partials
+" * pelodelfuego/vim-swoop - search replace with context
 " ### For Brackets and Delimited/Structured Text
 " * amirh/HTML-AutoCloseTag
 " * wellle/targets.vim - enhances ([' text objects and adds separator text objects
 " * guns/vim-sexp
 " * tpope/vim-sexp-mappings-for-regular-people
 " * terryma/vim-expand-region - press v multiple times to select bigger region
+" * tpope/vim-jdaddy - text objects for JSON
 " ### For External Tools
 " * benmills/vimux - tmux
 " * tpope/vim-tbone - tmux paste buffer
