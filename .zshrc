@@ -75,11 +75,11 @@ gitaur-deploy() {
 npm() {
 	if [ "$1" = 'login' ]
 	then
-		ELEVATE='yes'
+		local elevate='yes'
 		shift
 	fi
 
-	[ "$ELEVATE" ] && cat <<-EOF | command npm login
+	[ "$elevate" ] && cat <<-EOF | command npm login
 	vinsonchuong
 	$(pass npm | head -1)
 	vinsonchuong@gmail.com
@@ -87,7 +87,7 @@ npm() {
 
 	command npm "$@"
 
-	[ "$ELEVATE" ] && sed -i '/registry\.npmjs\.org/d' "$HOME/.npmrc"
+	[ "$elevate" ] && sed -i '/registry\.npmjs\.org/d' "$HOME/.npmrc"
 }
 
 alias virsh='virsh -c qemu:///system'
