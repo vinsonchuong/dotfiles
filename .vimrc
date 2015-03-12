@@ -9,6 +9,7 @@
 "   * https://zealdocs.org
 "   * Thibaut/devdocs
 "   * Keithbsmiley/investigate.vim
+"   * danchoi/ri.vim
 " * Investigate project-specific configuration
 "   * Automatically source `~/projects/foo/{.exrc,.vimrc}`:
 "     ```vim
@@ -24,11 +25,16 @@
 "     * thoughtbot/vim-rspec
 " * Investigate smartindent and cinwords
 " ## Plugins to Consider
+" ### For editing large files
+" * LargeFile (#1506) - disables features for increased performance
+" ### For Global Search/Replace
+" * skwp/greplace.vim
 " ### For Git/GitHub
 " * idanarye/vim-merginal - addon for fugitive for handling merging branches and rebasing
 " * jaxbot/github-issues.vim - interfaces for GitHub issues API
 " * codegram/vim-codereview - manage GitHub pull requests
 " * tpope/vim-rhubarb - autocomplete GitHub issue numbers
+" * int3/vim-extradite - browsing git history
 " ### For Project File Navigation
 " * tpope/vim-projectionist
 " * malkomalko/projections.vim - goto related files (e.g. test and implementation)
@@ -40,6 +46,8 @@
 " ### For Code Refactoring
 " * jbgutierrez/vim-partial - for extracting template partials
 " * pelodelfuego/vim-swoop - search replace with context
+" * ecomba/vim-ruby-refactoring
+" * AndrewRadev/switch.vim - pattern-based toggling
 " ### For Brackets and Delimited/Structured Text
 " * amirh/HTML-AutoCloseTag
 " * wellle/targets.vim - enhances ([' text objects and adds separator text objects
