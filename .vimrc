@@ -10,6 +10,7 @@
 "   * Thibaut/devdocs
 "   * Keithbsmiley/investigate.vim
 "   * danchoi/ri.vim
+"   * thinca/vim-ref
 " * Investigate project-specific configuration
 "   * Automatically source `~/projects/foo/{.exrc,.vimrc}`:
 "     ```vim
