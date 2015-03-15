@@ -5,8 +5,8 @@ client.focused_inactive #839496 #839496 #fdf6e3 #839496
 client.unfocused #839496 #839496 #fdf6e3 #839496
 client.urgent #b58900 #b58900 #fdf6e3 #cb4b16
 
-new_window pixel 4
-new_float pixel 4
+new_window pixel 2
+new_float pixel 2
 
 bar {
 	status_command i3status
