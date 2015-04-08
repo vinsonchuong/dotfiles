@@ -25,11 +25,14 @@
 "     * https://github.com/tpope/vim-dispatch/issues/30
 "     * thoughtbot/vim-rspec
 " * Investigate smartindent and cinwords
+" * Show extra whitespace
+"   * guiniol/vim-showspaces
 " ## Plugins to Consider
 " ### For editing large files
 " * LargeFile (#1506) - disables features for increased performance
 " ### For Global Search/Replace
 " * skwp/greplace.vim
+" * gabesoft/vim-ags
 " ### For Git/GitHub
 " * idanarye/vim-merginal - addon for fugitive for handling merging branches and rebasing
 " * jaxbot/github-issues.vim - interfaces for GitHub issues API
