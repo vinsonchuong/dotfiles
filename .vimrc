@@ -39,10 +39,11 @@
 " * codegram/vim-codereview - manage GitHub pull requests
 " * tpope/vim-rhubarb - autocomplete GitHub issue numbers
 " * int3/vim-extradite - browsing git history
-" ### For Project File Navigation
+" ### For Project File Navigation and Tooling
 " * tpope/vim-projectionist
 " * malkomalko/projections.vim - goto related files (e.g. test and implementation)
 " * tpope/vim-rails
+" * tpope/vim-dotenv - per project settings based on .env and Procfile
 " ### For Code Analysis
 " * marijnh/tern_for_vim - JavaScript
 " * Chiel92/vim-autoformat - use external programs, better than indent ftplugin?
