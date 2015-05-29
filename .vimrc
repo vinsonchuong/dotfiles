@@ -48,6 +48,7 @@
 " * marijnh/tern_for_vim - JavaScript
 " * Chiel92/vim-autoformat - use external programs, better than indent ftplugin?
 " * calebsmith/vim-lambdify - conceal function keyword
+" * koalaman/spellcheck - linting for shell scripts
 " ### For Code Refactoring
 " * jbgutierrez/vim-partial - for extracting template partials
 " * pelodelfuego/vim-swoop - search replace with context
