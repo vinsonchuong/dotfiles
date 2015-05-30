@@ -81,6 +81,9 @@
 " * Wolfy87/vim-expand
 " ### For Haskell
 " * begriffs/haskell-vim-now
+" ### For executing code from a buffer
+" * diepm/vim-rest-console
+" * jpalardy/vim-slime
 
 call plug#begin()
 Plug 'junegunn/vim-plug', {'do': 'ln -sf $(realpath plug.vim) ~/.vim/autoload'}
