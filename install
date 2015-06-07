@@ -40,4 +40,3 @@ gem update
 gem install bundler git-up ronn
 
 ln -sf "$PWD/.npmrc" "$HOME"
-npm install --global babel
