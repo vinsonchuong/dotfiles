@@ -86,9 +86,12 @@ npm() {
 	EOF
 
 	command npm "$@"
+	code=$?
 
 	[ "$elevate" ] && sed -i --follow-symlinks \
 		-e '/registry\.npmjs\.org/d' -e "s|$HOME|~|g" "$HOME/.npmrc"
+
+	return $code
 }
 
 alias virsh='virsh -c qemu:///system'
