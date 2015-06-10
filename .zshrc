@@ -64,7 +64,7 @@ alias git='hub'
 alias gitst='git status -sb'
 alias gitlg='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 alias gitdf='git diff --color=always'
-alias gitpp='git up && git push'
+alias gitpp='git up && git push && git push --tags'
 alias gitmg='git merge --ff-only'
 alias gitco='git checkout'
 
