@@ -2,6 +2,9 @@
 " * http://vimrcfu.com - directory of snippets
 " * http://vimawesome.com - directory of popular plugins
 " ## To-Do
+" * Investigate default completion features
+"   * Maybe no need for plugins
+"   * http://usevim.com/2012/07/06/vim101-completion/
 " * Use rubocop for Ruby in syntastic
 " * Suppress YouCompleteMe errors - vim-scripts/noerrmsg.vim
 " * Find plugins for extractions and refactorings
