@@ -5,6 +5,8 @@
 " * Investigate default completion features
 "   * Maybe no need for plugins
 "   * http://usevim.com/2012/07/06/vim101-completion/
+" * Configure netrw
+"   * http://usevim.com/2015/06/05/netrw-style/
 " * Use rubocop for Ruby in syntastic
 " * Suppress YouCompleteMe errors - vim-scripts/noerrmsg.vim
 " * Find plugins for extractions and refactorings
