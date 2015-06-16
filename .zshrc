@@ -68,6 +68,15 @@ alias gitpp='git up && git push && git push --tags'
 alias gitmg='git merge --ff-only'
 alias gitco='git checkout'
 alias gitcm='git commit -v'
+gitcr() {
+	if [ "$PROJECT_NODE" = 'yes' ]
+	then
+		local description="$(jq '.description' package.json)"
+		local homepage="$(jq '.homepage' package.json)"
+	fi
+	git create -d "$description" -h "$homepage"
+	git push --set-upstream origin master
+}
 
 gitaur-deploy() {
 	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
@@ -105,6 +114,7 @@ export BASE_PATH="$PATH"
 export BUNDLE_PATH='.gem'
 chpwd() {
 	export PATH="$BASE_PATH"
+	unset PROJECT_HOME PROJECT_RUBY PROJECT_NODE
 	unset GEM_HOME
 
 	local project_home="$(git rev-parse --show-toplevel 2>/dev/null)"
@@ -112,15 +122,18 @@ chpwd() {
 
 	if [ -f "$project_home/Gemfile" ]
 	then
+		export PROJECT_RUBY='yes'
 		export GEM_HOME="$project_home/.gem"
 		path=("$GEM_HOME/bin" $path)
 	fi
 
 	if [ -f "$project_home/package.json" ]
 	then
+		export PROJECT_NODE='yes'
 		path=("$project_home/node_modules/.bin" $path)
 	fi
 
+	export PROJECT_HOME="$project_home"
 	path=("$project_home/bin" $path)
 }
 chpwd
