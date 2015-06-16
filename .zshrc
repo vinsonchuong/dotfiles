@@ -67,6 +67,7 @@ alias gitdf='git diff --color=always'
 alias gitpp='git up && git push && git push --tags'
 alias gitmg='git merge --ff-only'
 alias gitco='git checkout'
+alias gitcm='git commit -v'
 
 gitaur-deploy() {
 	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
