@@ -94,6 +94,9 @@ bindsym Mod4+r mode resize
 
 for_window [class="^mpv"] floating enable
 
+exec google-musicmanager
+exec insync start
+
 # create/rename workspaces with automatic re-ordering
 # i3-msg -t get_workspaces
 # how expressive is exec?
