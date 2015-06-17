@@ -60,6 +60,7 @@
 " * pelodelfuego/vim-swoop - search replace with context
 " * ecomba/vim-ruby-refactoring
 " * AndrewRadev/switch.vim - pattern-based toggling
+" * mvolkmann/vim-js-arrow-function - convert between function and arrow
 " ### For Brackets and Delimited/Structured Text
 " * amirh/HTML-AutoCloseTag
 " * wellle/targets.vim - enhances ([' text objects and adds separator text objects
