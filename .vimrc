@@ -2,6 +2,8 @@
 " * http://vimrcfu.com - directory of snippets
 " * http://vimawesome.com - directory of popular plugins
 " ## To-Do
+" * ES6+ Syntax
+"   * othree/yajs.vim
 " * See if tpope/vim-flagship can replace airline
 " * Investigate default completion features
 "   * Maybe no need for plugins
@@ -56,6 +58,7 @@
 " * calebsmith/vim-lambdify - conceal function keyword
 " * koalaman/spellcheck - linting for shell scripts
 " * rsense/rsense - Ruby
+" * Quramy/vison - JSON Schema
 " ### For Code Refactoring
 " * jbgutierrez/vim-partial - for extracting template partials
 " * pelodelfuego/vim-swoop - search replace with context
