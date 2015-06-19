@@ -2,6 +2,8 @@
 " * http://vimrcfu.com - directory of snippets
 " * http://vimawesome.com - directory of popular plugins
 " ## To-Do
+" * Get autocompletion in unite back
+" * Open :Gstatus in new tab?
 " * ES6+ Syntax
 "   * othree/yajs.vim
 " * See if tpope/vim-flagship can replace airline
@@ -13,6 +15,7 @@
 " * Use rubocop for Ruby in syntastic
 " * Suppress YouCompleteMe errors - vim-scripts/noerrmsg.vim
 " * Find plugins for extractions and refactorings
+"   * Wrapping code in try/catch
 " * Investigate offline documentation
 "   * https://zealdocs.org
 "   * Thibaut/devdocs
