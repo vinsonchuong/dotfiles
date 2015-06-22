@@ -60,7 +60,34 @@ pacds() {
 }
 alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//" | sort'
 
-alias git='hub'
+function contains() {
+	local element
+	for element in "${@:2}"
+	do
+		if [[ "$element" == "$1" ]]
+		then
+			return 0
+		fi
+	done
+	return 1
+}
+
+function git() {
+	if contains "$1" 'pull-request' 'fork' 'create' 'release' 'issue'
+	then
+		local credentials="$(pass github)"
+		cat <<-EOF > "$HOME/.config/hub"
+		github.com:
+		- user: $(echo "$credentials" | awk '/Username/ {print $2}')
+		  oauth_token: $(echo "$credentials" | awk 'NR == 2')
+		  protocol: https
+		EOF
+	fi
+	hub "$@"
+	local code=$?
+	echo '' > "$HOME/.config/hub"
+	return $code
+}
 alias gitst='git status -sb'
 alias gitlg='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 alias gitdf='git diff --color=always'
@@ -83,25 +110,38 @@ gitaur-deploy() {
 }
 
 npm() {
-	if [ "$1" = 'login' ]
+	cat "$(dirname "$(readlink "$HOME/.zshrc")")/.npmrc" > "/tmp/$(whoami)/.npmrc"
+	if contains "$1" 'publish'
 	then
-		local elevate='yes'
-		shift
+		local credentials="$(pass npm)"
+		cat <<-EOF | command npm login
+		$(echo "$credentials" | awk '/Username/ {print $2}')
+		$(echo "$credentials" | head -1)
+		$(echo "$credentials" | awk '/Email/ {print $2}')
+		EOF
+		command npm "$@"
+		local code=$?
+		command npm logout
+	else
+		command npm "$@"
+		local code=$?
 	fi
-
-	[ "$elevate" ] && cat <<-EOF | command npm login
-	vinsonchuong
-	$(pass npm | head -1)
-	vinsonchuong@gmail.com
-	EOF
-
-	command npm "$@"
-	code=$?
-
-	[ "$elevate" ] && sed -i --follow-symlinks \
-		-e '/registry\.npmjs\.org/d' -e "s|$HOME|~|g" "$HOME/.npmrc"
-
+	echo '' > "/tmp/$(whoami)/.npmrc"
 	return $code
+}
+
+travis() {
+	if contains "$1" accounts cache cancel disable enable encrypt-file env init \
+		raw repos restart settings setup token whatsup whoami
+	then
+		command travis login --github-token "$(pass github | awk 'NR == 2')"
+		command travis "$@"
+		local code=$?
+		command travis logout
+		return $code
+	else
+		command travis "$@"
+	fi
 }
 
 alias virsh='virsh -c qemu:///system'

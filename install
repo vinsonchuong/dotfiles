@@ -37,6 +37,10 @@ rm -rf "$HOME/.gem"
 sudo gem update --system
 gem install gem-ctags
 gem update
-gem install bundler git-up ronn
+gem install bundler git-up ronn travis
 
-ln -sf "$PWD/.npmrc" "$HOME"
+TMP="/tmp/$(whoami)"
+ln -sf "$TMP/.npmrc" "$HOME"
+ln -sf "$TMP/hub" "$HOME/.config"
+mkdir "$HOME/.travis"
+ln -sf "$TMP/.travis.yml" "$HOME/.travis/config.yml"
