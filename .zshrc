@@ -1,18 +1,16 @@
 # # To-Do
 # * Investigate RUBYGEMS_GEMDEPS='-' for replacing Bundler
-
-path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" "$HOME/bin" $path)
-HISTSIZE=1000
-export EDITOR='vim'
-export PAGER='less -R'
-
-autoload -Uz compinit && compinit
-
-autoload -Uz vcs_info && precmd() { vcs_info }
-zstyle ':vcs_info:*' formats '%s:%b'
-zstyle ':vcs_info:*' actionformats '%s:%b (%a)'
-setopt prompt_subst
-PROMPT=$'<< %?\n%K{white}${(r.(($COLUMNS - ${#vcs_info_msg_0_})).)${(%):-%n@%m:%~}}$vcs_info_msg_0_%k\n>> '
+function contains() {
+	local element
+	for element in "${@:2}"
+	do
+		if [[ "$element" == "$1" ]]
+		then
+			return 0
+		fi
+	done
+	return 1
+}
 
 alias ls='ls -hF --color=auto'
 alias lsa='ls -a'
@@ -59,18 +57,6 @@ pacds() {
 	rm -rf $tmp
 }
 alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//" | sort'
-
-function contains() {
-	local element
-	for element in "${@:2}"
-	do
-		if [[ "$element" == "$1" ]]
-		then
-			return 0
-		fi
-	done
-	return 1
-}
 
 function git() {
 	if contains "$1" 'pull-request' 'fork' 'create' 'release' 'issue'
@@ -149,9 +135,23 @@ alias virt-install='virt-install --connect qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'
 
 alias bootstrap='~/projects/project_bootstrap/bootstrap'
-setopt extendedglob
+
+path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" "$HOME/bin" $path)
+HISTSIZE=1000
+export EDITOR='vim'
+export PAGER='less -R'
 export BASE_PATH="$PATH"
 export BUNDLE_PATH='.gem'
+setopt extendedglob
+
+autoload -Uz compinit && compinit
+
+autoload -Uz vcs_info && precmd() { vcs_info }
+zstyle ':vcs_info:*' formats '%s:%b'
+zstyle ':vcs_info:*' actionformats '%s:%b (%a)'
+setopt prompt_subst
+PROMPT=$'<< %?\n%K{white}${(r.(($COLUMNS - ${#vcs_info_msg_0_})).)${(%):-%n@%m:%~}}$vcs_info_msg_0_%k\n>> '
+
 chpwd() {
 	export PATH="$BASE_PATH"
 	unset PROJECT_HOME PROJECT_RUBY PROJECT_NODE
