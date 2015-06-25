@@ -159,7 +159,7 @@ set undofile
 set undodir=$HOME/.vim/undo
 
 let mapleader="\<Space>"
-nnoremap <Leader>f :Unite -no-split -hide-source-names -start-insert file_rec/async file/new<CR>
+nnoremap <Leader>f :Unite -no-split -hide-source-names -start-insert file_rec/git file/new<CR>
 nnoremap <Leader>l :Unite -no-split -hide-source-names -start-insert script:/bin/bash:/home/vinsonchuong/projects/unite-scripts/licenses<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :Gstatus<CR>
@@ -167,7 +167,6 @@ nnoremap <Leader>m :Make<CR>
 
 let g:lightline = {'colorscheme': 'solarized_light'}
 
-let g:unite_source_rec_async_command='ag --follow --nocolor --nogroup --hidden -g "" --ignore .git'
 let g:unite_cursor_line_highlight='CursorLine'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_selecta'])
