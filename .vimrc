@@ -193,3 +193,4 @@ let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 autocmd FileType sh setlocal noet
 autocmd FileType zsh setlocal noet
 autocmd FileType ruby nnoremap <buffer> <C-m> :Rrunner<CR>
+autocmd BufWritePost * silent Git add -N %
