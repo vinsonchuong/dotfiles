@@ -90,6 +90,9 @@ gitcr() {
 	git create -d "$description" -h "$homepage"
 	git push --set-upstream origin master
 }
+gitcg() {
+	gitdf "$(git tag | sort -V | tail -1)"
+}
 
 gitaur-deploy() {
 	/usr/bin/gitaur-deploy -u 'vinsonchuong' -p "$(pass archlinux | head -1)" "$@"
