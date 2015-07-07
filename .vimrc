@@ -2,6 +2,8 @@
 " * http://vimrcfu.com - directory of snippets
 " * http://vimawesome.com - directory of popular plugins
 " ## To-Do
+" * Improve usability of vim vs. gvim:
+"   * wincent/terminus
 " * Get autocompletion in unite back
 " * Open :Gstatus in new tab?
 " * ES6+ Syntax
