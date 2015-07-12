@@ -1,5 +1,6 @@
 # # To-Do
 # * Investigate RUBYGEMS_GEMDEPS='-' for replacing Bundler
+# * Auto gitpp after git commit?
 function contains() {
 	local element
 	for element in "${@:2}"
