@@ -2,6 +2,9 @@
 " * http://vimrcfu.com - directory of snippets
 " * http://vimawesome.com - directory of popular plugins
 " ## To-Do
+" * Switch to Neovim
+"   * Should be seamless now
+"   * Embed in custom GUI: SolidOak, Atom
 " * Improve usability of vim vs. gvim:
 "   * wincent/terminus
 " * Get autocompletion in unite back
