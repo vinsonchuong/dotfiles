@@ -1,0 +1,11 @@
+#!/bin/bash
+pattern='"(.*)": "(.*)"(.*)'
+while read line
+do
+	[[ $line =~ $pattern ]]
+	name="${BASH_REMATCH[1]}"
+	version="${BASH_REMATCH[2]}"
+	comma="${BASH_REMATCH[3]}"
+	new_version="$(npm show "$name" 'version')"
+	echo "    \"$name\": \"^$new_version\"$comma"
+done

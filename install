@@ -44,3 +44,9 @@ ln -sf "$TMP/.npmrc" "$HOME"
 ln -sf "$TMP/hub" "$HOME/.config"
 mkdir "$HOME/.travis"
 ln -sf "$TMP/.travis.yml" "$HOME/.travis/config.yml"
+
+mkdir -p "$HOME/bin"
+for bin in $(ls "$PWD/bin")
+do
+	ln -sf "$PWD/bin/$bin" "$HOME/bin"
+done

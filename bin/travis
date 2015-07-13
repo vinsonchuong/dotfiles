@@ -1,0 +1,14 @@
+#!/bin/bash
+TRAVIS="$(ruby -e 'puts Gem.user_dir')/bin/travis"
+
+if contains "$1" accounts cache cancel disable enable encrypt-file env init \
+	raw repos restart settings setup token whatsup whoami
+then
+	"$TRAVIS" login --github-token "$(pass github | awk 'NR == 2')"
+	"$TRAVIS" "$@"
+	code=$?
+	"$TRAVIS" logout
+	exit $code
+else
+	"$TRAVIS" "$@"
+fi

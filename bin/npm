@@ -1,0 +1,21 @@
+#!/bin/bash
+NPM='/usr/bin/npm'
+
+cat "$(dirname "$(readlink "$HOME/.zshrc")")/.npmrc" > "/tmp/$(whoami)/.npmrc"
+if contains "$1" 'publish'
+then
+	credentials="$(pass npm)"
+	cat <<-EOF | "$NPM" login
+	$(echo "$credentials" | awk '/Username/ {print $2}')
+	$(echo "$credentials" | head -1)
+	$(echo "$credentials" | awk '/Email/ {print $2}')
+	EOF
+	"$NPM" "$@"
+	code=$?
+	"$NPM" logout
+else
+	"$NPM" "$@"
+	code=$?
+fi
+echo '' > "/tmp/$(whoami)/.npmrc"
+exit $code
