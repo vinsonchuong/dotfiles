@@ -49,6 +49,7 @@
 " ### For Global Search/Replace
 " * skwp/greplace.vim
 " * gabesoft/vim-ags
+" * wincent/ferret
 " ### For Git/GitHub
 " * idanarye/vim-merginal - addon for fugitive for handling merging branches and rebasing
 " * jaxbot/github-issues.vim - interfaces for GitHub issues API
