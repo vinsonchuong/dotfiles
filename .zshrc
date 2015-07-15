@@ -74,7 +74,8 @@ alias virt-viewer='virt-viewer -c qemu:///system'
 
 alias bootstrap='~/projects/project_bootstrap/bootstrap'
 
-path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" "$HOME/bin" $path)
+path=("$HOME/bin" $path)
+path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
 HISTSIZE=1000
 export EDITOR='vim'
 export PAGER='less -R'
