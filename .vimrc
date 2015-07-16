@@ -44,6 +44,8 @@
 " * Show extra whitespace
 "   * guiniol/vim-showspaces
 " ## Plugins to Consider
+" ### For document editing
+" * lervag/vimtex
 " ### For editing large files
 " * LargeFile (#1506) - disables features for increased performance
 " ### For Global Search/Replace
