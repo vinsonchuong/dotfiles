@@ -172,7 +172,7 @@ nnoremap <Leader>l :Unite -no-split -hide-source-names -start-insert script:/bin
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :Gstatus<CR>
 nnoremap <Leader>m :Make<CR>
-nnoremap <Leader>r :source %<CR>
+nnoremap <Leader>r :source ~/.vimrc<CR>
 
 let g:lightline = {'colorscheme': 'solarized_light'}
 
