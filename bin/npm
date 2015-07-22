@@ -13,8 +13,14 @@ function contains() {
 	return 1
 }
 
-cat "$(dirname "$(readlink "$HOME/.zshrc")")/.npmrc" > "/tmp/$(whoami)/.npmrc"
-if contains "$1" 'publish'
+has_lock=
+if [[ ! -s "/tmp/$(whoami)/.npmrc" ]]
+then
+	has_lock=yes
+	cat "$(dirname "$(readlink "$HOME/.zshrc")")/.npmrc" > "/tmp/$(whoami)/.npmrc"
+fi
+
+if [[ $has_lock ]] && contains "$1" 'publish'
 then
 	credentials="$(pass npm)"
 	cat <<-EOF | "$NPM" login
@@ -29,5 +35,10 @@ else
 	"$NPM" "$@"
 	code=$?
 fi
-echo '' > "/tmp/$(whoami)/.npmrc"
+
+if [[ $has_lock ]]
+then
+	printf '' > "/tmp/$(whoami)/.npmrc"
+fi
+
 exit $code
