@@ -2,11 +2,6 @@
 " * http://vimrcfu.com - directory of snippets
 " * http://vimawesome.com - directory of popular plugins
 " ## To-Do
-" * Switch to Neovim
-"   * Should be seamless now
-"   * Embed in custom GUI: SolidOak, Atom
-" * Improve usability of vim vs. gvim:
-"   * wincent/terminus
 " * Get autocompletion in unite back
 " * Open :Gstatus in new tab?
 " * ES6+ Syntax
@@ -21,91 +16,13 @@
 " * Suppress YouCompleteMe errors - vim-scripts/noerrmsg.vim
 " * Find plugins for extractions and refactorings
 "   * Wrapping code in try/catch
-" * Investigate offline documentation
-"   * https://zealdocs.org
-"   * Thibaut/devdocs
-"   * Keithbsmiley/investigate.vim
-"   * danchoi/ri.vim
-"   * thinca/vim-ref
 " * Investigate project-specific configuration
 "   * Automatically source `~/projects/foo/{.exrc,.vimrc}`:
 "     ```vim
 "     set secure
 "     set exrc
 "     ```
-" * Running unit tests
-"   * See janko-m/vim-test for both Jasmine and RSpec
-"   * Configure vim-dispatch to run Jasmine tests
-"     * https://github.com/tpope/vim-dispatch/issues/30
-"   * Configure vim-dispatch to run RSpec tests
-"     * https://github.com/tpope/vim-dispatch/issues/30
-"     * thoughtbot/vim-rspec
 " * Investigate smartindent and cinwords
-" * Show extra whitespace
-"   * guiniol/vim-showspaces
-" ## Plugins to Consider
-" ### For document editing
-" * lervag/vimtex
-" ### For editing large files
-" * LargeFile (#1506) - disables features for increased performance
-" ### For Global Search/Replace
-" * skwp/greplace.vim
-" * gabesoft/vim-ags
-" * wincent/ferret
-" ### For Git/GitHub
-" * idanarye/vim-merginal - addon for fugitive for handling merging branches and rebasing
-" * jaxbot/github-issues.vim - interfaces for GitHub issues API
-" * codegram/vim-codereview - manage GitHub pull requests
-" * tpope/vim-rhubarb - autocomplete GitHub issue numbers
-" * int3/vim-extradite - browsing git history
-" ### For Project File Navigation and Tooling
-" * tpope/vim-projectionist
-" * malkomalko/projections.vim - goto related files (e.g. test and implementation)
-" * tpope/vim-rails
-" * tpope/vim-dotenv - per project settings based on .env and Procfile
-" ### For Code Analysis
-" * marijnh/tern_for_vim - JavaScript
-" * Chiel92/vim-autoformat - use external programs, better than indent ftplugin?
-" * calebsmith/vim-lambdify - conceal function keyword
-" * koalaman/spellcheck - linting for shell scripts
-" * rsense/rsense - Ruby
-" * Quramy/vison - JSON Schema
-" ### For Code Refactoring
-" * jbgutierrez/vim-partial - for extracting template partials
-" * pelodelfuego/vim-swoop - search replace with context
-" * ecomba/vim-ruby-refactoring
-" * AndrewRadev/switch.vim - pattern-based toggling
-" * mvolkmann/vim-js-arrow-function - convert between function and arrow
-" ### For Brackets and Delimited/Structured Text
-" * amirh/HTML-AutoCloseTag
-" * wellle/targets.vim - enhances ([' text objects and adds separator text objects
-" * guns/vim-sexp
-" * tpope/vim-sexp-mappings-for-regular-people
-" * terryma/vim-expand-region - press v multiple times to select bigger region
-" * tpope/vim-jdaddy - text objects for JSON
-" ### For External Tools
-" * benmills/vimux - tmux
-" * tpope/vim-tbone - tmux paste buffer
-" * yssl/VIntSearch - search using ctags and grep
-" ### For Adding New Motions
-" * justinmk/vim-sneak - 2 character searching
-" ### For Visualizing Metadata
-" jeetsukumaran/vim-markology - visualize marks
-" ### For Debugging
-" * mattboehm/vim-unstack - navigate stack traces
-" ### For automatically running code
-" * jaxbot/browserlink.vim
-" ### For interacting with ctags
-" * majutsushi/tagbar
-" ### For specific languages
-" * tpope/vim-sleuth - automatically set indentation settings
-" ### For quickly inserting text
-" * Wolfy87/vim-expand
-" ### For Haskell
-" * begriffs/haskell-vim-now
-" ### For executing code from a buffer
-" * diepm/vim-rest-console
-" * jpalardy/vim-slime
 
 call plug#begin()
 Plug 'junegunn/vim-plug', {'do': 'ln -sf $(realpath plug.vim) ~/.vim/autoload'}
@@ -115,7 +32,8 @@ Plug 'kana/vim-textobj-user'
 
 Plug 'tpope/vim-sensible'
 Plug 'rstacruz/vim-opinion'
-call plug#load('vim-sensible', 'vim-opinion')
+Plug 'wincent/terminus'
+call plug#load('vim-sensible', 'vim-opinion', 'terminus')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
