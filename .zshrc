@@ -1,6 +1,3 @@
-# # To-Do
-# * Investigate RUBYGEMS_GEMDEPS='-' for replacing Bundler
-# * Auto gitpp after git commit?
 alias ls='ls -hF --color=auto'
 alias lsa='ls -a'
 alias lsl='ls -l'
