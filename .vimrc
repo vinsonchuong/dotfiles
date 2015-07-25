@@ -1,29 +1,3 @@
-" ## References
-" * http://vimrcfu.com - directory of snippets
-" * http://vimawesome.com - directory of popular plugins
-" ## To-Do
-" * Get autocompletion in unite back
-" * Open :Gstatus in new tab?
-" * ES6+ Syntax
-"   * othree/yajs.vim
-" * See if tpope/vim-flagship can replace airline
-" * Investigate default completion features
-"   * Maybe no need for plugins
-"   * http://usevim.com/2012/07/06/vim101-completion/
-" * Configure netrw
-"   * http://usevim.com/2015/06/05/netrw-style/
-" * Use rubocop for Ruby in syntastic
-" * Suppress YouCompleteMe errors - vim-scripts/noerrmsg.vim
-" * Find plugins for extractions and refactorings
-"   * Wrapping code in try/catch
-" * Investigate project-specific configuration
-"   * Automatically source `~/projects/foo/{.exrc,.vimrc}`:
-"     ```vim
-"     set secure
-"     set exrc
-"     ```
-" * Investigate smartindent and cinwords
-
 call plug#begin()
 Plug 'junegunn/vim-plug', {'do': 'ln -sf $(realpath plug.vim) ~/.vim/autoload'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
@@ -88,7 +62,7 @@ let mapleader="\<Space>"
 nnoremap <Leader>f :Unite -no-split -hide-source-names -start-insert file_rec/git file/new<CR>
 nnoremap <Leader>l :Unite -no-split -hide-source-names -start-insert script:/bin/bash:/home/vinsonchuong/projects/unite-scripts/licenses<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
-nnoremap <Leader>g :Gstatus<CR>
+nnoremap <Leader>g :tab split README.md \| Gstatus<CR>
 nnoremap <Leader>m :Make<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 
