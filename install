@@ -50,3 +50,5 @@ for bin in $(ls "$PWD/bin")
 do
 	ln -sf "$PWD/bin/$bin" "$HOME/bin"
 done
+
+find "$HOME/.insync" -maxdepth 1 -type d \( ! -name '.*' \) -exec ln -s '{}' "$HOME" \;
