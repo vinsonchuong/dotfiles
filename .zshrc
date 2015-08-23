@@ -69,7 +69,9 @@ alias virsh='virsh -c qemu:///system'
 alias virt-install='virt-install --connect qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'
 
-alias bootstrap='~/projects/project_bootstrap/bootstrap'
+prototypical() {
+	GEM_HOME='.gem' command prototypical "$@"
+}
 
 path=("$HOME/bin" $path)
 path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
@@ -77,7 +79,6 @@ HISTSIZE=1000
 export EDITOR='vim'
 export PAGER='less -R'
 export BASE_PATH="$PATH"
-export BUNDLE_PATH='.gem'
 setopt extendedglob
 
 autoload -Uz compinit && compinit
