@@ -70,7 +70,7 @@ alias virt-install='virt-install --connect qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'
 
 prototypical() {
-	GEM_HOME='.gem' command prototypical "$@"
+	GEM_HOME='.gem' command hub exec prototypical "$@"
 }
 
 path=("$HOME/bin" $path)

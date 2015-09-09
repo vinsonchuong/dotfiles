@@ -11,7 +11,7 @@ function contains() {
 	return 1
 }
 
-if contains "$1" 'pull-request' 'fork' 'create' 'release' 'issue'
+if contains "$1" 'exec' 'pull-request' 'fork' 'create' 'release' 'issue'
 then
 	credentials="$(pass github)"
 	cat <<-EOF > "$HOME/.config/hub"
@@ -21,7 +21,14 @@ then
 	  protocol: https
 	EOF
 fi
-/usr/bin/hub "$@"
+
+if [[ $1 = 'exec' ]]
+then
+	"$2" "${@:3}"
+else
+	/usr/bin/hub "$@"
+fi
+
 code=$?
 echo '' > "$HOME/.config/hub"
 exit $code
