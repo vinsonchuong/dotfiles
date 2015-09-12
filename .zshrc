@@ -73,8 +73,7 @@ prototypical() {
 	GEM_HOME='.gem' command hub exec prototypical "$@"
 }
 
-path=("$HOME/bin" $path)
-path=("$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
+path=("$HOME/bin" "$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
 HISTSIZE=1000
 export EDITOR='vim'
 export PAGER='less -R'
