@@ -70,7 +70,9 @@ alias virt-install='virt-install --connect qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'
 
 prototypical() {
-	GEM_HOME='.gem' command hub exec prototypical "$@"
+	GEM_HOME='.gem' \
+	JSPM_GITHUB_AUTH_TOKEN="$(echo "$(pass github | awk '$1 == "Username:" {print $2}'):$(pass github | head -2 | tail -1)" | base64)" \
+		command hub exec prototypical "$@"
 }
 
 path=("$HOME/bin" "$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
