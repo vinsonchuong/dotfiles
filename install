@@ -11,7 +11,7 @@ ln -sf "$PWD/.tmux.conf" "$HOME"
 ln -sf "$PWD/.zshrc" "$HOME"
 
 ln -sf "$PWD/.vimrc" "$HOME"
-mkdir -p "$HOME/.vim/{autoload,undo}"
+mkdir -p "$HOME/.vim/autoload" "$HOME/.vim/undo"
 curl -sfLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ln -sf "$PWD/.vimperatorrc" "$HOME"
