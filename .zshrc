@@ -44,7 +44,9 @@ pacds() {
 }
 alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//" | sort'
 
-alias git='hub'
+hub() {
+	GITHUB_TOKEN="$(pass github | awk '/Username/ {print $2}')" command hub "$@"
+}
 alias gitst='git status -sb'
 alias gitlg='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 alias gitdf='git diff --color=always'
@@ -58,7 +60,7 @@ gitcr() {
 		local description="$(jq '.description' package.json)"
 		local homepage="$(jq '.homepage' package.json)"
 	fi
-	git create -d "$description" -h "$homepage"
+	hub create -d "$description" -h "$homepage"
 	git push --set-upstream origin master
 }
 gitcg() {
