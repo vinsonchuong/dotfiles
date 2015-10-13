@@ -60,8 +60,8 @@ alias gitcm='git commit -v'
 gitcr() {
 	if [ "$PROJECT_NODE" = 'yes' ]
 	then
-		local description="$(jq '.description' package.json)"
-		local homepage="$(jq '.homepage' package.json)"
+		local description="$(jq -r '.description' package.json)"
+		local homepage="$(jq -r '.homepage' package.json)"
 	fi
 	hub create -d "$description" -h "$homepage"
 	git push --set-upstream origin master
