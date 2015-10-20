@@ -71,7 +71,9 @@ gitcg() {
 }
 
 travis() {
-	TRAVIS_TOKEN="$(pass travis)" "$(ruby -e 'puts Gem.user_dir')/bin/travis" "$@"
+	local cmd="$(ruby -e 'puts Gem.user_dir')/bin/travis"
+	"$cmd" "$@" --token "$(pass travis)"
+	"$cmd" logout
 }
 
 alias virsh='virsh -c qemu:///system'
