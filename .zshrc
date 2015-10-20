@@ -70,12 +70,6 @@ gitcg() {
 	gitdf "$(git tag | sort -V | tail -1)"
 }
 
-travis() {
-	local cmd="$(ruby -e 'puts Gem.user_dir')/bin/travis"
-	"$cmd" "$@" --token "$(pass travis)"
-	"$cmd" logout
-}
-
 alias virsh='virsh -c qemu:///system'
 alias virt-install='virt-install --connect qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'

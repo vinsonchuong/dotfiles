@@ -39,8 +39,7 @@ gem install gem-ctags
 gem update
 gem install bundler git-up rails ronn travis
 
-TMP="/tmp/$(whoami)"
-ln -sf "$TMP/.npmrc" "$HOME"
+cp -f "$PWD/.npmrc" "$HOME/.npmrc"
 
 mkdir -p "$HOME/bin"
 for bin in $(ls "$PWD/bin")
