@@ -1,3 +1,2 @@
 urxvtd -q -o -f
 eval $(gpg-agent --daemon --enable-ssh-support)
-mkdir -m 0700 "/tmp/$(whoami)"
