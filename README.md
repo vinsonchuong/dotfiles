@@ -1,28 +1,5 @@
 # Dot Files
 
-## Dependencies
-### Arch Linux Packages
-* the_silver_searcher - Used by ag.vim
-* ctags - Used by vim
-* git - Used by vim-fugitive
-* gitaur
-* vim
-* hub
-* mplayer
-* ncmpcpp
-* nodejs
-* python
-* ruby
-* rxvt-unicode
-* ttf-dejavu
-* zsh
-
-### Node Packages
-* csslint - Used by Syntastic to validate CSS files
-* js-yaml - Used by Syntastic to validate YAML files
-* jshint - Used by Syntastic to validate JavaScript files
-* jsonlint - Used by Syntastic to validate JSON files
-
 ## License
 ```
 Copyright (c) 2012 Vinson Chuong
