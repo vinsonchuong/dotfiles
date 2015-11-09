@@ -63,7 +63,20 @@ gitcr() {
 		local description="$(jq -r '.description' package.json)"
 		local homepage="$(jq -r '.homepage' package.json)"
 	fi
-	hub create -d "$description" -h "$homepage"
+
+	if [[ -n $description && -n $homepage ]]
+	then
+		hub create -d "$description" -h "$homepage" "$@"
+	elif [[ -n $description ]]
+	then
+		hub create -d "$description" "$@"
+	elif [[ -n $homepage ]]
+	then
+		hub create -d "$homepage" "$@"
+	else
+		hub create "$@"
+	fi
+
 	git push --set-upstream origin master
 }
 gitcg() {
