@@ -28,12 +28,12 @@ floating_modifier Mod4
 bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -h 30 -fn "DejaVu Sans Mono-6" -nb "#002b36" -nf "#839496" -sb "#073642" -sf "#268bd2"'
 bindsym Mod4+Return exec urxvtc -sl 0 -sb -letsp -2 -fade 0 -e tmux
 
-bindsym XF86AudioLowerVolume exec amixer sset Master 1dB-
-bindsym XF86AudioRaiseVolume exec amixer sset Master 1dB+
-bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 1dB-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 1dB+
+bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
 
-bindsym XF86MonBrightnessDown exec xbacklight -10
-bindsym XF86MonBrightnessUp exec xbacklight +10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10
 #bindsym XF86Display
 
 bindsym Mod4+q kill
