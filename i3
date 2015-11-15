@@ -96,21 +96,3 @@ for_window [class="^mpv"] floating enable
 
 exec --no-startup-id google-musicmanager
 exec --no-startup-id insync start
-
-# create/rename workspaces with automatic re-ordering
-# i3-msg -t get_workspaces
-# how expressive is exec?
-# rename workspace 4 to 5; rename workspace 3 to 4; workspace 3: new name
-# i3-input -F 'rename workspace to "%s"' -P 'enter new name: '
-# i3-input -F 'workspace "%s"' -P 'enter new name: '
-
-# move containers to other outputs
-# move container to output <<left|right|up|down>>
-
-# mark containers for quick focusing
-# mark container-name
-# [con_mark="container-name"] focus
-# unmark container-name
-# unmark
-
-# command mode via Mod4+:
