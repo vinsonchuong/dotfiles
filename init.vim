@@ -1,2 +1,2 @@
-filetype plugin indent on
-syntax enable
+call plug#begin()
+call plug#end()
