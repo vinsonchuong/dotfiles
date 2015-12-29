@@ -34,6 +34,8 @@ mkdir -p "$HOME/.config/transmission-cli" && ln -sf "$PWD/transmission-settings.
 mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathura"
 mkdir -p "$HOME/.config/nvim" && ln -sf "$PWD/init.vim" "$HOME/.config/nvim"
 
+mkdir -p "$HOME/.local/share/applications" && ln -sf "$PWD/chromium.desktop" "$HOME/.local/share/applications"
+
 ln -sf "$PWD/.gitconfig" "$HOME"
 mkdir -p "$HOME/.config/git" && ln -sf "$PWD/gitignore" "$HOME/.config/git/ignore"
 
