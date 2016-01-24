@@ -34,11 +34,11 @@ aurup() {
 alias aurin='sudo aura -Aya'
 alias aurun='pacun'
 pacds() {
-  local tmp=$(mktemp -d)
+	local tmp=$(mktemp -d)
 	pacman -Qlq | sort -u > $tmp/db
 	find /bin /etc /lib /sbin /usr \
-    ! -name lost+found \( -type d -printf '%p/\n' -o -print \) \
-    | sort > $tmp/fs
+		! -name lost+found \( -type d -printf '%p/\n' -o -print \) \
+		| sort > $tmp/fs
 	comm -23 $tmp/fs $tmp/db
 	rm -rf $tmp
 }
