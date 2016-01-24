@@ -135,5 +135,3 @@ chpwd() {
 	path=("$project_home/bin" $path)
 }
 chpwd
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
