@@ -1,11 +1,10 @@
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
 
 Plug 'mbbill/undotree'
-Plug 'Shougo/unite.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
@@ -49,6 +48,9 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 call plug#end()
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $FZF_DEFAULT_OPTS='--color=16'
+
 set nowrap
 set number
 set numberwidth=5
@@ -56,16 +58,9 @@ set undofile
 
 colorscheme solarized
 let g:lightline={'colorscheme': 'solarized_light'}
-
-let g:unite_cursor_line_highlight='CursorLine'
-let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_selecta'])
-
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
 let mapleader="\<Space>"
-nnoremap <Leader>f :Unite -no-split -hide-source-names -start-insert file_rec/neovim file/new<CR>
-nnoremap <Leader>l :Unite -no-split -hide-source-names -start-insert script:/bin/bash:/home/vinsonchuong/projects/unite-scripts/licenses<CR>
+nnoremap <Leader>f :GitFiles!<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :tab split README.md \| Gstatus<CR>
