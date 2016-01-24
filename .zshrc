@@ -100,7 +100,7 @@ jspm() {
 
 path=("$HOME/bin" "$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
 HISTSIZE=1000
-export EDITOR='vim'
+export EDITOR='nvim'
 export PAGER='less -R'
 export BASE_PATH="$PATH"
 setopt extendedglob
