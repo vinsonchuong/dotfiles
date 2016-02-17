@@ -110,6 +110,8 @@ zstyle ':vcs_info:*' actionformats '%s:%b (%a)'
 setopt prompt_subst
 PROMPT=$'<< %?\n%K{white}${(r.(($COLUMNS - ${#vcs_info_msg_0_})).)${(%):-%n@%m:%~}}$vcs_info_msg_0_%k\n>> '
 
+compdef "_files -/ -W '$HOME/projects'" 'project'
+
 chpwd() {
 	export PATH="$BASE_PATH"
 	unset PROJECT_HOME PROJECT_RUBY PROJECT_NODE

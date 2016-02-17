@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+PROJECT="$1"
+
+tmux new-window -n "$PROJECT" -c "${HOME}/projects/${PROJECT}"
+tmux split-window -t "$PROJECT" -c "${HOME}/projects/${PROJECT}"
+tmux send-keys -t "${PROJECT}.{top}" 'nvim' 'C-m'
+tmux select-window -t "$PROJECT"
