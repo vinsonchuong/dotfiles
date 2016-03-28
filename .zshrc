@@ -16,6 +16,10 @@ alias grep='grep --color=auto'
 alias diff='colordiff -u'
 alias ping='ping -c 5'
 
+open() {
+	i3-msg exec xdg-open "$(realpath "$1")" > /dev/null
+}
+
 paccl() {
 	sudo aura -Oj
 	sudo paccache -r
