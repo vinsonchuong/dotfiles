@@ -60,7 +60,9 @@ colorscheme solarized
 let g:lightline={'colorscheme': 'solarized_light'}
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
+let g:fzf_layout={'window': 'enew'}
+
 let mapleader="\<Space>"
-nnoremap <Leader>f :GitFiles!<CR>
+nnoremap <Leader>f :GitFiles<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :tab split README.md \| Gstatus<CR>
