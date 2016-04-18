@@ -1,4 +1,4 @@
-font pango:DejaVu Sans Mono 6
+font pango:DejaVu Sans Mono 12
 
 client.focused #268bd2 #268bd2 #fdf6e3 #6c71c4
 client.focused_inactive #839496 #839496 #fdf6e3 #839496
