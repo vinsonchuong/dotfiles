@@ -5,6 +5,12 @@ set -o nounset
 set -o pipefail
 
 PROJECT="$1"
+TYPE="$2"
+
+if [[ $TYPE ]]
+then
+	prototypical "$TYPE" "${HOME}/projects/${PROJECT}"
+fi
 
 tmux new-window -n "$PROJECT" -c "${HOME}/projects/${PROJECT}"
 tmux split-window -t "$PROJECT" -c "${HOME}/projects/${PROJECT}"
