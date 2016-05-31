@@ -1,7 +1,3 @@
-# ## To-Do
-# * Use `ihate` plugin to exclude instrumental tracks
-# * Fill-in missing tracks with `missing` plugin
-# * Translate missing artist names
 directory: ~/music
 plugins: scrub convert fetchart embedart lastgenre lyrics info mbsync
 per_disc_numbering: yes
