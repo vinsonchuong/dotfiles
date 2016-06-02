@@ -1,5 +1,59 @@
 font pango:DejaVu Sans Mono 6
 
+set $dark_red #9d0006
+set $red #cc241d
+set $bright_red #fb4934
+
+set $dark_green #79740e
+set $green #98971a
+set $bright_green #b8bb26
+
+set $dark_yellow #b57614
+set $yellow #d79921
+set $bright_yellow #fabd2f
+
+set $dark_blue #076678
+set $blue #458588
+set $bright_blue #83a598
+
+set $dark_purple #8f3f71
+set $purple #b16286
+set $bright_purple #d3869b
+
+set $dark_aqua #427b58
+set $aqua #689d6a
+set $bright_aqua #8ec07c
+
+set $dark_orange #af3a03
+set $orange #d65d0e
+set $bright_orange #fe8019
+
+set $black0_h #1d2021
+set $black0 #282828
+set $black0_s #32302f
+set $black1 #3c3836
+set $black2 #504945
+set $black3 #665c54
+set $black4 #7c6f64
+set $gray #928374
+set $white4 #a89984
+set $white3 #bdae93
+set $white2 #d5c4a1
+set $white1 #ebdbb2
+set $white0_s #f2e5bc
+set $white0 #fbf1c7
+set $white0_h #f9f5d7
+
+# Dark
+# set $fg $white1
+# set $bg $black0
+# Bright means lighter
+
+# Light
+# set $fg $black1
+# set $bg $white0
+# Bright means darker
+
 client.focused #268bd2 #268bd2 #fdf6e3 #6c71c4
 client.focused_inactive #839496 #839496 #fdf6e3 #839496
 client.unfocused #839496 #839496 #fdf6e3 #839496
