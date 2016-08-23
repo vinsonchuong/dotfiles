@@ -57,7 +57,7 @@ set numberwidth=5
 set undofile
 
 colorscheme solarized
-let g:lightline={'colorscheme': 'solarized_light'}
+let g:lightline={'colorscheme': 'solarized'}
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
 let g:fzf_layout={'window': 'enew'}
