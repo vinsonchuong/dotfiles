@@ -5,6 +5,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'Shougo/denite.nvim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
@@ -61,6 +62,7 @@ let g:lightline={'colorscheme': 'solarized'}
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
 let g:fzf_layout={'window': 'enew'}
+call denite#custom#source('file_rec', 'vars', {'command': ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']})
 
 let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
