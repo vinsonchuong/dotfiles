@@ -14,6 +14,7 @@ Plug 'scrooloose/syntastic'
 Plug 'szw/vim-tags'
 Plug 'vinsonchuong/vim-stdtabs'
 Plug 'sheerun/vim-polyglot'
+Plug 'isRuslan/vim-es6'
 
 Plug 'kana/vim-textobj-user'
 Plug 'thinca/vim-textobj-between'
@@ -63,6 +64,8 @@ let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
 let g:fzf_layout={'window': 'enew'}
 call denite#custom#source('file_rec', 'vars', {'command': ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']})
+
+let g:polyglot_disabled = ['javascript']
 
 let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
