@@ -8,7 +8,7 @@ WIFI_INTERFACE=$(find /sys/class/net -name 'wl*' -printf '%f\n')
 sudo iwlist "$WIFI_INTERFACE" scan \
 	| grep 'ESSID' \
 	| sort -u \
-	| awk -F '"' '{print $2}' \
-	| sed -e '/""/d' -e '/\\x00/d' \
+	| awk -F ':' '{print $2}' \
+	| sed -e '/^$/d' -e '/""/d' -e '/\\x00/d' \
 	| nl \
 	| tee /tmp/access_points
