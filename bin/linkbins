@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+BIN=$(realpath "${BASH_SOURCE[0]}")
+BIN_DIR=$(dirname "$BIN")
+
+for file in $(ls "$BIN_DIR")
+do
+	ln -sf "${BIN_DIR}/${file}" "${HOME}/bin"
+done
