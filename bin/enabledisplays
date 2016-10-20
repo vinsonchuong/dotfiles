@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+for display in $(xrandr | grep 'connected' | sed -e '/disconnected/d' | awk '{print $1}')
+do
+	xrandr --output "$display" --auto
+done
