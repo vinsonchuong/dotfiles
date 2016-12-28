@@ -17,7 +17,7 @@ alias diff='colordiff -u'
 alias ping='ping -c 5'
 
 open() {
-	i3-msg exec xdg-open "$(realpath "$1")" > /dev/null
+	i3-msg exec "xdg-open '$(realpath "$1")'" > /dev/null
 }
 
 paccl() {
