@@ -4,11 +4,36 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
+TMP=$(mktemp -d)
+cd "$TMP"
 WIFI_INTERFACE=$(find /sys/class/net -name 'wl*' -printf '%f\n')
 sudo iwlist "$WIFI_INTERFACE" scan \
-	| grep 'ESSID' \
+	| csplit - '/Cell [0-9]*/' '{*}' > /dev/null
+
+{
+	rm -f xx00
+	for file in $(ls xx*)
+	do
+		contents=$(cat "$file")
+
+		ssid=$(echo "$contents" | awk -F ':' '/ESSID/ {print $2}' | sed 's/"//g')
+
+		if echo "$contents" | grep -q 'Encryption key:on'
+		then
+			public='Private'
+		else
+			public='Public'
+		fi
+
+		if [[ -n $ssid ]] && [[ $ssid != '\x00'* ]]
+		then
+			echo -e "${ssid}\t${public}"
+		fi
+	done
+} \
 	| sort -u \
-	| awk -F ':' '{print $2}' \
-	| sed -e '/^$/d' -e '/""/d' -e '/\\x00/d' \
-	| nl \
+	| nl -s $'\t' \
+	| column -t -s $'\t' -o ' | ' \
 	| tee /tmp/access_points
+
+rm -rf "$TMP"

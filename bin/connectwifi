@@ -6,11 +6,10 @@ set -o pipefail
 
 WIFI_INTERFACE=$(find /sys/class/net -name 'wl*' -printf '%f\n')
 SSID_NUMBER=$1
-SSID=$(cat /tmp/access_points | tail -n "+${SSID_NUMBER}" | head -n 1 | awk -F '"' '{print $2}')
+SSID=$(cat /tmp/access_points | tail -n "+${SSID_NUMBER}" | head -n 1 | sed -e 's/^\s*//' -e 's/\s*|\s*/|/g' | awk -F '|' '{print $2}')
 PASSWORD=${2:-}
 
 if [[ -n $PASSWORD ]]
-
 then
 	wpa_passphrase "$SSID" "$PASSWORD" \
 		| sudo tee -a "/etc/wpa_supplicant/wpa_supplicant-${WIFI_INTERFACE}.conf" > /dev/null
