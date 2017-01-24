@@ -44,6 +44,7 @@ sudo gem update --system
 gem install gem-ctags
 gem update
 gem install bundler gemstash git-up rails ronn travis
+bundle config mirror.https://rubygems.org http://localhost:9292
 
 cp -f "$PWD/.npmrc" "$HOME/.npmrc"
 

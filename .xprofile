@@ -8,3 +8,5 @@ pactl load-module module-combine-sink sink_name=all slaves=laptop,hdmi
 pactl set-default-sink all
 
 xrandr --output HDMI2 --auto
+
+"$(ruby -e 'puts Gem.user_dir')/bin/gemstash" start
