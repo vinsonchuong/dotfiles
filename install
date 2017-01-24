@@ -43,7 +43,7 @@ rm -rf "$HOME/.gem"
 sudo gem update --system
 gem install gem-ctags
 gem update
-gem install bundler git-up rails ronn travis
+gem install bundler gemstash git-up rails ronn travis
 
 cp -f "$PWD/.npmrc" "$HOME/.npmrc"
 
