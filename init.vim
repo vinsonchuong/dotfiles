@@ -71,3 +71,10 @@ let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :tab split README.md \| Gstatus<CR>
+
+function Open()
+	let class = expand("<cword>")
+	execute 'tabnew src/' . class . '.js'
+	execute 'vertical botright split test/' . class . 'Test.js'
+endfunction
+nnoremap <Leader>o :call Open()<CR>
