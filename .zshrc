@@ -83,6 +83,17 @@ gitcr() {
 gitcg() {
 	gitdf "$(git tag | sort -V | tail -1)"
 }
+gitpb() {
+	local version
+
+	if [[ $PROJECT_NODE ]]
+	then
+		version="v$(jq -r '.version' package.json)"
+		gitcm -m "$version"
+		git tag "$version"
+		gitpp
+	fi
+}
 
 alias virsh='virsh -c qemu:///system'
 alias virt-install='virt-install --connect qemu:///system'
