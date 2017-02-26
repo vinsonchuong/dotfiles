@@ -86,3 +86,14 @@ function Extract()
 	call Open()
 endfunction
 nnoremap <Leader>e :call Extract()<CR>
+
+function Namespace(name)
+	wincmd h
+	let srcname = expand('%:t')
+	execute 'Move src/' . a:name . '/' . srcname
+
+	wincmd l
+	let testname = expand('%:t')
+	execute 'Move test/' . a:name . '/' . testname
+endfunction
+command! -nargs=* Namespace call Namespace('<args>')
