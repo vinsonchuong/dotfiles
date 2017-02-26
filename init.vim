@@ -78,3 +78,11 @@ function Open()
 	execute 'vertical botright split test/' . class . 'Test.js'
 endfunction
 nnoremap <Leader>o :call Open()<CR>
+
+function Extract()
+	normal mm
+	call search('{', 's')
+	normal ``V``%y`m`
+	call Open()
+endfunction
+nnoremap <Leader>e :call Extract()<CR>
