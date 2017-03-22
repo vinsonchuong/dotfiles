@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+if xrandr --listactivemonitors | grep HDMI2 &> /dev/null
+then
+	xrandr --output eDP1 --auto
+	xrandr --output HDMI2 --off
+	pactl set-default-sink laptop
+else
+	xrandr --output eDP1 --off
+	xrandr --output HDMI2 --auto
+	pactl set-default-sink hdmi
+fi

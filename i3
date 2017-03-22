@@ -88,7 +88,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10
-#bindsym XF86Display
+
+bindsym XF86LaunchA exec --no-startup-id ~/bin/toggledisplay
 
 bindsym Mod4+q kill
 bindsym Mod4+o fullscreen

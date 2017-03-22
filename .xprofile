@@ -5,8 +5,6 @@ pactl unload-module module-alsa-card
 pactl load-module module-alsa-sink sink_name=laptop device=hw:1,0
 pactl load-module module-alsa-sink sink_name=hdmi device=hw:0,7
 pactl load-module module-combine-sink sink_name=all slaves=laptop,hdmi
-pactl set-default-sink all
-
-xrandr --output HDMI2 --auto
+pactl set-default-sink laptop
 
 "$(ruby -e 'puts Gem.user_dir')/bin/gemstash" start
