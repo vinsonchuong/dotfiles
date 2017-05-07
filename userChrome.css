@@ -1,5 +1,9 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+* {
+  font-size: 16px !important;
+}
+
 #alltabs-button,
 #new-tab-button,
 .scrollbutton-up,
