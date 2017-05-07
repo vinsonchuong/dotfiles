@@ -7,4 +7,6 @@ pactl load-module module-alsa-sink sink_name=hdmi device=hw:0,7
 pactl load-module module-combine-sink sink_name=all slaves=laptop,hdmi
 pactl set-default-sink laptop
 
+amixer -c PCH sset Headphone 100%
+
 "$(ruby -e 'puts Gem.user_dir')/bin/gemstash" start
