@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit
 set -o nounset
-set -o xtrace
+# set -o xtrace
 set -o pipefail
 
 cd "$(dirname $BASH_SOURCE)"
@@ -19,17 +19,20 @@ mkdir -p "$HOME/.config/nvim/autoload"
 curl -sfLo "$HOME/.config/nvim/autoload/plug.vim" 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ln -sf "$PWD/.vimperatorrc" "$HOME"
-for profile in $(find "$HOME/.mozilla/firefox" -mindepth 1 -maxdepth 1 -type d)
+
+for profile in $(cat "$HOME/.mozilla/firefox/profiles.ini" | grep 'Path' | cut -b6-)
 do
-	mkdir -p "$profile/chrome"
-	ln -sf "$PWD/userChrome.css" "$profile/chrome"
-	ln -sf "$PWD/userContent.css" "$profile/chrome"
+	chrome="$HOME/.mozilla/firefox/$profile/chrome"
+	mkdir -p "$chrome"
+	ln -sf "$PWD/userChrome.css" "$chrome"
+	ln -sf "$PWD/userContent.css" "$chrome"
 done
 
 mkdir -p "$HOME/.config" && ln -sf "$PWD/user-dirs.dirs" "$HOME/.config"
 mkdir -p "$HOME/.config/i3" && ln -sf "$PWD/i3" "$HOME/.config/i3/config"
 mkdir -p "$HOME/.config/i3status" && ln -sf "$PWD/i3status" "$HOME/.config/i3status/config"
 mkdir -p "$HOME/.config/mpv" && ln -sf "$PWD/mpv-input.conf" "$HOME/.config/mpv/input.conf"
+mkdir -p "$HOME/.config/mpv" && ln -sf "$PWD/mpv.conf" "$HOME/.config/mpv/mpv.conf"
 mkdir -p "$HOME/.config/transmission-cli" && ln -sf "$PWD/transmission-settings.json" "$HOME/.config/transmission-cli/settings.json"
 mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathura"
 mkdir -p "$HOME/.config/nvim" && ln -sf "$PWD/init.vim" "$HOME/.config/nvim"
@@ -41,9 +44,10 @@ mkdir -p "$HOME/.config/git" && ln -sf "$PWD/gitignore" "$HOME/.config/git/ignor
 
 rm -rf "$HOME/.gem"
 sudo gem update --system
-gem install gem-ctags
+gem install --conservative gem-ctags
 gem update
-gem install bundler gemstash git-up rails ronn travis
+gem install --conservative puma -v 2.16.0 -- --with-opt-include=/usr/include/openssl-1.0
+gem install --conservative bundler gemstash git-up rails ronn travis
 bundle config mirror.https://rubygems.org http://localhost:9292
 
 cp -f "$PWD/.npmrc" "$HOME/.npmrc"
