@@ -6,6 +6,10 @@ set -o pipefail
 
 /usr/bin/beet "${@}"
 
-LOCK_FILE=${HOME}/music/update-google-music-manager
-touch "$LOCK_FILE"
-rm -f "$LOCK_FILE"
+{
+	LOCK_FILE=${HOME}/music/update-google-music-manager
+	sleep 5
+	touch "$LOCK_FILE"
+	sleep 1
+	rm -f "$LOCK_FILE"
+} &
