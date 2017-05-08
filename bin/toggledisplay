@@ -12,6 +12,7 @@ then
 	xrandr --output HDMI2 --auto
 	pactl set-default-sink hdmi
 	xmodmap "${BASE}/.Xmodmap-HHKB"
+	xinput set-prop 'Logitech Rechargeable Touchpad T650' 'libinput Tapping Enabled' 1
 else
 	xrandr --output eDP1 --auto
 	xrandr --output HDMI2 --off
