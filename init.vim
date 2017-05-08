@@ -63,6 +63,20 @@ let g:lightline={'colorscheme': 'solarized'}
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
 let g:fzf_layout={'window': 'enew'}
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 call denite#custom#source('file_rec', 'vars', {'command': ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']})
 
 let g:polyglot_disabled = ['javascript']
