@@ -1,5 +1,4 @@
 urxvtd -q -o -f
-eval $(gpg-agent --daemon --enable-ssh-support)
 
 pactl unload-module module-alsa-card
 pactl load-module module-alsa-sink sink_name=laptop device=hw:1,0

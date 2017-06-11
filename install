@@ -38,6 +38,9 @@ mkdir -p "$HOME/.config/transmission-cli" && ln -sf "$PWD/transmission-settings.
 mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathura"
 mkdir -p "$HOME/.config/nvim" && ln -sf "$PWD/init.vim" "$HOME/.config/nvim"
 
+mkdir -p "$HOME/.gnupg" && ln -sf "$PWD/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
+ln -sf "$PWD/.pam_environment" "$HOME"
+
 mkdir -p "$HOME/.local/share/applications" && ln -sf "$PWD/chromium.desktop" "$HOME/.local/share/applications"
 
 ln -sf "$PWD/.gitconfig" "$HOME"
