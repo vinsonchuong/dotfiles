@@ -6,8 +6,10 @@ set -o pipefail
 
 BIN=$(realpath "${BASH_SOURCE[0]}")
 BIN_DIR=$(dirname "$BIN")
+LINK_DIR="${HOME}/bin"
 
+mkdir -p "${LINK_DIR}"
 for file in $(ls "$BIN_DIR")
 do
-	ln -sf "${BIN_DIR}/${file}" "${HOME}/bin"
+	ln -sf "${BIN_DIR}/${file}" "${LINK_DIR}"
 done

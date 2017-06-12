@@ -60,11 +60,7 @@ npm install -g npm yarn
 pip install --user pylast requests
 ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
 
-mkdir -p "$HOME/bin"
-for bin in $(ls "$PWD/bin")
-do
-	ln -sf "$PWD/bin/$bin" "$HOME/bin"
-done
+./bin/linkbins
 
 for folder in $(find "$HOME/.insync" -maxdepth 1 -type d \( ! -name '.*' \))
 do
