@@ -55,7 +55,6 @@ gem install --conservative bundler gemstash git-up rails ronn travis
 bundle config mirror.https://rubygems.org http://localhost:9292
 
 cp -f "$PWD/.npmrc" "$HOME/.npmrc"
-npm install -g npm yarn
 
 pip install --user pylast requests
 ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
