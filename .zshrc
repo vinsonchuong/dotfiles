@@ -16,10 +16,6 @@ alias grep='grep --color=auto'
 alias diff='colordiff -u'
 alias ping='ping -c 5'
 
-open() {
-	i3-msg exec "xdg-open '$(realpath "$1")'" > /dev/null
-}
-
 paccl() {
 	sudo aura -Oj
 	sudo paccache -r
@@ -48,12 +44,6 @@ pacds() {
 }
 alias pacmd='pacman -Qii | grep "^MODIFIED" | sed "s/MODIFIED\s\+//" | sort'
 
-hub() {
-	GITHUB_TOKEN="$(pass github | head -2 | tail -1)" command hub "$@"
-}
-travis() {
-	TRAVIS_TOKEN="$(pass travis)" command travis "$@"
-}
 alias gitst='git status -sb'
 alias gitlg='git log --color --graph --abbrev-commit --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 alias gitdf='git diff --color=always'
