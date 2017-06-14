@@ -142,6 +142,11 @@ chpwd() {
 		path=("$project_home/node_modules/.bin" $path)
 	fi
 
+	if [ -f "$project_home/.env" ]
+	then
+		source "$project_home/.env"
+	fi
+
 	export PROJECT_HOME="$project_home"
 	path=("$project_home/bin" $path)
 }
