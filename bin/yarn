@@ -4,4 +4,4 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
-NPM_AUTH_TOKEN="$(token npm)" /usr/bin/yarn "$@"
+NPM_AUTH_TOKEN="${NPM_AUTH_TOKEN:-$(token npm)}" /usr/bin/yarn "$@"
