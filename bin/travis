@@ -5,4 +5,4 @@ set -o nounset
 set -o pipefail
 
 RUBY_PATH=$(ruby -e 'puts Gem.user_dir')
-TRAVIS_TOKEN="$(token travis)" "${RUBY_PATH}/bin/travis" "$@"
+TRAVIS_TOKEN="${TRAVIS_TOKEN:-$(token travis)}" "${RUBY_PATH}/bin/travis" "$@"
