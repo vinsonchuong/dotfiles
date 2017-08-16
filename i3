@@ -148,6 +148,7 @@ mode resize {
 bindsym Mod4+r mode resize
 
 for_window [class="^mpv"] floating enable
+for_window [class="Pinentry"] floating enable
 
 exec --no-startup-id google-musicmanager
 exec --no-startup-id insync start
