@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+/usr/bin/certbot --config-dir "$HOME/.certbot" --work-dir /tmp --logs-dir /tmp "$@"

@@ -59,6 +59,8 @@ cp -f "$PWD/.npmrc" "$HOME/.npmrc"
 pip install --user pylast requests
 ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
 
+mkdir "$HOME/.certbot"
+
 ./bin/linkbins
 
 for folder in $(find "$HOME/.insync" -maxdepth 1 -type d \( ! -name '.*' \))
