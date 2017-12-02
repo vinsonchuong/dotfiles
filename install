@@ -19,8 +19,6 @@ ln -sf "$PWD/.zshrc" "$HOME"
 mkdir -p "$HOME/.config/nvim/autoload"
 curl -sfLo "$HOME/.config/nvim/autoload/plug.vim" 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-ln -sf "$PWD/.vimperatorrc" "$HOME"
-
 for profile in $(cat "$HOME/.mozilla/firefox/profiles.ini" | grep 'Path' | cut -b6-)
 do
 	chrome="$HOME/.mozilla/firefox/$profile/chrome"

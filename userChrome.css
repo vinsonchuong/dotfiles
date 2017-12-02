@@ -1,40 +1,23 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+#nav-bar,
 #alltabs-button,
 #new-tab-button,
+.tabs-newtab-button,
 .scrollbutton-up,
 .scrollbutton-down,
-.tabs-newtab-button,
 .tab-close-button {
   display: none !important;
 }
 
-.arrowscrollbox-scrollbox {
-  padding: 0 !important;
-}
-
-.tabbrowser-tab:not([selected])  {
-  color: rgb(147, 161, 161) !important;
-}
 .tabbrowser-tab[selected] .tab-content {
   background-image: linear-gradient(rgb(253, 246, 227), rgb(253, 246, 227)) !important;
 }
+
+.tab-background:not([selected="true"]) {
+  background-color: unset !important;
+}
+
 .tabbrowser-tab .tab-content {
   border-right: 1px solid rgb(147, 161, 161) !important;
-}
-
-.tab-background,
-.tab-background *,
-.tab-background *::before,
-.tab-background *::after {
-  background: unset !important;
-  background-position: unset !important;
-  background-repeat: unset !important;
-  background-size: unset !important;
-}
-
-#tabbrowser-tabs[movingtab] > .tabbrowser-tab[beforeselected]:not([last-visible-tab])::after,
-.tabbrowser-tab:not([selected]):not([afterselected-visible]):not([afterhovered]):not([first-visible-tab]):not(:hover)::before,
-#tabbrowser-tabs:not([overflow]) > .tabbrowser-tab[last-visible-tab]:not([selected]):not([beforehovered]):not(:hover)::after {
-  background-image: none !important;
 }
