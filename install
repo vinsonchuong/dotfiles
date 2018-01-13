@@ -24,7 +24,6 @@ do
 	chrome="$HOME/.mozilla/firefox/$profile/chrome"
 	mkdir -p "$chrome"
 	ln -sf "$PWD/userChrome.css" "$chrome"
-	ln -sf "$PWD/userContent.css" "$chrome"
 done
 
 mkdir -p "$HOME/.config" && ln -sf "$PWD/user-dirs.dirs" "$HOME/.config"
