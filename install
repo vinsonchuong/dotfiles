@@ -56,7 +56,7 @@ cp -f "$PWD/.npmrc" "$HOME/.npmrc"
 pip install --user pylast requests
 ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
 
-mkdir "$HOME/.certbot"
+mkdir -p "$HOME/.certbot"
 
 ./bin/linkbins
 
