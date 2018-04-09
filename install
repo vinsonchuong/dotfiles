@@ -53,6 +53,7 @@ bundle config mirror.https://rubygems.org http://localhost:9292
 
 cp -f "$PWD/.npmrc" "$HOME/.npmrc"
 
+sudo pip install --upgrade pip
 pip install --user pylast requests
 ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
 
