@@ -57,6 +57,7 @@ set nowrap
 set number
 set numberwidth=5
 set undofile
+set backupcopy=yes
 
 colorscheme solarized
 let g:lightline={'colorscheme': 'solarized'}
