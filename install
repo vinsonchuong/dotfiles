@@ -8,7 +8,7 @@ cd "$(dirname $BASH_SOURCE)"
 
 ln -sf "$PWD/.xprofile" "$HOME"
 ln -sf "$PWD/.Xresources" "$HOME"
-dmesg | grep -q 'X1 Carbon 2nd' && ln -sf "$PWD/.Xmodmap-X1C" "$HOME/.Xmodmap"
+dmesg | grep -q 'X1 Carbon' && ln -sf "$PWD/.Xmodmap-X1C" "$HOME/.Xmodmap"
 lsusb | grep -q 'HHKB' && ln -sf "$PWD/.Xmodmap-HHKB" "$HOME/.Xmodmap"
 
 ln -sf "$PWD/.makepkg.conf" "$HOME"
@@ -59,7 +59,7 @@ mkdir -p "$HOME/.certbot"
 
 ./bin/linkbins
 
-for folder in $(find "$HOME/.insync" -maxdepth 1 -type d \( ! -name '.*' \))
+for folder in $(find "$HOME/.insync/my-drive" -maxdepth 1 -type d \( ! -name '.*' \))
 do
 	if [[ ! -e "$folder" ]]
 	then
