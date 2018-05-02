@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+PACKAGES=$(pacman -Qq)
+
+pkginfo() {
+	PACKAGE=$1
+	PROPERTY=$2
+
+	pacman -Qqi $PACKAGE | awk -F '[[:space:]]*:[[:space:]]*' "/${PROPERTY}/ {print \$2}"
+}
+
+for PACKAGE in $PACKAGES
+do
+	NAME=$(pkginfo $PACKAGE Name)
+	VERSION=$(pkginfo $PACKAGE Version)
+	ARCH=$(pkginfo $PACKAGE Architecture)
+
+	tar -tf "/var/cache/pacman/pkg/${NAME}-${VERSION}-${ARCH}.pkg.tar.xz" 2> /dev/null \
+		| grep '^etc' \
+		|| true
+done
