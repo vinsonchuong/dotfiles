@@ -1,8 +1,8 @@
 urxvtd -q -o -f
 
 pactl unload-module module-alsa-card
-pactl load-module module-alsa-sink sink_name=laptop device=hw:1,0
-pactl load-module module-alsa-sink sink_name=hdmi device=hw:0,7
+pactl load-module module-alsa-sink sink_name=laptop device=hw:0,0
+pactl load-module module-alsa-sink sink_name=hdmi device=hw:0,3
 pactl load-module module-combine-sink sink_name=all slaves=laptop,hdmi
 pactl set-default-sink laptop
 
