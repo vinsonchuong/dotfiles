@@ -10,7 +10,7 @@ general {
 order += 'wireless wlp2s0'
 wireless wlp2s0 {
 	format_up = '%essid'
-	format_down = 'wlp3s0'
+	format_down = 'wlp2s0'
 }
 
 order += 'battery 0'
