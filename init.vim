@@ -58,6 +58,7 @@ set number
 set numberwidth=5
 set undofile
 set backupcopy=yes
+set diffopt+=vertical
 
 colorscheme solarized
 let g:lightline={'colorscheme': 'solarized'}
