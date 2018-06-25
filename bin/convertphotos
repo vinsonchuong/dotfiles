@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+DIRECTORY=$1
+
+cd "${DIRECTORY}"
+
+for FILE in $(ls *.RAF)
+do
+	darktable-cli "${FILE}" "${FILE}.jpg"
+done
