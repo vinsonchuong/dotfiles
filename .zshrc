@@ -31,7 +31,7 @@ aurup() {
 	sudo aura -Ayuax --devel --hotedit
 	paccl
 }
-alias aurin='sudo aura -Aya'
+alias aurin='sudo aura -Ayax --hotedit'
 alias aurun='pacun'
 pacds() {
 	local tmp=$(mktemp -d)
