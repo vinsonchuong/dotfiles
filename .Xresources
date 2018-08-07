@@ -1,5 +1,7 @@
 *font: xft:DejaVu Sans Mono:size=6
 
+URxvt.perl-ext-common: resize-font
+
 *background: #fdf6e3
 *foreground: #657b83
 *fading: 40
