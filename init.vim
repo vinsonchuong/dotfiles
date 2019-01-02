@@ -61,6 +61,7 @@ set backupcopy=yes
 set diffopt+=vertical
 
 colorscheme solarized
+set background=light
 let g:lightline={'colorscheme': 'solarized'}
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
 
