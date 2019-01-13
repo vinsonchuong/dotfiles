@@ -9,13 +9,10 @@ BASE=$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")
 if xrandr --listactivemonitors | grep eDP1 &> /dev/null
 then
 	xrandr --output eDP1 --off
-	xrandr --output HDMI2 --auto
-	pactl set-default-sink hdmi
-	xmodmap "${BASE}/.Xmodmap-HHKB"
-	xinput set-prop 'Logitech Rechargeable Touchpad T650' 'libinput Tapping Enabled' 1
+	xrandr --output DP2 --auto
+	pactl set-default-sink thunderbolt
 else
 	xrandr --output eDP1 --auto
-	xrandr --output HDMI2 --off
+	xrandr --output DP2 --off
 	pactl set-default-sink laptop
-	xmodmap "${BASE}/.Xmodmap-X1C"
 fi
