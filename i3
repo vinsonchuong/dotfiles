@@ -152,3 +152,4 @@ for_window [class="Pinentry"] floating enable
 
 exec --no-startup-id google-musicmanager
 exec --no-startup-id insync start
+exec --no-startup-id setxkbmap
