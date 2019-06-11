@@ -61,6 +61,7 @@ set numberwidth=5
 set undofile
 set backupcopy=yes
 set diffopt+=vertical
+set foldmethod=syntax
 
 colorscheme solarized
 set background=light
@@ -83,8 +84,6 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 call denite#custom#source('file_rec', 'vars', {'command': ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']})
-
-let g:polyglot_disabled = ['javascript']
 
 let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
