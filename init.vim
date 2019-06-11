@@ -16,6 +16,8 @@ Plug 'vinsonchuong/vim-stdtabs'
 Plug 'sheerun/vim-polyglot'
 Plug 'isRuslan/vim-es6'
 
+Plug 'floobits/floobits-neovim'
+
 Plug 'kana/vim-textobj-user'
 Plug 'thinca/vim-textobj-between'
 Plug 'glts/vim-textobj-comment'
