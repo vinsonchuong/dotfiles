@@ -49,7 +49,6 @@ mkdir -p "$HOME/.config/git" && ln -sf "$PWD/gitignore" "$HOME/.config/git/ignor
 rm -rf "$HOME/.gem"
 gem install --conservative gem-ctags
 gem update
-gem install --conservative puma -v 2.16.0 -- --with-opt-include=/usr/include/openssl-1.0
 gem install --conservative bundler gemstash git-up rails ronn travis
 bundle config mirror.https://rubygems.org http://localhost:9292
 
