@@ -46,6 +46,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
+Plug 'lambdalisue/suda.vim'
 
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
@@ -67,6 +68,8 @@ colorscheme solarized
 set background=light
 let g:lightline={'colorscheme': 'solarized'}
 let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
+
+let g:suda_smart_edit=1
 
 let g:fzf_layout={'window': 'enew'}
 let g:fzf_colors =
