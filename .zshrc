@@ -98,11 +98,6 @@ prototypical() {
 		command prototypical "$@"
 }
 
-jspm() {
-	JSPM_GITHUB_AUTH_TOKEN="$(echo "$(pass github | awk '$1 == "Username:" {print $2}'):$(pass github | head -2 | tail -1)" | tr -d '\n' | base64)" \
-		command jspm "$@"
-}
-
 path=("$HOME/bin" "$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
 HISTSIZE=1000
 export EDITOR='nvim'
