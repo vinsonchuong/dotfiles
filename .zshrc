@@ -113,6 +113,9 @@ zstyle ':vcs_info:*' actionformats '%s:%b (%a)'
 setopt prompt_subst
 PROMPT=$'<< %?\n%K{white}${(r.(($COLUMNS - ${#vcs_info_msg_0_})).)${(%):-%n@%m:%~}}$vcs_info_msg_0_%k\n>> '
 
+source /usr/share/nvm/init-nvm.sh
+nvm use --delete-prefix node --silent
+
 source ~/.fzf.zsh
 compdef "_files -/ -W '$HOME/projects'" 'project'
 
@@ -135,11 +138,6 @@ chpwd() {
 	then
 		export PROJECT_NODE='yes'
 		path=("$project_home/node_modules/.bin" $path)
-
-		source /usr/share/nvm/init-nvm.sh
-		nvm use --delete-prefix node --silent
-
-		compdef "_files -/ -W '$HOME/projects'" 'project'
 	fi
 
 	if [ -f "$project_home/.env" ]
