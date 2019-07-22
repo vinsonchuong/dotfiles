@@ -88,6 +88,9 @@ let g:fzf_colors =
 
 call denite#custom#source('file_rec', 'vars', {'command': ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']})
 
+let g:syntastic_javascript_checkers=['standard', 'flow']
+let g:ycm_filetype_blacklist={ 'javascript': 1 }
+
 let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
