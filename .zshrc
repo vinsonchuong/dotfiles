@@ -113,9 +113,6 @@ zstyle ':vcs_info:*' actionformats '%s:%b (%a)'
 setopt prompt_subst
 PROMPT=$'<< %?\n%K{white}${(r.(($COLUMNS - ${#vcs_info_msg_0_})).)${(%):-%n@%m:%~}}$vcs_info_msg_0_%k\n>> '
 
-source /usr/share/nvm/init-nvm.sh
-nvm use --delete-prefix node --silent
-
 source ~/.fzf.zsh
 compdef "_files -/ -W '$HOME/projects'" 'project'
 
