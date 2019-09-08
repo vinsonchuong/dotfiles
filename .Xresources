@@ -1,4 +1,5 @@
 *font: xft:DejaVu Sans Mono:size=6
+Xft.dpi: 140
 
 URxvt.perl-ext-common: resize-font
 

@@ -1,4 +1,4 @@
-font pango:DejaVu Sans Mono 6
+font pango:DejaVu Sans Mono 16px
 
 set $dark_red #9d0006
 set $red #cc241d
@@ -79,7 +79,7 @@ bar {
 
 floating_modifier Mod4
 
-bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -h 36 -fn "DejaVu Sans Mono-6" -nb "#002b36" -nf "#839496" -sb "#073642" -sf "#268bd2"'
+bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -h 32 -fn "DejaVu Sans Mono-6" -nb "#002b36" -nf "#839496" -sb "#073642" -sf "#268bd2"'
 bindsym Mod4+Return exec urxvtc -sl 0 -sb -letsp -2 -fade 0 -e tmux
 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
