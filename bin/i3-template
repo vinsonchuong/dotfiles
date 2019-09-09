@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+
+TEMPLATES=(code)
+
+TEMPLATE=$(\
+	printf '%s\n' "${TEMPLATES[@]}" \
+	| dmenu -i -h 32 -fn "DejaVu Sans Mono-6" -nb "#002b36" -nf "#839496" -sb "#073642" -sf "#268bd2"
+)
+
+case $TEMPLATE in
+	code)
+		i3-msg exec 'firefox-developer-edition -new-window'
+		i3-msg -t subscribe -m '[ "window" ]' | read
+
+		i3-msg exec 'urxvtc -sl 0 -sb -letsp -2 -fade 0 -e tmux'
+
+		i3-msg exec 'firefox-developer-edition -new-window'
+		i3-msg -t subscribe -m '[ "window" ]' | read
+
+		i3-msg focus left
+		i3-msg resize set width 1600
+		;;
+esac
