@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+FILE=$1
+
+import -window $(xwininfo | grep -oP '(?<=Window id: )\S* ') "$1"
