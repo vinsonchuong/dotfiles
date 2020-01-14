@@ -59,7 +59,10 @@ ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
 
 mkdir -p "$HOME/.certbot"
 
-ln -sf "$PWD/bin" "$HOME/bin"
+if [ ! -f "$HOME/bin" ]
+then
+	ln -s "$PWD/bin" "$HOME/bin"
+fi
 
 for folder in $(find "$HOME/.insync/my-drive" -maxdepth 1 -type d \( ! -name '.*' \))
 do
