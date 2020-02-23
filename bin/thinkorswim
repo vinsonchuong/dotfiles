@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+i3-msg exec "PATH=/usr/lib/jvm/java-8-jre/jre/bin/:$PATH $HOME/thinkorswim/thinkorswim"
