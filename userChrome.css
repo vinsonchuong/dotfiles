@@ -1,5 +1,93 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+/*
+ * Work around issues with HiDPI
+ */
 * {
   font-size: 16px !important;
+}
+
+/*
+ * - Get URL and Tab bars on same line
+ * - Order URL bar first
+ * - Make sure enough of URL is visible
+ */
+#navigator-toolbox {
+  display: flex;
+}
+#nav-bar {
+  order: 1;
+  min-width: 420px !important;
+  border-right: 1px solid var(--tabs-border-color) !important;
+}
+#titlebar {
+  order: 2;
+  flex: 1;
+}
+
+/* Hide most buttons for keyboard-driven controls */
+#back-button, #forward-button, #reload-button, #stop-reload-button,
+.tab-line, #tabs-newtab-button, #scrollbutton-up, #scrollbutton-down,
+#new-tab-button, #alltabs-button, #urlbar-background, .tab-close-button,
+#tracking-protection-icon-container, #page-action-buttons, #PanelUI-button {
+  display: none;
+}
+
+/*
+ *  URL and tab bars have different heights, which need to be fixed when
+ *  both are on the same line. URL bar is 40px by default. Setting tab bar to
+ *  40px does not look good. So, I eliminated the border around the URL input
+ *  and then set both bars to 33px high, which is the minimum height for a tab.
+ *  I also eliminated the top border the currently selected tab as it's already
+ *  marked by a different background color.
+ */
+#urlbar {
+  --urlbar-height: 33px !important;
+  --urlbar-toolbar-height: 33px !important;
+}
+#urlbar-container {
+  margin-inline: 0 !important;
+  padding-block: 0 !important;
+  --urlbar-container-height: 33px !important;
+}
+#urlbar:not([focused="true"]) #urlbar-background {
+  border: 0 !important;
+}
+#urlbar[breakout][breakout-extend] {
+  width: 100% !important;
+  left: 0 !important;
+}
+#urlbar-input-container {
+  padding: 4px !important;
+}
+.urlbarView.megabar {
+  margin-inline: 4px !important;
+}
+#tabbrowser-tabs {
+  height: 33px;
+}
+.tab-background {
+  border-width: 0;
+}
+
+/* Prevent tabs bar from moving when reordering a tab */
+#tabbrowser-tabs[movingtab] {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/*
+ * This assumes that the menu bar is set to autohide. When showing the menu bar,
+ * this prevents the URL and tab bars from moving around.
+ */
+#toolbar-menubar:not([inactive="true"]) {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex !important;
+  align-items: center;
+  background: var(--toolbar-bgcolor);
 }
