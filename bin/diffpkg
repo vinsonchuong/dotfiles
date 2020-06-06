@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+FILE=$1
+FILES=($(ls -1t /var/cache/pacman/pkg/$(pacman -Qoq "$FILE")-*))
+
+nvim -d \
+	<(tar -xOf "${FILES[0]}" "${FILE#?}") \
+	"$FILE" \
+	<(tar -xOf "${FILES[1]}" "${FILE#?}")
