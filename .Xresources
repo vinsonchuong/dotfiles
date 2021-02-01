@@ -1,4 +1,10 @@
 *font: xft:DejaVu Sans Mono:size=6
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
 URxvt.perl-ext-common: resize-font
 
