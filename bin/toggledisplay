@@ -10,12 +10,14 @@ if xrandr --listactivemonitors | grep eDP1 &> /dev/null
 then
 	xrandr --output eDP1 --off
 	xrandr --output DP2 --auto
+	xrandr --output HDMI1 --auto --below DP2
 	xrdb -merge "${BASE}/.Xresources.monitor"
 	i3-msg reload
 	pactl exit
 else
 	xrandr --output eDP1 --auto
 	xrandr --output DP2 --off
+	xrandr --output HDMI1 --off
 	xrdb -merge "${BASE}/.Xresources.laptop"
 	i3-msg reload
 	pactl exit
