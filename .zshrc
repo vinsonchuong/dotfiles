@@ -28,7 +28,7 @@ pacup() {
 alias pacin='sudo aura -Sy'
 alias pacun='sudo aura -Rcns'
 aurup() {
-	sudo aura -Auax --devel --hotedit
+	sudo aura -Auax --devel --force "$@"
 	paccl
 }
 alias aurin='sudo aura -Aax --hotedit'
