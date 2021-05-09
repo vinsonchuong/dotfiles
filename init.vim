@@ -8,8 +8,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
-Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/syntastic'
 Plug 'szw/vim-tags'
 Plug 'vinsonchuong/vim-stdtabs'
@@ -48,9 +46,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'lambdalisue/suda.vim'
 
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -95,29 +90,3 @@ let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>g :tab split README.md \| Gstatus<CR>
-
-function Open()
-	let class = expand("<cword>")
-	execute 'tabnew src/' . class . '.js'
-	execute 'vertical botright split test/' . class . 'Test.js'
-endfunction
-nnoremap <Leader>o :call Open()<CR>
-
-function Extract()
-	normal mm
-	call search('{', 's')
-	normal ``V``%y`m`
-	call Open()
-endfunction
-nnoremap <Leader>e :call Extract()<CR>
-
-function Namespace(name)
-	wincmd h
-	let srcname = expand('%:t')
-	execute 'Move src/' . a:name . '/' . srcname
-
-	wincmd l
-	let testname = expand('%:t')
-	execute 'Move test/' . a:name . '/' . testname
-endfunction
-command! -nargs=* Namespace call Namespace('<args>')
