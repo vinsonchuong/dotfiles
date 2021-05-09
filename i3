@@ -1,4 +1,4 @@
-font pango:DejaVu Sans Mono 16px
+font pango:DejaVu Sans Mono 8
 
 set $dark_red #9d0006
 set $red #cc241d
@@ -59,8 +59,8 @@ client.focused_inactive #839496 #839496 #fdf6e3 #839496
 client.unfocused #839496 #839496 #fdf6e3 #839496
 client.urgent #b58900 #b58900 #fdf6e3 #cb4b16
 
-new_window pixel 2
-new_float pixel 2
+new_window pixel 3
+new_float pixel 3
 
 bar {
 	status_command i3status
@@ -79,7 +79,7 @@ bar {
 
 floating_modifier Mod4
 
-bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -h 32 -fn "DejaVu Sans Mono-6" -nb "#002b36" -nf "#839496" -sb "#073642" -sf "#268bd2"'
+bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -h 28 -fn "DejaVu Sans Mono-8" -nb "#002b36" -nf "#839496" -sb "#073642" -sf "#268bd2"'
 bindsym Mod4+Shift+d exec --no-startup-id ~/bin/i3-template
 bindsym Mod4+Return exec urxvtc -sl 0 -sb -letsp -2 -fade 0 -e tmux
 

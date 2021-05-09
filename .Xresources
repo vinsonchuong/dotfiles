@@ -1,4 +1,4 @@
-*font: xft:DejaVu Sans Mono:size=6
+*font: xft:DejaVu Sans Mono:size=14
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight

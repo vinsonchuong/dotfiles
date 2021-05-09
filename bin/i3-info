@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+const childProcess = require('child_process')
+const util = require('util')
+
+const exec = util.promisify(childProcess.exec)
+
+async function run() {
+  const {stdout} = await exec('i3-msg -t get_tree')
+  const tree = JSON.parse(stdout)
+
+  const data = tree
+    .nodes.find(node => node.name === 'DP2')
+    .nodes.find(node => node.name === 'content')
+    .nodes.find(node => node.name === '1')
+    .nodes.find(node => node.name === 'tmux')
+  console.log(data)
+}
+
+run()

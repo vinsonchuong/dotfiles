@@ -6,18 +6,18 @@ set -o pipefail
 
 BASE=$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")
 
-if xrandr --listactivemonitors | grep eDP1 &> /dev/null
+if xrandr --listactivemonitors | grep eDP-1 &> /dev/null
 then
-	xrandr --output eDP1 --off
-	xrandr --output DP2 --auto
-	xrandr --output HDMI1 --auto --below DP2
+	xrandr --output eDP-1 --off
+	xrandr --output DP-2 --auto --pos 0x0
+	xrandr --output HDMI-1 --auto --pos 640x2160
 	xrdb -merge "${BASE}/.Xresources.monitor"
 	i3-msg reload
 	pactl exit
 else
-	xrandr --output eDP1 --auto
-	xrandr --output DP2 --off
-	xrandr --output HDMI1 --off
+	xrandr --output eDP-1 --auto
+	xrandr --output DP-2 --off
+	xrandr --output HDMI-1 --off
 	xrdb -merge "${BASE}/.Xresources.laptop"
 	i3-msg reload
 	pactl exit
