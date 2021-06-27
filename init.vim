@@ -5,16 +5,16 @@ Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/denite.nvim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
-Plug 'scrooloose/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'szw/vim-tags'
 Plug 'vinsonchuong/vim-stdtabs'
 Plug 'sheerun/vim-polyglot'
-Plug 'isRuslan/vim-es6'
 
-Plug 'floobits/floobits-neovim'
+Plug 'vim-test/vim-test'
+Plug 'tpope/vim-dispatch'
+Plug 'markcornick/vim-bats'
 
 Plug 'kana/vim-textobj-user'
 Plug 'thinca/vim-textobj-between'
@@ -83,12 +83,20 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 let g:fzf_preview_window=[]
 
-call denite#custom#source('file_rec', 'vars', {'command': ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']})
+let g:test#javascript#ava#file_pattern='\v\.test\.js$'
+let g:ale_fixers={
+  \ 'javascript': ['xo']
+\ }
+let g:ale_linters={
+  \ 'javascript': ['xo', 'tsserver']
+\ }
 
-let g:syntastic_javascript_checkers=['standard', 'flow']
-let g:ycm_filetype_blacklist={ 'javascript': 1 }
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
 
 let mapleader="\<Space>"
 nnoremap <Leader>f :GitFiles<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
-nnoremap <Leader>g :tab split README.md \| Gstatus<CR>
+nnoremap <Leader>g :Git<CR>
+nnoremap <Leader>t :TestFile<CR>
+nnoremap <Leader>T :TestSuite<CR>
