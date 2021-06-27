@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+zip --no-extra -0 book.epub mimetype
+zip --no-extra --recurse-paths -9 book.epub META-INF OEBPS
