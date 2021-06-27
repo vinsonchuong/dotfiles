@@ -8,7 +8,7 @@ cd "$(dirname $BASH_SOURCE)"
 
 ln -sf "$PWD/.xprofile" "$HOME"
 ln -sf "$PWD/.Xresources" "$HOME"
-dmesg | grep -q 'X1 Carbon' && ln -sf "$PWD/.Xmodmap-X1C" "$HOME/.Xmodmap"
+sudo dmesg | grep -q 'X1 Carbon' && ln -sf "$PWD/.Xmodmap-X1C" "$HOME/.Xmodmap"
 lsusb | grep -q 'HHKB' && ln -sf "$PWD/.Xmodmap-HHKB" "$HOME/.Xmodmap"
 
 ln -sf "$PWD/.makepkg.conf" "$HOME"
@@ -53,6 +53,7 @@ gem install --conservative bundler gemstash git-up rails ronn travis
 bundle config mirror.https://rubygems.org http://localhost:9292
 
 cp -f "$PWD/.npmrc" "$HOME/.npmrc"
+yarn global add typescript
 
 pip install --user pylast requests
 ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
