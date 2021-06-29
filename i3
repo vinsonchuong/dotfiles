@@ -113,6 +113,9 @@ bindsym Mod4+Shift+j move down
 bindsym Mod4+Shift+k move up
 bindsym Mod4+Shift+l move right
 
+bindsym Mod4+Shift+Control+j move workspace to output down
+bindsym Mod4+Shift+Control+k move workspace to output up
+
 bindsym Mod4+1 workspace 1
 bindsym Mod4+2 workspace 2
 bindsym Mod4+3 workspace 3
