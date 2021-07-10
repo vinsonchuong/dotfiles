@@ -4,4 +4,11 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
-NPM_AUTH_TOKEN="${NPM_AUTH_TOKEN:-$(token npm)}" /usr/bin/yarn "$@"
+COMMAND=$1
+
+if [[ $COMMAND = 'publish' ]]
+then
+	NPM_AUTH_TOKEN="${NPM_AUTH_TOKEN:-$(token npm)}" /usr/bin/yarn "$@"
+else
+	/usr/bin/yarn "$@"
+fi
