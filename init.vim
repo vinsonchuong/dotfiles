@@ -1,26 +1,36 @@
+let g:ale_disable_lsp=1
+
 call plug#begin()
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
 
 Plug 'mbbill/undotree'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
 Plug 'dense-analysis/ale'
-Plug 'szw/vim-tags'
 Plug 'vinsonchuong/vim-stdtabs'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dispatch'
-Plug 'markcornick/vim-bats'
 
 Plug 'kana/vim-textobj-user'
 Plug 'thinca/vim-textobj-between'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'
-Plug 'whatyouhide/vim-textobj-erb'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
@@ -40,12 +50,10 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'lambdalisue/suda.vim'
-
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -58,45 +66,119 @@ set undofile
 set backupcopy=yes
 set diffopt+=vertical
 set foldmethod=syntax
+set completeopt=menu,menuone,noselect
 
 colorscheme solarized
 set background=light
 let g:lightline={'colorscheme': 'solarized'}
-let g:markdown_fenced_languages=['sh', 'erb=eruby', 'js=javascript']
+
+lua <<EOF
+local nvim_lsp = require('lspconfig')
+local cmp = require('cmp')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local luasnip = require('luasnip')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true
+    }),
+    ['<Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  }
+})
+
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  local opts = { noremap=true, silent=true }
+  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+end
+
+local servers = { 'tsserver' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
+end
+EOF
 
 let g:suda_smart_edit=1
 
-let g:fzf_layout={'window': 'enew'}
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'gutter':  ['bg', 'Normal'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-let g:fzf_preview_window=[]
-
+let g:test#strategy='dispatch'
+let g:test#strategy={
+  \ 'nearest': 'basic',
+  \ 'file': 'dispatch',
+  \ 'suite': 'dispatch'
+\ }
 let g:test#javascript#ava#file_pattern='\v\.test\.js$'
+let g:dispatch_compilers={
+  \ 'ava': 'ava'
+\ }
+
+let g:ale_linters_explicit=1
+let g:ale_fix_on_save=1
 let g:ale_fixers={
   \ 'javascript': ['xo']
 \ }
 let g:ale_linters={
-  \ 'javascript': ['xo', 'tsserver']
+  \ 'javascript': ['xo']
 \ }
 
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
-
 let mapleader="\<Space>"
-nnoremap <Leader>f :GitFiles<CR>
+nnoremap gd <Cmd>Telescope lsp_definitions<CR>
+nnoremap gr <Cmd>Telescope lsp_references<CR>
+nnoremap gs <Cmd>Telescope lsp_document_symbols<CR>
+nnoremap gS <Cmd>Telescope lsp_workspace_symbols<CR>
+nnoremap <Leader>f <Cmd>Telescope find_files<CR>
+nnoremap <Leader>S <Cmd>Telescope live_grep<CR>
+nnoremap <Leader>s <Cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
-nnoremap <Leader>g :Git<CR>
-nnoremap <Leader>t :TestFile<CR>
-nnoremap <Leader>T :TestSuite<CR>
+nnoremap <Leader>g :0Git<CR>
+nnoremap <Leader>t :TestNearest<CR>
+nnoremap <Leader>T :TestFile<CR>
