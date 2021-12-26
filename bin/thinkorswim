@@ -4,4 +4,4 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
-i3-msg exec "PATH=/usr/lib/jvm/java-8-jre/jre/bin/:$PATH $HOME/thinkorswim/thinkorswim"
+i3-msg exec "PATH=/usr/lib/jvm/zulu-11/bin/:$PATH $HOME/thinkorswim/thinkorswim"
