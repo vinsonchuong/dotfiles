@@ -14,6 +14,10 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 
+Plug 'tami5/lspsaga.nvim'
+
+Plug 'numToStr/Comment.nvim'
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
 
@@ -47,7 +51,6 @@ Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
@@ -58,6 +61,7 @@ call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $FZF_DEFAULT_OPTS='--color=16'
+let mapleader="\<Space>"
 
 set nowrap
 set number
@@ -77,6 +81,7 @@ local nvim_lsp = require('lspconfig')
 local cmp = require('cmp')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local luasnip = require('luasnip')
+local saga = require('lspsaga')
 
 cmp.setup({
   snippet = {
@@ -87,36 +92,40 @@ cmp.setup({
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-y>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true
     }),
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
   },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true
+  }
+})
+
+saga.init_lsp_saga({
+  rename_action_keys = {
+    quit = '<Esc>',
+    exec = '<CR>',
+  },
+  use_saga_diagnostic_sign = false,
+  code_action_prompt = {
+    enable = false,
+    sign = false,
+  },
+})
+
+require('Comment').setup({
+  mappings = {
+    basic = true,
+    extra = true,
   }
 })
 
@@ -127,13 +136,7 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap=true, silent=true }
-  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  --- buf_set_keymap('n', '<Leader>ra', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
 local servers = { 'tsserver' }
@@ -150,12 +153,11 @@ EOF
 
 let g:suda_smart_edit=1
 
-let g:test#strategy='dispatch'
-let g:test#strategy={
-  \ 'nearest': 'basic',
-  \ 'file': 'dispatch',
-  \ 'suite': 'dispatch'
-\ }
+" let g:test#strategy={
+"   \ 'nearest': 'basic',
+"   \ 'file': 'dispatch',
+"   \ 'suite': 'dispatch'
+" \ }
 let g:test#javascript#ava#file_pattern='\v\.test\.js$'
 let g:dispatch_compilers={
   \ 'ava': 'ava'
@@ -170,11 +172,15 @@ let g:ale_linters={
   \ 'javascript': ['xo']
 \ }
 
-let mapleader="\<Space>"
+nnoremap <silent> K :Lspsaga hover_doc<CR>
 nnoremap gd <Cmd>Telescope lsp_definitions<CR>
 nnoremap gr <Cmd>Telescope lsp_references<CR>
 nnoremap gs <Cmd>Telescope lsp_document_symbols<CR>
 nnoremap gS <Cmd>Telescope lsp_workspace_symbols<CR>
+nnoremap <silent><Leader>ra :Lspsaga code_action<CR>
+nnoremap <silent><Leader>rr :Lspsaga rename<CR>
+nnoremap <Leader>e <Cmd>Telescope lsp_document_diagnostics<CR>
+nnoremap <Leader>E <Cmd>Telescope lsp_workspace_diagnostics<CR>
 nnoremap <Leader>f <Cmd>Telescope find_files<CR>
 nnoremap <Leader>S <Cmd>Telescope live_grep<CR>
 nnoremap <Leader>s <Cmd>Telescope current_buffer_fuzzy_find<CR>
