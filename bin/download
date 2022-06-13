@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+URL=$(wl-paste)
+
+if [[ $URL = magnet* ]]
+then
+	aria2c "$URL"
+elif [[ $URL = 'https://listen.tidal.com/'* ]]
+then
+	tidal-dl -l "$URL"
+	beet import "$HOME/downloads/tidal"
+else
+	echo "Unable to download $URL"
+	exit 1
+fi

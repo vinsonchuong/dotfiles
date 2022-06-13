@@ -1,0 +1,132 @@
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu swaymsg exec 'wofi --show drun --no-actions --width 320 --height 320'
+
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+# output "Goldstar Company Ltd LG HDR 4K 0x00005729" position 0,0 scale 1.5
+# output "BenQ Corporation BenQ BL2710 C8D00332SL0! " position 0,1440
+
+output "Goldstar Company Ltd LG HDR 4K 0x00005729" position 0,0
+output "BenQ Corporation BenQ BL2710 C8D00332SL0! " position 640,2160
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+input "2131:273:Topre_Corporation_Realforce_87" {
+  xkb_options ctrl:swap_lalt_lctl
+}
+
+input "2131:256:Topre_Corporation_HHKB_Professional" {
+  xkb_options ctrl:swap_lwin_lctl
+}
+
+input type:touchpad {
+  tap enabled
+}
+
+bindsym $mod+Return exec $term
+bindsym $mod+q kill
+bindsym $mod+d exec $menu
+floating_modifier $mod normal
+bindsym $mod+Shift+r reload
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Shift+Control+j move workspace to output down
+bindsym $mod+Shift+Control+k move workspace to output up
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+v splith
+bindsym $mod+s splitv
+
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t layout toggle split
+# bindsym $mod+s layout stacking
+
+bindsym $mod+o fullscreen
+bindsym $mod+f floating toggle
+# bindsym $mod+space focus mode_toggle
+# bindsym $mod+a focus parent
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+  bindsym $left resize shrink width 10px
+  bindsym $down resize grow height 10px
+  bindsym $up resize shrink height 10px
+  bindsym $right resize grow width 10px
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bar {
+  swaybar_command waybar
+}
+
+default_border pixel 4
+client.focused #268bd2 #268bd2 #fdf6e3 #6c71c4
+client.focused_inactive #eee8d5 #eee8d5 #657b83 #6c71c4
+client.unfocused #eee8d5 #eee8d5 #657b83 #6c71c4
+
+for_window [app_id="mpv"] floating enable
+for_window [app_id="pavucontrol"] floating enable, resize set 1000 800
+
+for_window [app_id="zoom"] floating enable
+for_window [app_id="zoom" title="Choose ONE of the audio conference options"] floating enable
+for_window [app_id="zoom" title="zoom"] floating enable
+for_window [app_id="zoom" title="Zoom Meeting"] floating enable
+for_window [app_id="zoom" title="Zoom - Free Account"] floating enable
+
+include /etc/sway/config.d/*
+
+exec_always {
+  gsettings set org.gnome.desktop.interface gtk-theme 'NumixSolarizedLightBlue'
+  gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+  gsettings set org.gnome.desktop.interface font-name 'Noto Sans 12'
+}

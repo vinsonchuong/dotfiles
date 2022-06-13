@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+# Depends on: aaxtomp3, mediainfo
+
+FILE=$1
+
+AAXtoMP3 -e:mp3 --authcode "$(token amazon)" "$FILE"

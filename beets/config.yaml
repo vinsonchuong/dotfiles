@@ -1,5 +1,7 @@
 directory: ~/music
-plugins: scrub convert fetchart embedart lastgenre lyrics info mbsync
+statefile: ~/.local/state/beets/state.pickle
+library: ~/.local/state/beets/library.db
+plugins: scrub fetchart lyrics info mbsync mbsubmit ftintitle
 per_disc_numbering: yes
 import:
   move: yes
@@ -9,5 +11,5 @@ paths:
   comp: Compilation/$album/$disc-$track $title
   singleton: Singleton/$artist/$title
   default: $albumartist/$album/$disc-$track $title
-convert:
-  auto: yes
+fetchart:
+  high_resolution: true

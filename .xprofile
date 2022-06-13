@@ -1,5 +1,0 @@
-urxvtd -q -o -f
-
-amixer -c PCH sset Headphone 100%
-
-"$(ruby -e 'puts Gem.user_dir')/bin/gemstash" start

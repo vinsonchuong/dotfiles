@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+# Depends on: https://github.com/BentonEdmondson/knock
+
+ACSM_FILE=$(realpath "$1")
+~/opt/knock-old "$ACSM_FILE"

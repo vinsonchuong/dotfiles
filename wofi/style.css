@@ -1,0 +1,43 @@
+window {
+  background: #eee;
+}
+
+#input {
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+  padding: 10px;
+  background: #073642;
+  color: #93a1a1;
+}
+
+#input image {
+  margin-top: -100px;
+  margin-left: -100px;
+}
+
+#inner-box {
+}
+
+#outer-box {
+  background: #002b36;
+  color: #839496;
+}
+
+#scroll {
+}
+
+#text {
+  margin: 5px;
+} 
+
+#entry:selected {
+  outline: 0;
+  background: #073642;
+}
+
+#text:selected {
+  font-weight: bold;
+  color: #93a1a1;
+  background: transparent;
+}

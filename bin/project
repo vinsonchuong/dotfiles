@@ -5,22 +5,9 @@ set -o nounset
 set -o pipefail
 
 PROJECT="$1"
-TYPE="${2:-}"
-
-if [[ $TYPE ]]
-then
-	prototypical "$TYPE" "${HOME}/projects/${PROJECT}"
-fi
 
 tmux new-window -n "$PROJECT" -c "${HOME}/projects/${PROJECT}"
 tmux split-window -t "$PROJECT" -c "${HOME}/projects/${PROJECT}"
 
-ACTIVE_MONITORS=$(xrandr --listactivemonitors)
-if [[ "$ACTIVE_MONITORS" == *'+HDMI'* && "$ACTIVE_MONITORS" == *'+DP'* ]]
-then
-	tmux send-keys -t "${PROJECT}.{bottom}" 'nvim' 'C-m'
-	tmux select-pane -t "$PROJECT.{top}"
-else
-	tmux send-keys -t "${PROJECT}.{top}" 'nvim' 'C-m'
-	tmux select-window -t "$PROJECT.{bottom}"
-fi
+tmux send-keys -t "${PROJECT}.{bottom}" 'nvim' 'C-m'
+tmux select-pane -t "$PROJECT.{top}"

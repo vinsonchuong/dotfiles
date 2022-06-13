@@ -60,7 +60,9 @@ Plug 'lambdalisue/suda.vim'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-let $FZF_DEFAULT_OPTS='--color=16'
+set background=light
+colorscheme solarized
+let g:lightline={'colorscheme': 'solarized'}
 let mapleader="\<Space>"
 
 set nowrap
@@ -72,16 +74,20 @@ set diffopt+=vertical
 set foldmethod=syntax
 set completeopt=menu,menuone,noselect
 
-colorscheme solarized
-set background=light
-let g:lightline={'colorscheme': 'solarized'}
-
 lua <<EOF
 local nvim_lsp = require('lspconfig')
 local cmp = require('cmp')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local luasnip = require('luasnip')
 local saga = require('lspsaga')
+
+require('nvim-treesitter.configs').setup({
+  ensure_installed = {'html', 'css', 'javascript'},
+  sync_install = false,
+  highlight = {
+    enable = true
+  }
+})
 
 cmp.setup({
   snippet = {
@@ -179,9 +185,10 @@ nnoremap gs <Cmd>Telescope lsp_document_symbols<CR>
 nnoremap gS <Cmd>Telescope lsp_workspace_symbols<CR>
 nnoremap <silent><Leader>ra :Lspsaga code_action<CR>
 nnoremap <silent><Leader>rr :Lspsaga rename<CR>
-nnoremap <Leader>e <Cmd>Telescope lsp_document_diagnostics<CR>
+" nnoremap <Leader>e <Cmd>Telescope lsp_document_diagnostics<CR>
+nnoremap <silent> <Leader>e :Lspsaga show_line_diagnostics<CR>
 nnoremap <Leader>E <Cmd>Telescope lsp_workspace_diagnostics<CR>
-nnoremap <Leader>f <Cmd>Telescope find_files<CR>
+nnoremap <Leader>f <Cmd>Telescope find_files hidden=true<CR>
 nnoremap <Leader>S <Cmd>Telescope live_grep<CR>
 nnoremap <Leader>s <Cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>

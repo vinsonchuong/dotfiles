@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+# Depends on: https://github.com/KrumpetPirate/AAXtoMP3
+
+AAX_FILE=$(realpath "$1")
+
+AAXtoMP3 -e:mp3 --authcode "$(token amazon)" "$AAX_FILE"
+
+fd --type directory --exact-depth 2 . ~/downloads/Audiobook | while read FOLDER
+do
+	gdrive upload --recursive --parent 1ACTZCgv4z9D8Ymw9tAnje1EB2254VxcC "$FOLDER"
+done
+
+rm "$AAX_FILE"
+rm -rf ~/downloads/Audiobook

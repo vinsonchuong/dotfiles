@@ -1,0 +1,113 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #002b36;
+  color: #ffffff;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+  background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+  background-color: #000000;
+  border: none;
+}
+
+#workspaces button {
+  padding: 0 16px;
+  background: #073642;
+  color: #839496;
+}
+
+#workspaces button + button {
+  margin-left: 5px;
+}
+
+#workspaces button:hover {
+  border: 0;
+  background: #073642;
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+#workspaces button.focused {
+  color: #268bd2;
+}
+
+#workspaces button.urgent {
+  color: #b58900;
+}
+
+#mode {
+  background: #073642;
+}
+
+#mode,
+#idle_inhibitor,
+#pulseaudio,
+#cpu,
+#memory,
+#temperature,
+#clock,
+#tray {
+  padding: 0 10px;
+  margin: 0 4px;
+  background-color: #073642;
+  color: #839496;
+}
+
+/* #window, */
+/* #workspaces { */
+/*     margin: 0 4px; */
+/* } */
+/**/
+/* .modules-left > widget:first-child > #workspaces { */
+/*     margin-left: 0; */
+/* } */
+
+/* label:focus { */
+/*     background-color: #000000; */
+/* } */
+
+/* #pulseaudio.muted { */
+/*     background-color: #90b1b1; */
+/*     color: #2a5c45; */
+/* } */
+/**/
+/* #temperature.critical { */
+/*     background-color: #eb4d4b; */
+/* } */
+/**/
+/* #tray > .passive { */
+/*     -gtk-icon-effect: dim; */
+/* } */
+/**/
+/* #tray > .needs-attention { */
+/*     -gtk-icon-effect: highlight; */
+/*     background-color: #eb4d4b; */
+/* } */
+/**/
+/* #idle_inhibitor.activated { */
+/*     background-color: #ecf0f1; */
+/*     color: #2d3436; */
+/* } */

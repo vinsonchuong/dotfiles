@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Chromium
-Type=Application
-Terminal=false
-Exec=chromium --force-device-scale-factor=1 %U
-Icon=chromium
-Categories=GTK;Network;WebBrowser;
-MimeType=text/html;text/xml;application/xhtml+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;

@@ -1,7 +1,4 @@
-alias ls='ls -hF --color=auto'
-alias lsa='ls -a'
-alias lsl='ls -l'
-alias lsla='ls -al'
+alias ls='exa'
 alias cp='cp -i'
 alias ln='ln -i'
 alias mv='mv -i'
@@ -88,17 +85,12 @@ gitpb() {
 	fi
 }
 
-alias virsh='virsh -c qemu:///system'
-alias virt-install='virt-install --connect qemu:///system'
-alias virt-viewer='virt-viewer -c qemu:///system'
-
-prototypical() {
-	GEM_HOME='.gem' \
-	JSPM_GITHUB_AUTH_TOKEN="$(echo "$(pass github | awk '$1 == "Username:" {print $2}'):$(pass github | head -2 | tail -1)" | tr -d '\n' | base64)" \
-		command prototypical "$@"
-}
-
-path=("$HOME/bin" "$(ruby -e 'puts Gem.user_dir')/bin" "$(npm get prefix)/bin" $path)
+path=(
+	"$HOME/bin"
+	"$(yarn global bin)"
+	"$(python -c 'import site; print(site.USER_BASE)')/bin"
+	$path
+)
 HISTSIZE=1000
 export EDITOR='nvim'
 export PAGER='less -R'
@@ -113,23 +105,14 @@ zstyle ':vcs_info:*' actionformats '%s:%b (%a)'
 setopt prompt_subst
 PROMPT=$'<< %?\n%K{white}${(r.(($COLUMNS - ${#vcs_info_msg_0_})).)${(%):-%n@%m:%~}}$vcs_info_msg_0_%k\n>> '
 
-source ~/.fzf.zsh
 compdef "_files -/ -W '$HOME/projects'" 'project'
 
 chpwd() {
 	export PATH="$BASE_PATH"
-	unset PROJECT_HOME PROJECT_RUBY PROJECT_NODE
-	unset GEM_HOME
+	unset PROJECT_HOME PROJECT_NODE
 
 	local project_home="$(git rev-parse --show-toplevel 2>/dev/null)"
 	[ -n "$project_home" ] || return
-
-	if [ -f "$project_home/Gemfile" ]
-	then
-		export PROJECT_RUBY='yes'
-		export GEM_HOME="$project_home/.gem"
-		path=("$GEM_HOME/bin" $path)
-	fi
 
 	if [ -f "$project_home/package.json" ]
 	then

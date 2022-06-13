@@ -6,69 +6,66 @@ set -o pipefail
 
 cd "$(dirname $BASH_SOURCE)"
 
-ln -sf "$PWD/.xprofile" "$HOME"
-ln -sf "$PWD/.Xresources" "$HOME"
-sudo dmesg | grep -q 'X1 Carbon' && ln -sf "$PWD/.Xmodmap-X1C" "$HOME/.Xmodmap"
-lsusb | grep -q 'HHKB' && ln -sf "$PWD/.Xmodmap-HHKB" "$HOME/.Xmodmap"
+# ln -sf "$PWD/.makepkg.conf" "$HOME"
 
-ln -sf "$PWD/.makepkg.conf" "$HOME"
-
+mkdir -p "$HOME/.config/"
+ln -sf "$PWD/alacritty" "$HOME/.config"
+ln -sf "$PWD/aria2" "$HOME/.config"
+ln -sf "$PWD/mpd" "$HOME/.config"
+ln -sf "$PWD/ncmpcpp" "$HOME/.config"
+ln -sf "$PWD/beets" "$HOME/.config"
+ln -sf "$PWD/mpv" "$HOME/.config"
+ln -sf "$PWD/sway" "$HOME/.config"
+ln -sf "$PWD/mako" "$HOME/.config"
+ln -sf "$PWD/tridactyl" "$HOME/.config"
+ln -sf "$PWD/wofi" "$HOME/.config"
+ln -sf "$PWD/fontconfig" "$HOME/.config"
+ln -sf "$PWD/git" "$HOME/.config"
+ln -sf "$PWD/bottom" "$HOME/.config"
+ln -sf "$PWD/btop" "$HOME/.config"
 ln -sf "$PWD/.tmux.conf" "$HOME"
 ln -sf "$PWD/.zshrc" "$HOME"
 
+mkdir -p "$HOME/.local/share"
+ln -sf "$PWD/applications" "$HOME/.local/share"
+
+mkdir -p "$HOME/.local/share/mpd/playlists"
+mkdir -p "$HOME/.local/state/mpd"
+touch "$HOME/.local/state/mpd/database"
+
+mkdir -p "$HOME/.local/state/beets"
+
+mkdir -p "$HOME/.local/state/ncmpcpp"
+
 mkdir -p "$HOME/.config/nvim/autoload"
 curl -sfLo "$HOME/.config/nvim/autoload/plug.vim" 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+mkdir -p "$HOME/.config/nvim" && ln -sf "$PWD/init.vim" "$HOME/.config/nvim"
 
-ln -sf "$PWD/.gtkrc-2.0" "$HOME"
-mkdir -p "$HOME/.config/gtk-3.0" && ln -sf "$PWD/.gtkrc-3.0" "$HOME/.config/gtk-3.0/settings.ini"
-
-for profile in $(cat "$HOME/.mozilla/firefox/profiles.ini" | grep 'Path' | cut -b6-)
+for PROFILE in $(cat "$HOME/.mozilla/firefox/profiles.ini" | grep 'Path' | cut -b6-)
 do
-	chrome="$HOME/.mozilla/firefox/$profile/chrome"
-	mkdir -p "$chrome"
-	ln -sf "$PWD/userChrome.css" "$chrome"
+	PROFILE_DIR="$HOME/.mozilla/firefox/$PROFILE"
+	CHROME_DIR="$PROFILE_DIR/chrome"
+	mkdir -p "$CHROME_DIR"
+	ln -sf "$PWD/firefox/userChrome.css" "$CHROME_DIR"
+	ln -sf "$PWD/firefox/user.js" "$PROFILE_DIR"
 done
 
-mkdir -p "$HOME/.config" && ln -sf "$PWD/user-dirs.dirs" "$HOME/.config"
-mkdir -p "$HOME/.config/i3" && ln -sf "$PWD/i3" "$HOME/.config/i3/config"
-mkdir -p "$HOME/.config/i3status" && ln -sf "$PWD/i3status" "$HOME/.config/i3status/config"
-mkdir -p "$HOME/.config/mpv" && ln -sf "$PWD/mpv-input.conf" "$HOME/.config/mpv/input.conf"
-mkdir -p "$HOME/.config/mpv" && ln -sf "$PWD/mpv.conf" "$HOME/.config/mpv/mpv.conf"
-mkdir -p "$HOME/.config/transmission-cli" && ln -sf "$PWD/transmission-settings.json" "$HOME/.config/transmission-cli/settings.json"
-mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathura"
-mkdir -p "$HOME/.config/nvim" && ln -sf "$PWD/init.vim" "$HOME/.config/nvim"
+ln -sf "$PWD/user-dirs.dirs" "$HOME/.config"
+# mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathura"
 
 mkdir -p "$HOME/.gnupg" && ln -sf "$PWD/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
 ln -sf "$PWD/.pam_environment" "$HOME"
 
-mkdir -p "$HOME/.local/share/applications" && ln -sf "$PWD/chromium.desktop" "$HOME/.local/share/applications"
+# yarn global add typescript
 
-ln -sf "$PWD/.gitconfig" "$HOME"
-mkdir -p "$HOME/.config/git" && ln -sf "$PWD/gitignore" "$HOME/.config/git/ignore"
+# mkdir -p "$HOME/.certbot"
 
-rm -rf "$HOME/.gem"
-gem install --conservative gem-ctags
-gem update
-gem install --conservative bundler gemstash git-up rails ronn travis
-bundle config mirror.https://rubygems.org http://localhost:9292
+ln -sfn "$PWD/bin" "$HOME"
 
-cp -f "$PWD/.npmrc" "$HOME/.npmrc"
-yarn global add typescript
-
-pip install --user pylast requests
-ln -sf "$PWD/beets-config.yaml" "$(beet config -p)"
-
-mkdir -p "$HOME/.certbot"
-
-if [ ! -f "$HOME/bin" ]
-then
-	ln -s "$PWD/bin" "$HOME/bin"
-fi
-
-for folder in $(find "$HOME/.insync/my-drive" -maxdepth 1 -type d \( ! -name '.*' \))
-do
-	if [[ ! -e "$folder" ]]
-	then
-		ln -s "$folder" "$HOME"
-	fi
-done
+# for folder in $(find "$HOME/.insync/my-drive" -maxdepth 1 -type d \( ! -name '.*' \))
+# do
+# 	if [[ ! -e "$folder" ]]
+# 	then
+# 		ln -s "$folder" "$HOME"
+# 	fi
+# done

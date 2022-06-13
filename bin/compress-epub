@@ -4,5 +4,5 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
-zip --no-extra -0 book.epub mimetype
-zip --no-extra --recurse-paths -9 book.epub META-INF OEBPS
+zip -X -0 book.epub mimetype
+zip -X --recurse-paths -9 book.epub META-INF OEBPS

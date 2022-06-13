@@ -4,4 +4,5 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
-i3-msg exec "PATH=/usr/lib/jvm/zulu-11/bin/:$PATH $HOME/thinkorswim/thinkorswim"
+# swaymsg exec "PATH=/usr/lib/jvm/zulu-11/bin/:$PATH _JAVA_AWT_WM_NONREPARENTING=1 $HOME/opt/thinkorswim/thinkorswim"
+swaymsg exec "PATH=/usr/lib/jvm/zulu-11/bin/:$PATH $HOME/opt/thinkorswim/thinkorswim"
