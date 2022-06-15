@@ -16,6 +16,9 @@ Plug 'L3MON4D3/LuaSnip'
 
 Plug 'tami5/lspsaga.nvim'
 
+Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
+Plug 'sindrets/diffview.nvim'
+
 Plug 'numToStr/Comment.nvim'
 
 Plug 'altercation/vim-colors-solarized'
@@ -23,7 +26,6 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
 Plug 'dense-analysis/ale'
 Plug 'vinsonchuong/vim-stdtabs'
 Plug 'sheerun/vim-polyglot'
