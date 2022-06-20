@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+# https://github.com/LaurenceRawlings/savify
+
+URL=$1
+export SPOTIPY_CLIENT_ID=$(pass spotify | sed -n 2p | sed 's/^.*: //')
+export SPOTIPY_CLIENT_SECRET=$(pass spotify | sed -n 3p | sed 's/^.*: //')
+
+cd "$HOME/.local/share/Savify"
+
+savify -q best "$URL"

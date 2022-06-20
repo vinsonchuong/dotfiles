@@ -13,6 +13,10 @@ elif [[ $URL = 'https://listen.tidal.com/'* ]]
 then
 	tidal-dl -l "$URL"
 	beet import "$HOME/downloads/tidal"
+elif [[ $URL = 'https://open.spotify.com/'* ]]
+then
+	spotify "$URL"
+	beet import "$HOME/.local/share/Savify/downloads"
 else
 	echo "Unable to download $URL"
 	exit 1
