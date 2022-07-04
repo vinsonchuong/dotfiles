@@ -19,6 +19,8 @@ Plug 'tami5/lspsaga.nvim'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
 Plug 'sindrets/diffview.nvim'
 
+Plug 'github/copilot.vim'
+
 Plug 'numToStr/Comment.nvim'
 
 Plug 'altercation/vim-colors-solarized'
@@ -179,6 +181,9 @@ let g:ale_fixers={
 let g:ale_linters={
   \ 'javascript': ['xo']
 \ }
+
+let g:copilot_node_command='~/opt/n/n/versions/node/16.15.1/bin/node'
+let g:copilot_filetypes = { 'text': v:false }
 
 nnoremap <silent> K :Lspsaga hover_doc<CR>
 nnoremap gd <Cmd>Telescope lsp_definitions<CR>
