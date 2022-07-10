@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+DISK=$(lsblk --list --fs | awk '$4 == "KOBOeReader" { print $1 }')
+
+if [[ -z $DISK ]]
+then
+	echo "No Kobo eReader connected"
+	exit 1
+fi
+
+MOUNT_POINT=$(mktemp --directory)
+
+sudo mount "/dev/$DISK" "$MOUNT_POINT"
+sudo cp "$HOME"/downloads/*.epub "$MOUNT_POINT"
+sudo umount "$MOUNT_POINT"
+rmdir "$MOUNT_POINT"
