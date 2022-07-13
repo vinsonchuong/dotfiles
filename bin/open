@@ -4,4 +4,10 @@ set -o nounset
 # set -o xtrace
 set -o pipefail
 
-i3-msg exec "xdg-open '$(realpath "$1")'" > /dev/null
+FILE=$1
+FILE_INFO=$(file $FILE)
+
+if [[ $FILE_INFO =~ 'HTML document' ]]
+then
+	firefox-developer-edition "$FILE" &> /dev/null
+fi
