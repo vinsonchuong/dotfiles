@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+USECASE=${1:-}
+
+if [[ -z "$USECASE" ]]
+then
+	echo "Usage: $0 {comms|code}"
+else
+	case "$USECASE" in
+		'comms')
+			WIDTH='1000'
+			;;
+		'code')
+			WIDTH='1720'
+			;;
+		*)
+			echo "Usage: $0 {comms|code}"
+			exit 1
+			;;
+	esac
+
+	swaymsg "resize set width $WIDTH px"
+fi
