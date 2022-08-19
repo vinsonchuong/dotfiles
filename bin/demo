@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+swaymsg 'exec alacritty'
+sleep 0.5
+swaymsg 'floating enable'
+swaymsg 'resize set 1920 1080'
+swaymsg "move position $((3840 - 1920)) $((2160 - 1080 - 40))"
