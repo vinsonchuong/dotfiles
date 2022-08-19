@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+TITLE=$1
+
+while [[ -z "$(swaymsg -t get_tree | jq ".. | select(.type?) | select(.name == \"$TITLE\")")" ]]
+do
+	sleep 0.1
+done
