@@ -139,6 +139,14 @@ require('Comment').setup({
   }
 })
 
+require('telescope').setup({
+  pickers = {
+    find_files = {
+      find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
+    }
+  }
+})
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -195,7 +203,7 @@ nnoremap <silent><Leader>rr :Lspsaga rename<CR>
 " nnoremap <Leader>e <Cmd>Telescope lsp_document_diagnostics<CR>
 nnoremap <silent> <Leader>e :Lspsaga show_line_diagnostics<CR>
 nnoremap <Leader>E <Cmd>Telescope lsp_workspace_diagnostics<CR>
-nnoremap <Leader>f <Cmd>Telescope find_files hidden=true<CR>
+nnoremap <Leader>f <Cmd>Telescope find_files<CR>
 nnoremap <Leader>S <Cmd>Telescope live_grep<CR>
 nnoremap <Leader>s <Cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <Leader>u :UndotreeToggle<CR>
