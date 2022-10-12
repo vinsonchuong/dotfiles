@@ -23,6 +23,7 @@ ln -sf "$PWD/fontconfig" "$HOME/.config"
 ln -sf "$PWD/git" "$HOME/.config"
 ln -sf "$PWD/bottom" "$HOME/.config"
 ln -sf "$PWD/btop" "$HOME/.config"
+ln -sf "$PWD/nvim" "$HOME/.config"
 ln -sf "$PWD/.tmux.conf" "$HOME"
 ln -sf "$PWD/.zshrc" "$HOME"
 
@@ -36,10 +37,6 @@ touch "$HOME/.local/state/mpd/database"
 mkdir -p "$HOME/.local/state/beets"
 
 mkdir -p "$HOME/.local/state/ncmpcpp"
-
-mkdir -p "$HOME/.config/nvim/autoload"
-curl -sfLo "$HOME/.config/nvim/autoload/plug.vim" 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-mkdir -p "$HOME/.config/nvim" && ln -sf "$PWD/init.vim" "$HOME/.config/nvim"
 
 for PROFILE in $(cat "$HOME/.mozilla/firefox/profiles.ini" | grep 'Path' | cut -b6-)
 do
