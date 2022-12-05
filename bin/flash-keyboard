@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+# set -o xtrace
+set -o pipefail
+
+qmk compile
+
+KEYBOARD=$(qmk config user.keyboard | sed 's/.*=//' | sed 's/\//_/g')
+KEYMAP=$(qmk config user.keymap | sed 's/.*=//')
+BIN="${HOME}/opt/qmk_firmware/${KEYBOARD}_${KEYMAP}.bin"
+
+if [ ! -f "$BIN" ]
+then
+	echo "Could not find firmware at $BIN"
+fi
+
+$MOUNT='/mnt/keyboard'
+sudo mkdir "$MOUNT"
+sudo mount /dev/sda "$MOUNT"
+
+dd if="$BIN" of="$MOUNT/FLASH.BIN" bs=512 conv=notrunc oflag=direct,sync
