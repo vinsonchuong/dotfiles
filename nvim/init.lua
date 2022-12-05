@@ -201,16 +201,28 @@ local on_attach = function(client, bufnr) -- luacheck: ignore
 	--- buf_set_keymap('n', '<Leader>ra', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
-local servers = { "sumneko_lua", "tsserver" }
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
-		on_attach = on_attach,
-		flags = {
-			debounce_text_changes = 150,
+nvim_lsp.sumneko_lua.setup({
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	},
+	capabilities = cmp_nvim_lsp.default_capabilities(),
+	settings = {
+		Lua = {
+			workspace = {
+				checkThirdParty = false,
+			},
 		},
-		capabilities = cmp_nvim_lsp.default_capabilities(),
-	})
-end
+	},
+})
+
+nvim_lsp.tsserver.setup({
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	},
+	capabilities = cmp_nvim_lsp.default_capabilities(),
+})
 
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("NullLsFormatting", {})
