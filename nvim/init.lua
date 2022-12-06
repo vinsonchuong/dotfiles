@@ -121,7 +121,7 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "html", "css", "javascript" },
+	ensure_installed = { "lua", "vim", "bash", "html", "css", "javascript" },
 	sync_install = false,
 	highlight = {
 		enable = true,
