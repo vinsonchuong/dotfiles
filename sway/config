@@ -11,8 +11,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output "Goldstar Company Ltd LG HDR 4K 0x00005729" position 0,0 scale 1.5
 # output "BenQ Corporation BenQ BL2710 C8D00332SL0! " position 0,1440
 
-output "Goldstar Company Ltd LG HDR 4K 0x00005729" position 0,0
-output "BenQ Corporation BenQ BL2710 C8D00332SL0! " position 640,2160
+output "LG Electronics LG HDR 4K 0x00005729" position 0 0
+output "BNQ BenQ BL2710 C8D00332SL0! " position 640 2160
 
 ### Idle configuration
 #
