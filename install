@@ -51,7 +51,6 @@ ln -sf "$PWD/user-dirs.dirs" "$HOME/.config"
 # mkdir -p "$HOME/.config/zathura" && ln -sf "$PWD/zathurarc" "$HOME/.config/zathura"
 
 mkdir -p "$HOME/.gnupg" && ln -sf "$PWD/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
-ln -sf "$PWD/.pam_environment" "$HOME"
 
 # yarn global add typescript
 

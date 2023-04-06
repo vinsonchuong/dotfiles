@@ -1,3 +1,5 @@
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
 alias ls='exa'
 alias cp='cp -i'
 alias ln='ln -i'
