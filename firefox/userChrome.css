@@ -19,6 +19,7 @@
 /* Put URL and Tab bars on same line */
 #navigator-toolbox {
   display: flex !important;
+  flex-direction: row !important;
 }
 #nav-bar {
   order: 1 !important;
