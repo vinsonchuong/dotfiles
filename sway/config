@@ -44,6 +44,8 @@ bindsym $mod+q kill
 bindsym $mod+d exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+r reload
+bindsym $mod+p output * power off
+bindsym $mod+Shift+p output * power on
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -124,6 +126,8 @@ for_window [app_id="zoom" title="Zoom Meeting"] floating enable
 for_window [app_id="zoom" title="Zoom - Free Account"] floating enable
 
 include /etc/sway/config.d/*
+
+exec swayidle -w
 
 exec_always {
   gsettings set org.gnome.desktop.interface gtk-theme 'NumixSolarizedLightBlue'
