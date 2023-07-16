@@ -118,6 +118,7 @@ require("packer").startup({
 						"json-lsp",
 						"luacheck",
 						"stylua",
+						"fixjson",
 					},
 					auto_update = true,
 				})
@@ -164,10 +165,7 @@ require("packer").startup({
 			event = "User MasonToolsUpdateCompleted",
 			config = function()
 				local plugin = require("mason-null-ls")
-				plugin.setup({
-					automatic_setup = true,
-				})
-				plugin.setup_handlers({})
+				plugin.setup()
 			end,
 		},
 		{
@@ -285,11 +283,11 @@ require("packer").startup({
 
 		{ "thinca/vim-textobj-between" },
 		{ "glts/vim-textobj-comment" },
-		{ "kana/vim-textobj-entire", requires = "kana/vim-textobj-user" },
-		{ "kana/vim-textobj-fold", requires = "kana/vim-textobj-user" },
-		{ "kana/vim-textobj-indent", requires = "kana/vim-textobj-user" },
-		{ "kana/vim-textobj-lastpat", requires = "kana/vim-textobj-user" },
-		{ "kana/vim-textobj-line", requires = "kana/vim-textobj-user" },
+		{ "kana/vim-textobj-entire",        requires = "kana/vim-textobj-user" },
+		{ "kana/vim-textobj-fold",          requires = "kana/vim-textobj-user" },
+		{ "kana/vim-textobj-indent",        requires = "kana/vim-textobj-user" },
+		{ "kana/vim-textobj-lastpat",       requires = "kana/vim-textobj-user" },
+		{ "kana/vim-textobj-line",          requires = "kana/vim-textobj-user" },
 		{ "saaguero/vim-textobj-pastedtext" },
 		{ "whatyouhide/vim-textobj-xmlattr" },
 
